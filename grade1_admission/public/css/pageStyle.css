@@ -37,6 +37,7 @@ body{
 }
 
 .segment_header h1{
+    text-align: center;
     border-radius: 4px;
     padding: 20px 10px;
     font-family: 'Roboto',sans-serif;
