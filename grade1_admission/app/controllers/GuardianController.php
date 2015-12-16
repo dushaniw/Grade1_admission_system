@@ -9,19 +9,22 @@
 class GuardianController extends BaseController
 {
     public function addGuardian(){
-        $full_name = Input::get("RESULT_TextField-2");
-        $name_with_initial = Input::get("RESULT_TextField-1");
-        $nic = Input::get("RESULT_TextField-3");
-        $religion = Input::get("RESULT_TextField-4");
-        $relation_shift_to_child = Input::get("RESULT_RadioButton-5");
-        $telephone_number = Input::get("RESULT_TextField-5");
-        $district = Input::get("RESULT_RadioButton-7");
-        $permanent_address=Input::get("RESULT_TextField-6");
-        $divisional_secretariat_division = Input::get("RESULT_TextField-7");
-        $grama_niladari_division = Input::get("RESULT_TextField-8");
-        $email="fdfd";
-        $nationality="sinhaala";
-        DB::Insert("insert into gurdian values(?,?,?,?,?,?,?,?,?)",array($nic,$name_with_initial,$full_name,$relation_shift_to_child,$nationality,$religion,$permanent_address,$email,$telephone_number ));
+        $first_name = Input::get("RESULT_TextField-1");
+        $last_name = Input::get("RESULT_TextField-2");
+        $email = Input::get("RESULT_TextField-3");
+        $password = Input::get("RESULT_TextField-4");
+        $conform_password = Input::get("RESULT_TextField-5");
+        $nic = Input::get("RESULT_TextField-6");
+        $telephone_number =Input::get("RESULT_TextField-7");
+        $relation_to_child=Input::get("RESULT_RadioButton-8");
+        $religion=Input::get("RESULT_TextField-9");
+        $nationality = Input::get("RESULT_TextField-10");
+        $grama_niladry_division_number = Input::get("RESULT_TextField-11");
+        $district = Input::get("RESULT_TextField-12");
+        $permanent_address = Input::get("RESULT_RadioButton-13");
+
+
+        DB::Insert("insert into gurdian values(?,?,?,?,?,?,?,?,?)",array($nic,$first_name,$last_name,$relation_to_child,$nationality,$religion,$permanent_address,$email,$telephone_number,$grama_niladry_division_number,$password ));
        // return View:: make('Welcome/submitted')->with('var',$full_name);
         return Redirect ::to('/SignUpGuardian');
 
