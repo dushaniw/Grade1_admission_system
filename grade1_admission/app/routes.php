@@ -7,8 +7,23 @@ Route::get('/SignUpGuardian', function(){
 	return View :: make('Welcome/SignUpGuardian');
 
 });
-
 Route::get('/SignUpGuardian/submit','GuardianController@addGuardian' );
+
+
+
+Route::get('/addNewStudent', function(){
+
+	$guardian_nic="9783434343";
+	return View :: make('Welcome/addNewStudent')->with('guardian_nic',$guardian_nic);
+
+});
+Route::get('/addNewStudent/submit','StudentController@addStudent' );
+
+
+
+
+
+
 
 Route::get('/cat1',function(){
 	return View::make('category1_closeproximity');
