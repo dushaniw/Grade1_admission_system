@@ -1,0 +1,11 @@
+body{
+    background-image: url("/img/background.jpg");
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    line-height: 40px;
+    text-align: left;
+    text-space: 40px;
+}

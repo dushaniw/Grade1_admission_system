@@ -1,0 +1,251 @@
+body{
+    background: #F5F5F5;
+    background-size: cover;
+    font-family: 'Roboto',sans-serif;
+    font-size: 13px;
+}
+
+.form_table{
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+    border: 0px solid #CCCCCC;
+    background: #FFFFFF;
+    background-size: cover;
+    color: #333333;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.30);
+}
+
+.form_table a, .outside a{
+    color: #0D47A1;
+}
+.form_table a:visited, .outside a:visited{
+    color: #0D47A1;
+}
+
+.segment_header{
+    width: auto;
+    margin: 1px;
+    color: #FFFFFF;
+    background: #2196F3;
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: 50% 50%;
+    border-radius: 4px;
+}
+
+.segment_header h1{
+    border-radius: 4px;
+    padding: 20px 10px;
+    font-family: 'Roboto',sans-serif;
+}
+
+.q{
+    padding: 10px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    float: left;
+    display: block;
+}
+
+.q .question{
+    font-weight: bold;
+}
+
+.q .left_question_first{
+    width: 15em;
+}
+
+.required .icon{
+    background-image: none;
+    background-position: left;
+    background-repeat: no-repeat;
+    font-size: 13px;
+    padding-left: 14px;
+}
+
+.q .text_field{ /* input:text, input:password, textarea */
+    background: #FAFAFA;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    border-width: 1px;
+    color: #333333;
+    font-family: 'Roboto',sans-serif;
+    font-size: 13px;
+    margin: 1px 0;
+    padding: 10px;
+}
+
+.q .file_upload{ /* input:file */
+    background: #FAFAFA;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    border-width: 1px;
+    color: #333333;
+    font-family: 'Roboto',sans-serif;
+    font-size: 13px;
+    margin-top: 1px;
+    padding: 10px;
+}
+
+.q .file_upload_button{ /* upload button */
+    margin-top: 2px;
+}
+
+.q .inline_grid td{ /* multi-choice choices */
+    padding: 5px;
+    vertical-align: baseline;
+}
+
+.q .drop_down{ /* select */
+    background: #FAFAFA;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    border-width: 1px;
+    color: #333333;
+    font-family: 'Roboto',sans-serif;
+    font-size: 13px;
+    margin: 1px 0;
+    padding: 9px;
+}
+
+.q .matrix th{
+    color: #FFFFFF;
+    background: #64B5F6;
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.q .matrix td{
+    padding: 5px;
+    text-align: center;
+    white-space: nowrap;
+    height: 26px;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+}
+
+.q .matrix td.question{
+    border-right: 1px solid #CCCCCC;
+    font-weight: normal;
+}
+
+.q .matrix .multi_scale_sub th{
+    font-weight: normal;
+    border-top: 1px solid #CCCCCC !important;
+    background: #999999;
+}
+
+.q .matrix .multi_scale_break{
+    border-right: 1px solid #CCCCCC;
+}
+
+.q .matrix_row_dark td{
+    color: #333333;
+    background: #FAFAFA;
+}
+.q .matrix_row_dark td.question{
+    color: #333333;
+    background: #FAFAFA;
+}
+
+.q .matrix_row_light td{
+    color: #333333;
+    background: #FFFFFF;
+}
+.q .matrix_row_light td.question{
+    color: #333333;
+    background: #FFFFFF;
+}
+
+.q .rating_ranking td{
+    padding: 5px;
+}
+
+.q .scroller{
+    border: 1px solid #CCCCCC;
+}
+
+.highlight, tr.highlight td{ /* active item highlight */
+    background: #FFF9C4 !important;
+}
+
+.outside{
+    color: #333333;
+}
+
+.outside_container{
+    width: 650px;
+    padding: 1em 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #333333;
+}
+
+.outside_container .submit_button{ /* submit buttons */
+    color: #FFFFFF !important;
+    background: #FF9800;
+    background-size: auto;
+    border-style: none;
+    border-width: 1px;
+    border-color: #FFFFFF;
+    border-radius: 4px;
+    text-align: center;
+    font-family: 'Roboto',sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 30%;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.30);
+}
+
+.outside_container .submit_button:hover{
+    background: #F57C00;
+    border-color: #BBBBBB;
+    background-size: auto;
+}
+
+.progressBarWrapper{
+    border-radius: 4px;
+    background: #FFFFFF;
+    background-size: cover;
+    border-color: #CCCCCC;
+}
+
+.progressBarBack{
+    color: #FFFFFF;
+    background-color: #FF9800;
+}
+
+.progressBarFront{
+    color: #333333;
+}
+
+.ui-widget{
+    font-family: 'Roboto',sans-serif;
+}
+
+.invalid{
+    background: #FFEEEE;
+}
+
+.invalid .invalid_message{
+    color: #FF0000;
+    background: #FFEEEE;
+    border: 1px solid #FF0000;
+    border-radius: 2px;
+}
+
+.form_table.invalid{
+    border: 2px solid #FF0000;
+}
+
+.invalid .matrix .invalid_row{
+    background: #FFEEEE;
+}
