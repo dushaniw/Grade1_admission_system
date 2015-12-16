@@ -10,6 +10,29 @@ Route::get('/SignUpGuardian', function(){
 
 Route::get('/SignUpGuardian/submit','GuardianController@addGuardian' );
 
+Route::get('/cat1',function(){
+	return View::make('category1_closeproximity');
+});
+
+Route::get('/cat2',function(){
+	return View::make('category2_pastpupils');
+});
+
+
+Route::get('/cat3',function(){
+	return View::make('category3_brothers_sisters_at');
+});
+
+
+Route::get('/cat4',function(){
+	return View::make('category4_Staff_in_edu');
+});
+
+Route::get('/cat5',function(){
+	return View::make('category5_transfers');
+});
+
+
 
 
 
