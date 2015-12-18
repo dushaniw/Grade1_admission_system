@@ -23,10 +23,13 @@ class GuardianController extends BaseController
         //$district = Input::get("RESULT_RadioButton-12");
         $permanent_address = Input::get("RESULT_TextArea-13");
 
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="insert into guardian values('$nic','$first_name','$last_name','$relation_to_child','$nationality','$religion','$permanent_address','$email','$telephone_number','$grama_niladry_division_number','$password' ); ";
+        $mysqli->query($query);
 
-        DB::Insert("insert into guardian values(?,?,?,?,?,?,?,?,?,?,?)",array($nic,$first_name,$last_name,$relation_to_child,$nationality,$religion,$permanent_address,$email,$telephone_number,$grama_niladry_division_number,$password ));
-        return Redirect ::to('/SignUpGuardian');
-
+        //DB::Insert("insert into guardian values(?,?,?,?,?,?,?,?,?,?,?)",array($nic,$first_name,$last_name,$relation_to_child,$nationality,$religion,$permanent_address,$email,$telephone_number,$grama_niladry_division_number,$password ));
+        return Redirect ::to('/GuardianHome');
     }
 
 }

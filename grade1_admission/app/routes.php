@@ -1,18 +1,100 @@
 <?php
 
 
+Route::get('/GuardianHome',function(){
+	return View :: make ('Welcome/GuardianHome');
+
+});
+
+
+Route::get('/WelcomeAdmissionSystem',function(){
+	return View :: make ('Welcome/WelcomeAdmissionSystem');
+
+});
+
+
+
+
+
+
+
+
+Route::get('/login', function(){
+
+
+	return View :: make('Welcome/login');
+
+});
+Route::get('/ApplyForCategory', function(){
+
+
+	return View :: make('Welcome/ApplyForCategory');
+
+});
+
+Route::get('/category1', function(){
+
+
+	return View :: make('Welcome/category1_closeproximity');
+
+});
+
+
+Route::get('/category2', function(){
+
+
+	return View :: make('Welcome/category2_pastpupils');
+
+});
+
+
+Route::get('/category3', function(){
+
+
+	return View :: make('Welcome/category3_brothers_sisters_at');
+
+});
+
+
+Route::get('/category4', function(){
+
+
+	return View :: make('Welcome/category4_Staff_in_edu');
+
+});
+
+
+Route::get('/category5', function(){
+
+
+	return View :: make('Welcome/category5_transfers');
+
+});
+
+
+Route::get('/category6', function(){
+
+
+	return View :: make('Welcome/category6_living_abroad');
+
+});
+
+
+
+
+
 Route::get('/SignUpGuardian', function(){
 
 
 	return View :: make('Welcome/SignUpGuardian');
 
 });
-Route::get('/SignUpGuardian/submit','GuardianController@addGuardian' );
+Route::get('/SignUpGuardian/submit','GuardianController@addGuardian');
 
 
 
 Route::get('/addNewStudent', function(){
-
+	//$guardian_nic= Input::get("RESULT_TextField-1");
 	$guardian_nic="9783434343";
 	return View :: make('Welcome/addNewStudent')->with('guardian_nic',$guardian_nic);
 

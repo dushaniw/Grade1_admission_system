@@ -18,10 +18,15 @@ class StudentController extends BaseController
      $religion = Input::get("RESULT_TextField-6");
      $date = Input::get("RESULT_TextField-7");
 
-     DB::Insert("insert into studentApplicant values(?,?,?,?,?,?,?)",array($guardian_nic,$student_id,$first_name,$last_name,$gender,$religion,$date));
+     $db=Connection::getInstance();
+     $mysqli=$db->getConnection();
+     $query="insert into studentApplicant values('$guardian_nic','$student_id','$first_name','$last_name','$gender','$religion','$date'); ";
+     $mysqli->query($query);
+
+    // DB::Insert("insert into studentApplicant values(?,?,?,?,?,?,?)",array($guardian_nic,$student_id,$first_name,$last_name,$gender,$religion,$date));
 
 
-     return "return successfully added to system";
+     return Redirect ::to('/GuardianHome');
  }
 
  public   function chootyball(){
