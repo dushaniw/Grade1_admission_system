@@ -19,7 +19,7 @@ class LoginController extends BaseController
         if ($result->num_rows > 0) {
     		if($row = $result->fetch_assoc()) {
         		if($row["password"]==$password){
-        			return "login succefull";
+        			return View :: make ('G1SAS/userpage')->with('username',$user_name);
         		}else{
         			return Redirect::to('/');
         		}
