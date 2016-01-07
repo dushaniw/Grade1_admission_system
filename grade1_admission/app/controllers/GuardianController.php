@@ -8,6 +8,12 @@
  */
 class GuardianController extends BaseController
 {
+    
+    public function getIndex()
+    {
+        return View :: make ('G1SAS/AddGuardian');
+    }   
+    /*
     public function addGuardian(){
         $first_name = Input::get("RESULT_TextField-1");
         $last_name = Input::get("RESULT_TextField-2");
@@ -31,5 +37,6 @@ class GuardianController extends BaseController
         //DB::Insert("insert into guardian values(?,?,?,?,?,?,?,?,?,?,?)",array($nic,$first_name,$last_name,$relation_to_child,$nationality,$religion,$permanent_address,$email,$telephone_number,$grama_niladry_division_number,$password ));
         return Redirect ::to('/GuardianHome');
     }
+    */
 
 }

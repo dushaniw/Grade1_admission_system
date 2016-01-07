@@ -5,8 +5,15 @@ Route::get('/',function(){
 	return View :: make ('G1SAS/login');
 });
 
+Route::get('guadian',function(){
+	return View :: make ('G1SAS/AddGuardian');
+});
+
 
 Route::controller('login','LoginController');
+
+Route::controller('guardian','GuardianController');
+
 
 /*
 Route::get('/GuardianHome',function(){

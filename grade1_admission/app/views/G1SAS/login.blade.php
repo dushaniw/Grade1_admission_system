@@ -9,7 +9,7 @@
 
 	
         {{Form::label('userNameLabel', 'User Name :      ');}}
-        {{ Form :: text( 'userNameText','User Name') ; }}
+        {{ Form :: text( 'userNameTest','User Name') ; }}
 
 
         <br>
@@ -19,10 +19,13 @@
         <br>
         {{Form::submit('Login');}}
 
-
+        	
 
 {{ Form:: close()}}
 
+
+
+{{ HTML::link('http://localhost/guardian', 'AddNewGuardian')}}
 
 </body>
 </html>
