@@ -5,15 +5,27 @@ Route::get('/',function(){
 	return View :: make ('G1SAS/login');
 });
 
+
 Route::get('guadian',function(){
 	return View :: make ('G1SAS/AddGuardian');
 });
-
 
 Route::controller('login','LoginController');
 
 Route::controller('guardian','GuardianController');
 
+
+//this tempory function
+
+Route::get('application',function(){
+	return View :: make ('G1SAS/application');
+});
+
+
+
+Route::get('application1',function(){
+	return View :: make ('Welcome/category3_brothers_sisters_at');
+});
 
 /*
 Route::get('/GuardianHome',function(){

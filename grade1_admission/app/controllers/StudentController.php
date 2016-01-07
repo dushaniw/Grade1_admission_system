@@ -8,6 +8,7 @@
  */
 class StudentController extends BaseController
 {
+    
  public  function addStudent(){
 
      $guardian_nic= Input::get("RESULT_TextField-1");
