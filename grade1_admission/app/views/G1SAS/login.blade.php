@@ -9,7 +9,7 @@
 
 	
         {{Form::label('userNameLabel', 'User Name :      ');}}
-        {{ Form :: text( 'userNameTest','User Name') ; }}
+        {{ Form :: text( 'userNameText','User Name') ; }}
 
 
         <br>
