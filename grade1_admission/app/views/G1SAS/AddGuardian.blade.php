@@ -4,6 +4,9 @@
 </head>
 <body>
 
+{{ Form :: open(array('url' =>'guardian/add','method' => 'POST' ))}}
+
+
 
         {{Form::label('firstNameLabel', 'First Name :      ');}}
         {{ Form :: text( 'firstNameTest','First Name') ; }}		
@@ -17,6 +20,10 @@
 
         {{Form::label('emailLabel', 'Email :      ');}}
         {{ Form :: text( 'emailTest','Email') ; }}
+        <br> 
+
+        {{Form::label('addressLabel', 'Permanant Address :      ');}}
+        {{ Form :: text( 'addressTest','Address') ; }}
         <br> 
 
         {{Form::label('passwordLabel', 'Password :      ');}}
@@ -53,6 +60,25 @@
         {{Form::label('LegalGuardianLabel', 'Legal Guardian :      ');}}
 
         {{ Form::radio('relationshiptochild', 'Legal Guardian');}}
+
+        <br>
+        {{Form::label('religionLabel', 'Religion :      ');}}
+        {{ Form :: text( 'religionTest','Religion') ; }}             
+
+        <br> 
+
+        {{Form::label('nationalityLabel', 'Nationality :      ');}}
+        {{ Form :: text( 'nationalityTest','Nationality') ; }}
+
+        <br> 
+
+        {{Form::label('gramaNiladariDivisionNumberLabel', 'GramaNiladariDivisionNumber:      ');}}
+        {{ Form :: text( 'gramaNiladariDivisionNumberTest','GramaNiladariDivisionNumber') ; }}
+        <br> 
+
+        {{Form::submit('addGuardian');}}
+{{ Form:: close()}}
+
         
 </body>
 </html>
