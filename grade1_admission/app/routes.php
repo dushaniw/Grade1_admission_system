@@ -22,9 +22,8 @@ Route::get('application',function(){
 });
 
 
-
 Route::get('application1',function(){
-	return View :: make ('Welcome/category3_brothers_sisters_at');
+	return View :: make ('Welcome/category6_living_abroad');
 });
 
 /*

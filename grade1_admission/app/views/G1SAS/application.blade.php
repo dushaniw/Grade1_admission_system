@@ -163,6 +163,139 @@
 
 
 
+	<div id="catogory4" >
+		<h1> Childern of persons belonging to staff in institution directly involved in school education </h1>
+		
+		<br>
+		{{Form::label('Label29', 'a) Post held as permanent employee in the relevant institutions');}}
+
+		 {{ Form :: text( 'test29','') ; }}		
+
+
+		<br>
+		{{Form::label('Label30','Period of service');}}
+
+		 {{ Form :: text( 'test30','') ; }}		
+
+		<br>
+		{{Form::label('Label31', 'b) Distance from place of residence to place of work');}}
+		 {{ Form :: text( 'test31','') ; }}		
+
+
+		<br>
+		{{Form::label('Label32','c) If serving presently in a difficult school, period of difficult school service');}}
+		 {{ Form :: text( 'test32','') ; }}		
+
+		
+		<br>
+		{{Form::label('Label33','d) If served earlier in a in a difficult school such period of service');}}		
+		 {{ Form :: text( 'test33','') ; }}		
+		
+		<br>
+
+
+
+
+<table border="1" cellpadding="5" cellspacing="5">
+<tr>
+<th>2015</th>
+<th>2014</th>
+<th>2013</th>
+<th>2012</th>
+<th>2011</th>
+
+</tr>
+<tr>
+
+<td>		 {{ Form :: text( 'test34','') ; }}		</td>
+<td>		 {{ Form :: text( 'test35','') ; }}		</td>
+<td>		 {{ Form :: text( 'test36','') ; }}		</td>	
+<td>		 {{ Form :: text( 'test37','') ; }}		</td>
+<td>		 {{ Form :: text( 'test38','') ; }}		</td>
+</tr>
+<tr>
+</table>
+		<br>
+
+		{{Form::label('Label39','Name of the school if serving in a school');}}		
+		 {{ Form :: text( 'test39','') ; }}
+		 <br>
+
+		{{Form::label('Label40','Period of service');}}		
+		 {{ Form :: text( 'test40','') ; }}
+		 
+
+	</div>
+
+
+
+
+
+	<div id="catogory5" >
+		<h1> Children of officers transfferd on exigencies of service </h1>
+		
+		<br>
+		{{Form::label('Label41', 'a) Date of transfer received lastly');}}
+
+		 {{ Form :: text( 'test41','') ; }}		
+
+
+		<br>
+		{{Form::label('Label42','Name & address of work place before receiving the transfer');}}
+		<br>
+		 {{ Form :: textArea( 'test42','') ; }}		
+		<br>
+
+		{{Form::label('Label43', 'Name & address of work place after receiving the transfer');}}
+		<br>
+		{{ Form :: textArea( 'test43','') ; }}		
+		<br>
+
+		{{Form::label('Label44','c) Distance between the earlier place of work and place arrived on transfer (in km)');}}
+		{{ Form :: text( 'test44','') ; }}		
+
+		<br>
+		{{Form::label('Label45','d) No of schools located where the child could be admitted and located closer to the place of residence other than the school applied for');}}		
+		 {{ Form :: text( 'test45','') ; }}		
+		
+		
+		<br>
+
+		{{Form::label('Label46','e) Period of service as a State/Corporation/Statutory Bank/State Bank employee');}}		
+		 {{ Form :: text( 'test46','') ; }}
+		 <br>
+
+
+
+<table border="1" cellpadding="5" cellspacing="5">
+<tr>
+<th>2015</th>
+<th>2014</th>
+<th>2013</th>
+<th>2012</th>
+<th>2011</th>
+
+</tr>
+<tr>
+
+<td>		 {{ Form :: text( 'test47','') ; }}		</td>
+<td>		 {{ Form :: text( 'test48','') ; }}		</td>
+<td>		 {{ Form :: text( 'test49','') ; }}		</td>	
+<td>		 {{ Form :: text( 'test50','') ; }}		</td>
+<td>		 {{ Form :: text( 'test51','') ; }}		</td>
+</tr>
+<tr>
+</table>
+
+
+	</div>
+
+
+
+
+	
+
+
 {{Form::close()}}
 
 </body>
