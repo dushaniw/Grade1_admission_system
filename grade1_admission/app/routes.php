@@ -1,6 +1,14 @@
 <?php
 
 
+Route::get('/',function(){
+	return View :: make ('G1SAS/login');
+});
+
+
+Route::controller('login','LoginController');
+
+/*
 Route::get('/GuardianHome',function(){
 	return View :: make ('Welcome/GuardianHome');
 
@@ -22,7 +30,7 @@ Route::get('/WelcomeAdmissionSystem',function(){
 Route::get('/login', function(){
 
 
-	return View :: make('Welcome/login');
+	return View :: make('/login');
 
 });
 Route::get('/ApplyForCategory', function(){
@@ -129,9 +137,9 @@ Route::get('/cat5',function(){
 	return View::make('category5_transfers');
 });
 
+*/
 
-
-
+/*
 
 /*
 |--------------------------------------------------------------------------
