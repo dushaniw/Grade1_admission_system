@@ -11,7 +11,7 @@ class GuaridanDBController{
             if($row = $result->fetch_assoc()) {
                 if($row["password"]==$password){
                     $guardian=new Guardian
-                    return View :: make ('G1SAS/userpage')->with('username',$user_name)->wuth();
+                    return View :: make ('G1SAS/userpage')->with('username',$user_name)->with();
                 }else{
                     return Redirect::to('/');
                 }
