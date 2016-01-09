@@ -3,6 +3,7 @@
 *  
 */
 include("Model/school.php");
+include("Model/application.php");
 class SchoolDBController extends BaseController
 {
 	
@@ -81,7 +82,7 @@ class SchoolDBController extends BaseController
     public function postApplication()
     {
         $orderOfPreference=Input::get("schoolPiority");
-        $typeOfApplication=Input::get("schoolPiority");
+        //$typeOfApplication=Input::get("schoolPiority");
         $schoolId=Input::get("schoolId");
         $type=Input::get("type");
         $distance=Input::get("distanceT");
@@ -92,10 +93,15 @@ class SchoolDBController extends BaseController
 
         }
 
-        
+        $application=new application();
+        $application->setOrderOfPreference($orderOfPreference);
+        $application->setType($type);
+        $application->setSchool_id($schoolId);
+        $application->setDistance($distance);
+        $application->setMedium($medium);
         switch ($type) {
             case 0:
-                return  View :: make ('G1SAS/category1')->with('orderOfPreference',$orderOfPreference)->with('typeOfApplication',$type)->with('schoolId',$schoolId)->with('medium',$medium)->with('distance',$distance);
+                return  View :: make ('G1SAS/category1')->with('application',$application);
                 break;
             case 1: // never reached because "a" is already matched with 0
                return  View :: make ('G1SAS/category2');
@@ -116,6 +122,8 @@ class SchoolDBController extends BaseController
     public function postAddcategory1()
     {
       //return "erer";
+      //$application=Input::get("application");
+      
       $type=Input::get("typeOfApplication");
       $orderOfPreference=Input::get("orderOfPreference");
       $schoolId=Input::get("schoolId");
@@ -127,34 +135,16 @@ class SchoolDBController extends BaseController
       $query="select application_id from application decs limit 1;";
       $result =$mysqli->query($query);
 
-       if ($result->num_rows > 0) {
-            if ($row = $result->fetch_assoc()) {
-                $applicationId=(int)$row["application_id"]+1;
-            }
+      if ($result->num_rows > 0) {
+        if ($row = $result->fetch_assoc()) {
+            $applicationId=(int)$row["application_id"]+1;
         }
-        return $applicationId;
-        /*Input::get("schoolPiority");
-        Input::get("schoolId");
-        $type=Input::get("type");
-        
-        switch ($type) {
-            case 0:
-                return  View :: make ('G1SAS/category1');
-                break;
-            case 1: // never reached because "a" is already matched with 0
-               return  View :: make ('G1SAS/category2');
-                break;
-            case 2:
-                return  View :: make ('G1SAS/category3');
-                break;
-            case 3: // never reached because "a" is already matched with 0
-                return  View :: make ('G1SAS/category4');
-                break;
-            case 4:
-                return  View :: make ('G1SAS/category5');
-                break;
-        } 
-        */
-       // return "returtsar";  
+      }
+      $noOfYearsInElectrocalRegister=Input::get('noOfYearsInElectrocalRegister');
+      $noOfYearsSpouseInElectrocalRegister=Input::get('noOfYearsSpouseInElectrocalRegister');
+      $typeOfTitleDeed =Input::get('typeOfTitleDeed ');
+      $noOfAditionalDocumentForResident=Input::get('noOfAditionalDocumentForResident');
+      $closeSchoolCount=Input::get('closeSchoolCount');
+       return "returtsar";  
     }
 }

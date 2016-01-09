@@ -1,6 +1,6 @@
 <?php
 
-class school 
+class application
 {
 	private $application_id;
 	private $school_id;

@@ -1,8 +1,5 @@
 <?php
 
-Route::get('application',function(){
-	return "ssss";
-});
 
 
 Route::get('/',function(){
