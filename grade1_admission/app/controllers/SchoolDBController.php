@@ -84,10 +84,18 @@ class SchoolDBController extends BaseController
         $typeOfApplication=Input::get("schoolPiority");
         $schoolId=Input::get("schoolId");
         $type=Input::get("type");
+        $distance=Input::get("distanceT");
+        if(Input::get("MediumT")==0){
+            $medium='Sinhala';
+        }else{
+            $medium='Tamil';
+
+        }
+
         
         switch ($type) {
             case 0:
-                return  View :: make ('G1SAS/category1')->with('orderOfPreference',$orderOfPreference)->with('typeOfApplication',$type)->with('schoolId',$schoolId);
+                return  View :: make ('G1SAS/category1')->with('orderOfPreference',$orderOfPreference)->with('typeOfApplication',$type)->with('schoolId',$schoolId)->with('medium',$medium)->with('distance',$distance);
                 break;
             case 1: // never reached because "a" is already matched with 0
                return  View :: make ('G1SAS/category2');
@@ -108,7 +116,23 @@ class SchoolDBController extends BaseController
     public function postAddcategory1()
     {
       //return "erer";
-      return Input::get("typeOfApplication")." ".Input::get("orderOfPreference")." ".Input::get("schoolId");
+      $type=Input::get("typeOfApplication");
+      $orderOfPreference=Input::get("orderOfPreference");
+      $schoolId=Input::get("schoolId");
+      $distance=Input::get("distance");
+      $medium=Input::get("Medium");
+      $applicationId='1';
+      $db=Connection::getInstance();
+      $mysqli=$db->getConnection();
+      $query="select application_id from application decs limit 1;";
+      $result =$mysqli->query($query);
+
+       if ($result->num_rows > 0) {
+            if ($row = $result->fetch_assoc()) {
+                $applicationId=(int)$row["application_id"]+1;
+            }
+        }
+        return $applicationId;
         /*Input::get("schoolPiority");
         Input::get("schoolId");
         $type=Input::get("type");

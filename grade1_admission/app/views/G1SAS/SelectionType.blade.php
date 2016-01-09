@@ -11,7 +11,15 @@
 			{{Form::label('schoolNameL', 'School Name    ');}};
 			{{Form::text('schoolNameT', $schools[$i]->getSchool_name() );}}
 
+			{{Form::label('distanceL', 'Distance School    ');}};
+			{{Form::text('distanceT', '' );}}
+
+
+			{{Form::label('MediumL', 'Medium    ');}};
+			{{Form::select('MediumT', array('Sinhala','Tamil') );}}
+
 			<br>
+
 
 
 			{{Form::label('schoolTypeL', 'School Type ');}};
