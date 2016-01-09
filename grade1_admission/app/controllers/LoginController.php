@@ -15,11 +15,12 @@ class LoginController extends BaseController
         $mysqli=$db->getConnection();       	
         $query = "select password from guardian where email ='$user_name'";        	
         $result =$mysqli->query($query);
-
+        
         if ($result->num_rows > 0) {
     		if($row = $result->fetch_assoc()) {
         		if($row["password"]==$password){
-        			return View :: make ('G1SAS/userpage')->with('username',$user_name);
+
+        			return View :: make ('G1SAS/userpage')->with('username',$user_name)->wuth();
         		}else{
         			return Redirect::to('/');
         		}

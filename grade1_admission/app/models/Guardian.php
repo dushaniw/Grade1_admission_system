@@ -20,8 +20,18 @@ class Child {
     public function __construct($nic,$email,$password) {
         $this->nic=$nic;
         $this->email=$email;
-        $this->password=$password;
-          
+        $this->password=$password; 
+    }
+
+    public function getNic()
+    {
+        return $this->nic;
+    }
+    
+    public function setNic($nic)
+    {
+        $this->nic = $nic;
+        return $this;
     }
     public function getLastName()
     {
@@ -31,17 +41,6 @@ class Child {
     public function setLastName($last_name)
     {
         $this->last_name = $last_name;
-        return $this;
-    }
-
-    public function getGuardianNic()
-    {
-        return $this->guardian_nic;
-    }
-    
-    public function setGuardianNic($guardian_nic)
-    {
-        $this->guardian_nic = $guardian_nic;
         return $this;
     }
 
@@ -55,29 +54,17 @@ class Child {
         $this->first_name = $first_name;
         return $this;
     }
-
-    public function getGender()
+    public function getRelationship()
     {
-        return $this->gender;
-    }
-
-    public function setGender($gender)
-    {
-        $this->gender = $gender;
-        return $this;
-    }
-
-    public function getDob()
-    {
-        return $this->dob;
+        return $this->relationship;
     }
     
-    public function setDob($dob)
+    public function setRelationship($relationship)
     {
-        $this->dob = $dob;
+        $this->relationship = $relationship;
         return $this;
     }
-        
+
     public function getReligion()
     {
         return $this->religion;
@@ -88,5 +75,70 @@ class Child {
         $this->religion = $religion;
         return $this;
     }
+    
+    public function getNationality()
+    {
+        return $this->nationality;
+    }
+    
+    public function setNationality($nationality)
+    {
+        $this->nationality = $nationality;
+        return $this;
+    }
 
+    public function getPermanent_address()
+    {
+        return $this->permanent_address;
+    }
+    
+    public function setPermanent_address($permanent_address)
+    {
+        $this->permanent_address = $permanent_address;
+        return $this;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function getContact_number()
+    {
+        return $this->contact_number;
+    }
+    
+    public function setContact_number($contact_number)
+    {
+        $this->contact_number = $contact_number;
+        return $this;
+    }
+
+    public function getGrama_nil_div_no()
+    {
+        return $this->grama_nil_div_no;
+    }
+    
+    public function setGrama_nil_div_no($grama_nil_div_no)
+    {
+        $this->grama_nil_div_no = $grama_nil_div_no;
+        return $this;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+    
+    public function setPassword($password)
+    {
+        $this->password = $password;
+        return $this;
+    }
 }

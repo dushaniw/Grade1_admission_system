@@ -1,5 +1,9 @@
 <?php
 
+Route::get('application',function(){
+	return "ssss";
+});
+
 
 Route::get('/',function(){
 	return View :: make ('G1SAS/login');
@@ -17,13 +21,12 @@ Route::controller('guardian','GuardianController');
 
 //this tempory function
 
-Route::get('application',function(){
-	return View :: make ('G1SAS/application');
-});
+//Route::controller('application','applicationController');
 
 
-Route::get('application1',function(){
-	return View :: make ('Welcome/category6_living_abroad');
+Route::controller('selectSchool','SchoolDBController');
+Route::post('selectedSuccessfully',function(){
+	
 });
 
 /*

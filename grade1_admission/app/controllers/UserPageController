@@ -1,0 +1,11 @@
+<?php
+
+class UserPageController extends BaseController
+{
+	
+	public function postStudentadd()
+	{
+    		return View::make('	G1SAS/addnewchild');
+		
+	}
+}
