@@ -80,8 +80,36 @@ class SchoolDBController extends BaseController
 
     public function postApplication()
     {
-        Input::get("schoolPiority");
-        Input::get("schoolPiority");
+        $orderOfPreference=Input::get("schoolPiority");
+        $typeOfApplication=Input::get("schoolPiority");
+        $schoolId=Input::get("schoolId");
+        $type=Input::get("type");
+        
+        switch ($type) {
+            case 0:
+                return  View :: make ('G1SAS/category1')->with('orderOfPreference',$orderOfPreference)->with('typeOfApplication',$type)->with('schoolId',$schoolId);
+                break;
+            case 1: // never reached because "a" is already matched with 0
+               return  View :: make ('G1SAS/category2');
+                break;
+            case 2:
+                return  View :: make ('G1SAS/category3');
+                break;
+            case 3: // never reached because "a" is already matched with 0
+                return  View :: make ('G1SAS/category4');
+                break;
+            case 4:
+                return  View :: make ('G1SAS/category5');
+                break;
+        }   
+    }
+
+
+    public function postAddcategory1()
+    {
+      //return "erer";
+      return Input::get("typeOfApplication")." ".Input::get("orderOfPreference")." ".Input::get("schoolId");
+        /*Input::get("schoolPiority");
         Input::get("schoolId");
         $type=Input::get("type");
         
@@ -101,6 +129,8 @@ class SchoolDBController extends BaseController
             case 4:
                 return  View :: make ('G1SAS/category5');
                 break;
-        }   
+        } 
+        */
+       // return "returtsar";  
     }
 }

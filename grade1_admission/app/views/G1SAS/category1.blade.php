@@ -3,7 +3,12 @@
 	<title>Category 1</title>
 </head>
 <body>
-{{ Form :: open(array('url' =>'selectSchool/addCategory1','method' => 'POST' ))}}
+{{ Form :: open(array('url' =>'selectSchool/addcategory1','method' => 'POST' ))}}
+	{{ Form :: hidden( 'orderOfPreference',$orderOfPreference) ; }}
+	 {{ Form :: hidden( 'typeOfApplication',$typeOfApplication) ; }}
+	 
+	 {{ Form :: hidden( 'schoolId',$schoolId) ; }}
+
 
 	<div id="catogory1" >
 		<h1> Children of residents in close proximity of school </h1>
@@ -40,7 +45,10 @@
 		<br>
 		{{Form::label('Label5','No of schools located closer to the place of residence where the child could be admitted than the school applied for');}}
 
-		 {{ Form :: text( 'test5','') ; }}		
+		 {{ Form :: text( 'test5','') ; }}
+		 <br>
+
+		 {{Form::submit('addApplication')}}		
 		
 	</div>
 
