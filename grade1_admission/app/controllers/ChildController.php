@@ -11,17 +11,12 @@ class ChildController extends BaseController{
         
         $first_name = Input::get("firstNameText");
         $last_name = Input::get("lastNameText");
-        $email = Input::get("emailTest");
-        $permanent_address = Input::get("addressTest");
-        $password = Input::get("password");
-        $conform_password = Input::get("conform_password");
-        $nic = Input::get("nicTest");
-        $telephone_number =Input::get("telephoneTest");
-        $relation_to_child=Input::get("relationshiptochild");
-        $religion=Input::get("religionTest");
-        $nationality = Input::get("nationalityTest");
-        $grama_niladry_division_number = Input::get("gramaNiladariDivisionNumberTest");
-        //$district = Input::get("RESULT_RadioButton-12");
+        $gender=Input::get("gender");
+        $religion=Input::get("religionText");
+        $year=Input::get("year");
+        $month=Input::get("month");
+        $date=Input::get("date");
+        $dob=$year."/".$month."/".$date;
         
 
         $db=Connection::getInstance();

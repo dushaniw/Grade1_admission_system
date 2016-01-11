@@ -12,6 +12,7 @@
 	</div>
 
 {{Form :: open(array('url' =>'userpage/studentadd','method' => 'POST' ))}}
+        {{Form::hidden('username',$username)}}
         {{Form::submit('Add New Child');}}
 {{ Form:: close()}}
 

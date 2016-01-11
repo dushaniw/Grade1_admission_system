@@ -6,6 +6,8 @@
 
 {{ Form :: open(array('url' =>'child/add','method' => 'POST' ))}}
         
+
+{{$username}} 
         {{Form::label('usernameLabel', 'Username:      ');}}
         {{ Form :: text( 'usernameText',$username) ; }}     
         <br>
@@ -21,9 +23,9 @@
         <br> 
 
         {{Form::label('dobLabel', 'Date of Birth :      ');}}
-        {{ Form::selectRange('number', 2000, 2015); }}
+        {{ Form::selectRange('year', 2000, 2015); }}
         {{ Form::selectMonth('month'); }}
-        {{ Form::selectRange('number', 1, 31); }}
+        {{ Form::selectRange('date', 1, 31); }}
 
         <br>
 
@@ -38,7 +40,7 @@
 
         <br>
         {{Form::label('religionLabel', 'Religion :      ');}}
-        {{ Form :: text( 'religionTest','Religion') ; }}             
+        {{ Form :: text( 'religionText','Religion') ; }}             
 
         <br> 
 
