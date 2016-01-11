@@ -9,21 +9,21 @@
 
 
         {{Form::label('firstNameLabel', 'First Name :      ');}}
-        {{ Form :: text( 'firstNameTest','First Name') ; }}		
+        {{ Form :: text( 'firstNameText','First Name') ; }}		
 
         <br> 
 
         {{Form::label('lastNameLabel', 'last Name :      ');}}
-        {{ Form :: text( 'lastNameTest','Last Name') ; }}
+        {{ Form :: text( 'lastNameText','Last Name') ; }}
 
         <br> 
 
         {{Form::label('emailLabel', 'Email :      ');}}
-        {{ Form :: text( 'emailTest','Email') ; }}
+        {{ Form :: text( 'emailText','Email') ; }}
         <br> 
 
         {{Form::label('addressLabel', 'Permanant Address :      ');}}
-        {{ Form :: text( 'addressTest','Address') ; }}
+        {{ Form :: text( 'addressText','Address') ; }}
         <br> 
 
         {{Form::label('passwordLabel', 'Password :      ');}}
@@ -43,7 +43,7 @@
         <br> 
 
         {{Form::label('telephoneLabel', 'Telephone :      ');}}
-        {{ Form :: text( 'telephoneTest','Telephone') ; }}
+        {{ Form :: text( 'telephoneText','Telephone') ; }}
 
         <br> 
 
@@ -63,17 +63,17 @@
 
         <br>
         {{Form::label('religionLabel', 'Religion :      ');}}
-        {{ Form :: text( 'religionTest','Religion') ; }}             
+        {{ Form :: text( 'religionText','Religion') ; }}             
 
         <br> 
 
         {{Form::label('nationalityLabel', 'Nationality :      ');}}
-        {{ Form :: text( 'nationalityTest','Nationality') ; }}
+        {{ Form :: text( 'nationalityText','Nationality') ; }}
 
         <br> 
 
         {{Form::label('gramaNiladariDivisionNumberLabel', 'GramaNiladariDivisionNumber:      ');}}
-        {{ Form :: text( 'gramaNiladariDivisionNumberTest','GramaNiladariDivisionNumber') ; }}
+        {{ Form :: text( 'gramaNiladariDivisionNumberText','GramaNiladariDivisionNumber') ; }}
         <br> 
 
         {{Form::submit('addGuardian');}}

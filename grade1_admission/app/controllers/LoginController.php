@@ -8,7 +8,7 @@ class LoginController extends BaseController
 	
 	public function postIndex()
 	{
-		$user_name = Input::get("userNameTest");
+		$user_name = Input::get("userNameText");
         $password = Input::get("password");
         
         $db=Connection::getInstance();

@@ -15,6 +15,10 @@ Route::controller('login','LoginController');
 
 Route::controller('guardian','GuardianController');
 
+Route::controller('child','ChildController');
+
+Route::controller('userpage','UserPageController');
+
 
 //this tempory function
 
