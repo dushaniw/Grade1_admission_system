@@ -3,14 +3,13 @@
 	<title>Category 1</title>
 </head>
 <body>
-	{{ Form :: open(array('url' =>'selectSchool/addcategory1','method' => 'POST' ))}}
+	{{ Form :: open(array('url' =>'selectSchool/addcategory','method' => 'POST' ))}}
 		
 		{{ Form :: hidden( 'orderOfPreference',$application->getOrderOfPreference()) ; }}
 		{{ Form :: hidden( 'typeOfApplication',$application->getType()) ; }}
 		{{ Form :: hidden( 'schoolId',$application->getSchool_id()) ; }}
 		{{ Form :: hidden( 'distance',$application->getDistance()) ; }} 
 		{{ Form :: hidden( 'medium',$application->getMedium()) ; }}
-
 		
 		<div id="catogory1" >
 			

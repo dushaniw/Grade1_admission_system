@@ -1,7 +1,6 @@
 <?php
 
 
-
 Route::get('/',function(){
 	return View :: make ('G1SAS/login');
 });
@@ -19,17 +18,11 @@ Route::controller('child','ChildController');
 
 Route::controller('userpage','UserPageController');
 
-
-//this tempory function
-
-//Route::controller('application','applicationController');
-
-
 Route::controller('selectSchool','SchoolDBController');
 Route::post('selectedSuccessfully',function(){
 	
 });
-
+Route::controller('admin','AdminController');
 /*
 Route::get('/GuardianHome',function(){
 	return View :: make ('Welcome/GuardianHome');

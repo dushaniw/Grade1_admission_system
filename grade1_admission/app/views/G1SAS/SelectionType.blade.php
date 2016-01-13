@@ -24,7 +24,7 @@
 
 			{{Form::label('schoolTypeL', 'School Type ');}};
 
-			{{ Form::select('type', array('Children of residents in close proximity of school ','Children of Past Pupils','Brothers/sisters of students who are studying in school at present','Childern of persons belonging to staff in institution directly involved in school education ',' Children of officers transfferd on exigencies of service '));}}
+			{{ Form::select('type', array('Children of residents in close proximity of school ','Children of Past Pupils','Brothers/sisters of students who are studying in school at present','Childern of persons belonging to staff in institution directly involved in school education ',' Children of officers transfferd on exigencies of service ','Childern of persons arriving after living abroad with child'));}}
 
 			{{Form::submit('Add Application');}}
 

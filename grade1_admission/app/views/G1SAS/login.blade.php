@@ -7,7 +7,11 @@
 
 {{ Form :: open(array('url' =>'login','method' => 'POST' ))}}
 
-	
+        {{Form::label('userType', 'userType :      ');}}
+        {{ Form :: select( 'userTypeA',array('Admin','school','normal user')) ; }}
+
+       
+	 <br>      
         {{Form::label('userNameLabel', 'User Name :      ');}}
         {{ Form :: text( 'userNameText','User Name') ; }}
 
