@@ -17,11 +17,8 @@ Route::controller('guardian','GuardianController');
 Route::controller('child','ChildController');
 
 Route::controller('userpage','UserPageController');
-
 Route::controller('selectSchool','SchoolDBController');
-Route::post('selectedSuccessfully',function(){
-	
-});
+
 Route::controller('admin','AdminController');
 /*
 Route::get('/GuardianHome',function(){

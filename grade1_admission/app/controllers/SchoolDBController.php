@@ -2,6 +2,7 @@
 /**
 *  
 */
+include("Model/Guardian.php");
 include("Model/school.php");
 include("Model/application.php");
 class SchoolDBController extends BaseController
@@ -9,8 +10,23 @@ class SchoolDBController extends BaseController
 	
 	public function getIndex()
 	{
-		$db=Connection::getInstance();
+		
+        $username=Input::get("username");
+        $db=Connection::getInstance();
         $mysqli=$db->getConnection();
+        $query="select *  from guardian where email='$username'";
+        $result =$mysqli->query($query);
+        $guardian=new Guardian();
+        if ($result->num_rows > 0) {    
+            if ($row = $result->fetch_assoc()) {
+                
+                $guardian->setNic($row["NIC"]);
+                $guardian->setEmail($row["email"]);
+                $guardian->setFirstName($row["firstName"]);
+                $guardian->setLastName($row["lastName"]);
+            }
+        }
+
         $query="select * from school;";
         $result =$mysqli->query($query);
         $schools= array();
