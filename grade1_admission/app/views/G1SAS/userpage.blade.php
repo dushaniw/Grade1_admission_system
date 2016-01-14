@@ -25,7 +25,9 @@
         {{Form::submit('Search selected school');}}
 {{ Form:: close()}}
 
-
+{{Form :: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
+        {{Form::submit('Search school selected applicants');}}
+{{ Form:: close()}}
 
 </body>
 </html>
