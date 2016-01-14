@@ -17,10 +17,12 @@ Route::controller('guardian','GuardianController');
 Route::controller('child','ChildController');
 
 Route::controller('userpage','UserPageController');
-
 Route::controller('selectSchool','SchoolDBController');
+<<<<<<< HEAD
 Route::post('selectedSuccessfully',function(){});
 
+=======
+>>>>>>> origin/master
 
 Route::controller('admin','AdminController');
 

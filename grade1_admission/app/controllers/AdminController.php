@@ -2,7 +2,13 @@
 class AdminController extends BaseController
 {
 	
-    public function postCalculate()
+    public  function postIndex()
+	{
+	       return "calculate marks";   
+    
+    }
+
+    public  function postCalculate()
 	{
 	       
         return "drrrikghyjui";

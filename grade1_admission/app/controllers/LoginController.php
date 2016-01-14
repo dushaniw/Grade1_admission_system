@@ -3,6 +3,8 @@
 /**
 * 
 */
+include("AdminController.php");
+
 class LoginController extends BaseController
 {
 	
@@ -36,5 +38,7 @@ class LoginController extends BaseController
        }
 
 	}
+
+  
 }
 
