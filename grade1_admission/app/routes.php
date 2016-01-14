@@ -1,6 +1,25 @@
 <?php
 
 
+
+
+Route::controller('userpage','UserPageController');
+
+Route::controller('search','SearchController');
+
+Route::controller('selectSchool','SchoolDBController');
+
+
+
+Route::controller('login','LoginController');
+
+
+Route::controller('guardian','GuardianController');
+
+Route::controller('child','ChildController');
+
+Route::controller('admin','AdminController');
+
 Route::get('/',function(){
 	return View :: make ('G1SAS/login');
 });
@@ -9,20 +28,6 @@ Route::get('/',function(){
 Route::get('guadian',function(){
 	return View :: make ('G1SAS/AddGuardian');
 });
-
-Route::controller('login','LoginController');
-
-Route::controller('guardian','GuardianController');
-
-Route::controller('child','ChildController');
-
-Route::controller('userpage','UserPageController');
-Route::controller('selectSchool','SchoolDBController');
-
-
-Route::controller('admin','AdminController');
-
-Route::controller('search','SearchController');
 
 /*
 

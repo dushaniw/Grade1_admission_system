@@ -1,5 +1,8 @@
 <?php
 
+//include_once("DatabaseController/DBStudentApplicantController.php");
+//include_once("DatabaseController/DBSchoolController.php");
+
 class SearchController extends BaseController{
 
 	public function postSchoolselected(){

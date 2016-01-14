@@ -1,4 +1,5 @@
 <?php
+
 class DBStudentApplicantController
 {
 	public static function getAllApplicant()
