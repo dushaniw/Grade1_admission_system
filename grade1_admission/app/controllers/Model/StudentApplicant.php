@@ -72,12 +72,12 @@ public function setApplicantId($applicantId)
     $this->applicantId = $applicantId;
     return $this;
 }
-public function getNIC()
+public function getGuardianNIC()
 {
     return $this->NIC;
 }
 
-public function setNIC($NIC)
+public function setGuardianNIC($NIC)
 {
     $this->NIC = $NIC;
     return $this;

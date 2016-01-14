@@ -6,10 +6,17 @@
 
 	{{ Form :: open(array('url' =>'selectSchool/next','method' => 'POST'))}}
 
+  <br>
 <!--,'action' => 'SchoolDBController@getSchoolList'-->
   {{Form::label('guardian', $guardian->getEmail())}}
-  {{Form::label('appplicantsCombo','selectApplicant')}}
-
+  <div class="form-applicant-group">
+      {{Form::label('appplicantsCombo','selectApplicant')}}
+      <select class="form-school-control" name="school_name1">
+        @foreach($applicants as $applicant)
+            <option value="{{$applicant->getApplicantId()}}">{{$applicant->getFirstName()}}</option>
+        @endforeach
+      </select>
+  </div>
   	
 
 
@@ -76,6 +83,24 @@
 	</div>
 
 <br>
+      
+  select close school to you instead of selected school
+  <br>
+@for($i=0;$i<10;$i++)  
+        
+  <div class="form-school-group">
+      {{Form::label('schoollabel', 'School 3    ');}}   
+      <select class="form-school-control" name=$i>
+        @foreach($schools as $school)
+            <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
+        @endforeach
+      </select>
+  </div>
+  @endfor
+
+
+
+
       {{Form::submit('Add Application');}}
       {{ Form:: close()}}
 

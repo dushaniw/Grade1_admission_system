@@ -4,8 +4,10 @@
 */
 include("Model/studentApplicant.php");
 include("Model/Guardian.php");
+include("DatabaseController/DBGuardianController.php");
 include("Model/school.php");
 include("Model/application.php");
+
 class SchoolDBController extends BaseController
 {
 	
@@ -13,20 +15,10 @@ class SchoolDBController extends BaseController
 	{
 		
         $username=Input::get("username");
-        $db=Connection::getInstance();
-        $mysqli=$db->getConnection();
-        $query="select * from guardian where email='$username'";
-        $result =$mysqli->query($query);
-        $guardian=new Guardian('','','');
-        if ($result->num_rows > 0) {    
-            if ($row = $result->fetch_assoc()) {                            
-                $guardian->setNic($row["NIC"]);
-                $guardian->setEmail($row["email"]);
-                $guardian->setFirstName($row["firstName"]);
-                $guardian->setLastName($row["lastName"]);
-            }
-        }
-        $guardianNic=$guardian->getNic();
+
+        $guardian= DBGuardianController::getAllGuardian($username);
+        return $guardianNic=$guardian->getNic();
+        /*
         $query="select *  from studentApplicant where NIC='$guardianNic'";
         $result =$mysqli->query($query);
 
@@ -40,7 +32,8 @@ class SchoolDBController extends BaseController
                     
                     while ($row = $result->fetch_assoc()) {
                         $applicant = new studentApplicant();
-                        $applicant->setNic($row["NIC"]);
+                        $applicant->setApplicantId($row["applicantId"]);
+                        $applicant->setFirstname($row["firstname"]);
                         $appplicants[]=$applicant;
                       
                     }
@@ -71,9 +64,11 @@ class SchoolDBController extends BaseController
                 	
 
                 }
+               
                return  View :: make ('G1SAS/selection')->with ('schools',$schools)->with('applicants',$appplicants)->with('guardian',$guardian);
-        	
+            	
 		}
+        */
 	}
 
     public function postNext(){
