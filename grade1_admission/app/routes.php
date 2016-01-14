@@ -22,6 +22,8 @@ Route::controller('selectSchool','SchoolDBController');
 
 Route::controller('admin','AdminController');
 
+Route::controller('search','SearchController');
+
 /*
 
 Route::get('/GuardianHome',function(){

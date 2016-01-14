@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title> </title>
+	<title>Search students based on School </title>
 </head>
 
 <body>
@@ -8,7 +8,7 @@
 	{{$username}}
 	</div>
 
-{{Form :: open(array('url' =>'searchUserSchool','method' => 'POST' ))}}
+{{Form :: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
         {{Form::submit('Search selected school');}}
 {{ Form:: close()}}
 
