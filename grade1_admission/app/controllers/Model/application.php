@@ -9,6 +9,7 @@ class application
 	private $medium;
 	private $orderOfPreference;
 	private $distance;
+	private $mark;
 
 	public function getSchool_id()
 	{
@@ -88,6 +89,15 @@ class application
     		$this->distance = $distance;
     		return $this;
 		}
+		public function getMark()
+		{
+    		return $this->mark;
+		}
 
+		public function setMark($mark)
+		{
+    		$this->mark = $mark;
+    		return $this;
+		}
 
 }
