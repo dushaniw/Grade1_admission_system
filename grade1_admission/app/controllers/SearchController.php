@@ -12,7 +12,7 @@ class SearchController extends BaseController{
             
 	}
 
-	public function postSchoolApplicantsFind(){
+	public function postSchoolapplicantsfind(){
 			$schools=DBSchoolController::getAllSchool();
             $selected=Input::get('school_name');
             $pieces = explode("-", $selected);

@@ -14,7 +14,7 @@
 	  		</select>
 		</div>
 	<br>
-	{{Form:: open(array('url' =>'search/schoolApplicantsFind','method' => 'POST' ))}}    
+	{{Form:: open(array('url' =>'search/schoolapplicantsfind','method' => 'POST' ))}}    
         {{Form::submit('Find selected students');}}
 	{{ Form:: close()}}
 
