@@ -7,7 +7,8 @@ include("Model/Guardian.php");
 include("DatabaseController/DBGuardianController.php");
 include("DatabaseController/DBStudentApplicantController.php");
 include("DatabaseController/DBSchoolController.php");
-
+include("DatabaseController/DBGNDDivisionController.php");
+include("Model/GramaNiladariDivision.php");
 include("Model/school.php");
 include("Model/application.php");
 
@@ -27,7 +28,8 @@ class SchoolDBController extends BaseController
         }else{
             $appplicants=DBStudentApplicantController::getApplicantOfGuardian($guardianNic);
             $schools=DBSchoolController::getAllSchool();
-            return  View :: make ('G1SAS/selection')->with ('schools',$schools)->with('applicants',$appplicants)->with('guardian',$guardian);
+            $divisions=DBGNDDivisionController::getAllDivision();
+            return  View :: make ('G1SAS/selection')->with('divisions',$divisions)->with ('schools',$schools)->with('applicants',$appplicants)->with('guardian',$guardian);
             	
 		}
         
@@ -43,31 +45,10 @@ class SchoolDBController extends BaseController
         
         $schoolid_array=array($school1,$school2,$school3,$school4,$school5,$school6);
 
-
-        $db=Connection::getInstance();
-        $mysqli=$db->getConnection();
         $schools= array();
 
-        foreach ($schoolid_array as $schoolid) {
-            $query="select * from school where schoolId='$schoolid';";
-            $result =$mysqli->query($query);
-        
-            if ($result->num_rows > 0) {
-            
-                if ($row = $result->fetch_assoc()) {
-                    $school = new school();
-                    $school->setSchool_id($row["schoolId"]);
-                    $school->setSchool_name($row["name"]);
-                    $school->setMale_percentage($row["malePercentage"]);
-                    $school->setCategory($row["category"]);
-                    $school->setSinhala_percentage($row["sinhalaPercentage"]);
-                    $school->setContact_no($row["contactNumber"]);
-                    $school->setNo_of_classes($row["noofClasses"]);
-                    $school->setEmail($row["email"]);
-                    $school->setPassword($row["password"]);
-                    $schools[] = $school;
-                }
-            }
+        foreach ($schoolid_array as $schoolid) {              
+                $schools[] = DBSchoolController::getSchool($schoolid);               
 
         } 
 

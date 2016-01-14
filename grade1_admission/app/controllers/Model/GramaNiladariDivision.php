@@ -1,5 +1,5 @@
 <?php
-class Grama_Niladari_Division{
+class GramaNiladariDivision{
 private $grama_niladari_div_no;
 private $name;
 private $division;
@@ -10,6 +10,7 @@ public function getDistrict()
 {
     return $this->district;
 }
+
 
 public function setDistrict($district)
 {

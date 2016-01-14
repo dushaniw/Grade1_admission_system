@@ -89,7 +89,7 @@
 @for($i=0;$i<10;$i++)  
         
   <div class="form-school-group">
-      {{Form::label('schoollabel', 'School 3    ');}}   
+      {{Form::label('schoollabel', 'School     ');}}   
       <select class="form-school-control" name=$i>
         @foreach($schools as $school)
             <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
@@ -97,6 +97,75 @@
       </select>
   </div>
   @endfor
+
+<br>
+  select electrocal list detail for last five years
+
+        
+  <div class="form-electrocal-list-detail-group">
+      {{Form::label('division number', 'Division Number     ');}}   
+      <select class="form-school-control" name='Year1d'>
+          @foreach($divisions as $division)
+            <option value="{{$division->getGrama_niladari_div_no()}}">{{$division->getName()}}</option>
+          @endforeach
+         
+      </select>
+       {{Form::label('year ', 'Year     ');}}
+          {{Form::selectRange('year1', 2010, 2015);}}
+  </div>
+
+
+
+  <div class="form-electrocal-list-detail-group">
+      {{Form::label('division number', 'Division Number     ');}}   
+      <select class="form-school-control" name='Year2d'>
+          @foreach($divisions as $division)
+            <option value="{{$division->getGrama_niladari_div_no()}}">{{$division->getName()}}</option>
+          @endforeach
+          
+      </select>
+      {{Form::label('year ', 'Year     ');}}
+          {{Form::selectRange('year2', 2010, 2015);}}
+  </div>
+
+   
+  <div class="form-electrocal-list-detail-group">
+      {{Form::label('division number', 'Division Number     ');}}   
+      <select class="form-school-control" name='Year3d'>
+          @foreach($divisions as $division)
+            <option value="{{$division->getGrama_niladari_div_no()}}">{{$division->getName()}}</option>
+          @endforeach
+      </select>
+
+          {{Form::label('year ', 'Year     ');}}
+          {{Form::selectRange('year3', 2010, 2015);}}
+  </div>
+
+
+  <div class="form-electrocal-list-detail-group">
+      {{Form::label('division number', 'Division Number     ');}}   
+      <select class="form-school-control" name='Year4d'>
+          @foreach($divisions as $division)
+            <option value="{{$division->getGrama_niladari_div_no()}}">{{$division->getName()}}</option>
+          @endforeach
+      </select>
+
+          {{Form::label('year ', 'Year     ');}}
+          {{Form::selectRange('year4', 2010, 2015);}}
+  </div>
+
+  <div class="form-electrocal-list-detail-group">
+      {{Form::label('division number', 'Division Number     ');}}   
+      <select class="form-school-control" name='Year5d'>
+          @foreach($divisions as $division)
+            <option value="{{$division->getGrama_niladari_div_no()}}">{{$division->getName()}}</option>
+          @endforeach
+      </select>
+      
+          {{Form::label('year ', 'Year     ');}}
+          {{Form::selectRange('year5', 2010, 2015);}}
+  </div>
+
 
 
 
