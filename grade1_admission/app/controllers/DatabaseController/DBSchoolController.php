@@ -1,4 +1,4 @@
-<? php
+<?php
 class DBSchoolController
 {
 
@@ -7,7 +7,7 @@ class DBSchoolController
 
 		$db=Connection::getInstance();
         $mysqli=$db->getConnection();
-		$query="select * from school;";
+		$query="select * from school";
         $result =$mysqli->query($query);
         $schools= array();
         if ($result->num_rows > 0) {	

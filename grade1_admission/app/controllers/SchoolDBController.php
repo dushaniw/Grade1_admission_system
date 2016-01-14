@@ -7,6 +7,7 @@ include("Model/Guardian.php");
 include("DatabaseController/DBGuardianController.php");
 include("DatabaseController/DBStudentApplicantController.php");
 include("DatabaseController/DBSchoolController.php");
+
 include("Model/school.php");
 include("Model/application.php");
 
