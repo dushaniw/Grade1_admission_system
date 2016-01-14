@@ -56,25 +56,23 @@ class DBStudentApplicantController
     {
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
-        $query="select * from studentApplicant where applicantId='$applicantId'";
+        $query="select * from studentApplicant where applicantId='$applicantId';";
         $result =$mysqli->query($query);
-        $appplicants=array();
+        $applicant = new studentApplicant();
         if ($result->num_rows > 0) 
         {
-            while ($row = $result->fetch_assoc())
+           if($row = $result->fetch_assoc())
             {
-                $applicant = new studentApplicant();
                 $applicant->setApplicantId($row["applicantId"]);
                 $applicant->setFirstname($row["firstname"]);
                 $applicant->setLastName($row["lastname"]);
                 $applicant->setGender($row["gender"]);
                 $applicant->setReligion($row["religion"]);
                 $applicant->setDateOfBirth($row["dateofBirth"]);
-                $applicant->setSelectedSchool($row["selectedSchoolId"]);
-                $appplicants[]=$applicant;              
+                $applicant->setSelectedSchool($row["selectedSchoolId"]);              
             }             
         } 
-        return $appplicants;
+        return $applicant;
     }
 
 

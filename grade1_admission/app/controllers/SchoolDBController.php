@@ -84,7 +84,7 @@ class SchoolDBController extends BaseController
 
         $guardian=DBGuardianController::getGuardian($username);
         $applicant=DBStudentApplicantController::getApplicantById($applicant_id);
-
+        
         foreach ($schoolid_array as $schoolid) {              
                 $schools[] = DBSchoolController::getSchool($schoolid);               
 
@@ -95,6 +95,7 @@ class SchoolDBController extends BaseController
 
     public function postApplication()
     {
+        return Input::get("schoolId1")->getSchool_name();
         $orderOfPreference=Input::get("schoolPiority");
         //$typeOfApplication=Input::get("schoolPiority");
         $schoolId=Input::get("schoolId");
