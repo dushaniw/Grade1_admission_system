@@ -2,6 +2,7 @@
 /**
 *  
 */
+include("Model/studentApplicant.php");
 include("Model/Guardian.php");
 include("Model/school.php");
 include("Model/application.php");
@@ -14,6 +15,8 @@ class SchoolDBController extends BaseController
         $username=Input::get("username");
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
+        
+
         $query="select *  from guardian where email='$username'";
         $result =$mysqli->query($query);
         $guardian=new Guardian();
@@ -26,32 +29,55 @@ class SchoolDBController extends BaseController
                 $guardian->setLastName($row["lastName"]);
             }
         }
-
-        $query="select * from school;";
+        $guardianNic=$guardian->getNic();
+        $query="select *  from studentApplicant where NIC='$guardianNic'";
         $result =$mysqli->query($query);
-        $schools= array();
 
-        if ($result->num_rows > 0) {
-        	
-        	while ($row = $result->fetch_assoc()) {
-        		$school = new school();
-        		$school->setSchool_id($row["schoolId"]);
-        		$school->setSchool_name($row["name"]);
-        		$school->setMale_percentage($row["genderRatio"]);
-        		$school->setCategory($row["category"]);
-        		$school->setSinhala_percentage($row["mediumRatio"]);
-        		$school->setContact_no($row["contactNumber"]);
-        		$school->setNo_of_classes($row["noofClasses"]);
-        		$school->setEmail($row["email"]);
-        		$school->setPassword($row["password"]);
-        		$schools[] = $school;
-        	}
-        	
+         if($results->num_rows === 0)
+        {
+            return "first you have to add your child to system";
+        }else{
 
-        }
-       return  View :: make ('G1SAS/selection')->with ('schools',$schools);
-	
-		
+                $appplicants=array();
+
+                if ($result->num_rows > 0) {
+                    
+                    while ($row = $result->fetch_assoc()) {
+                        $applicant = new studentApplicant();
+                        $applicant->setNic($row["NIC"]);
+                        $appplicants[]=$applicant;
+                      
+                    }
+                    
+                 }       
+
+
+
+                $query="select * from school;";
+                $result =$mysqli->query($query);
+                $schools= array();
+
+                if ($result->num_rows > 0) {
+                	
+                	while ($row = $result->fetch_assoc()) {
+                		$school = new school();
+                		$school->setSchool_id($row["schoolId"]);
+                		$school->setSchool_name($row["name"]);
+                		$school->setMale_percentage($row["genderRatio"]);
+                		$school->setCategory($row["category"]);
+                		$school->setSinhala_percentage($row["mediumRatio"]);
+                		$school->setContact_no($row["contactNumber"]);
+                		$school->setNo_of_classes($row["noofClasses"]);
+                		$school->setEmail($row["email"]);
+                		$school->setPassword($row["password"]);
+                		$schools[] = $school;
+                	}
+                	
+
+                }
+               return  View :: make ('G1SAS/selection')->with ('schools',$schools)->with('applicants',$appplicants)->with('guardian',$guardian);
+        	
+		}
 	}
 
     public function postNext(){

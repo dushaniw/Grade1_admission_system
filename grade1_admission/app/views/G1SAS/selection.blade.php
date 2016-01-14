@@ -7,8 +7,13 @@
 	{{ Form :: open(array('url' =>'selectSchool/next','method' => 'POST'))}}
 
 <!--,'action' => 'SchoolDBController@getSchoolList'-->
+  {{Form::label('guardian', $guardian->getEmail());}}
+  {{Form::label('appplicantsCombo','selectApplicant'}}
 
-	{{Form::label('selectlabel', 'Select your six schools    ');}}
+  	
+
+
+  {{Form::label('selectlabel', 'Select your six schools    ');}}
 
 	<br>
 
