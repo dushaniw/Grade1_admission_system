@@ -13,16 +13,8 @@ class Guardian {
     private $contact_number;
     private $grama_nil_div_no;
     private $password;
-
-
     private $schoolset; //a list
    
-
-    public function __construct($nic,$email,$password) {
-        $this->nic=$nic;
-        $this->email=$email;
-        $this->password=$password; 
-    }
 
     public function getNic()
     {

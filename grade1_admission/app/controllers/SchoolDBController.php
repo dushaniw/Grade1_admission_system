@@ -5,6 +5,8 @@
 include("Model/studentApplicant.php");
 include("Model/Guardian.php");
 include("DatabaseController/DBGuardianController.php");
+include("DatabaseController/DBStudentApplicantController.php");
+include("DatabaseController/DBSchoolController.php");
 include("Model/school.php");
 include("Model/application.php");
 
@@ -12,63 +14,22 @@ class SchoolDBController extends BaseController
 {
 	
 	public function getIndex()
-	{
-		
+	{	
         $username=Input::get("username");
 
-        $guardian= DBGuardianController::getAllGuardian($username);
-        return $guardianNic=$guardian->getNic();
-        /*
-        $query="select *  from studentApplicant where NIC='$guardianNic'";
-        $result =$mysqli->query($query);
-
-         if($result->num_rows === 0)
+        $guardian= DBGuardianController::getGuardian($username);
+        $guardianNic=$guardian->getNic();
+        $available=DBGuardianController::hasApplicant($guardianNic);
+         if($available==false)
         {
             return "first you have to add your child to system";
         }else{
-                $appplicants=array();
-
-                if ($result->num_rows > 0) {
-                    
-                    while ($row = $result->fetch_assoc()) {
-                        $applicant = new studentApplicant();
-                        $applicant->setApplicantId($row["applicantId"]);
-                        $applicant->setFirstname($row["firstname"]);
-                        $appplicants[]=$applicant;
-                      
-                    }
-                    
-                 }       
-
-
-
-                $query="select * from school;";
-                $result =$mysqli->query($query);
-                $schools= array();
-
-                if ($result->num_rows > 0) {
-                	
-                	while ($row = $result->fetch_assoc()) {
-                		$school = new school();
-                		$school->setSchool_id($row["schoolId"]);
-                		$school->setSchool_name($row["name"]);
-                		$school->setMale_percentage($row["malePercentage"]);
-                		$school->setCategory($row["category"]);
-                		$school->setSinhala_percentage($row["sinhalaPercentage"]);
-                		$school->setContact_no($row["contactNumber"]);
-                		$school->setNo_of_classes($row["noofClasses"]);
-                		$school->setEmail($row["email"]);
-                		$school->setPassword($row["password"]);
-                		$schools[] = $school;
-                	}
-                	
-
-                }
-               
-               return  View :: make ('G1SAS/selection')->with ('schools',$schools)->with('applicants',$appplicants)->with('guardian',$guardian);
+            $appplicants=DBStudentApplicantController::getApplicantOfGuardian($guardianNic);
+            $schools=DBSchoolController::getAllSchool();
+            return  View :: make ('G1SAS/selection')->with ('schools',$schools)->with('applicants',$appplicants)->with('guardian',$guardian);
             	
 		}
-        */
+        
 	}
 
     public function postNext(){

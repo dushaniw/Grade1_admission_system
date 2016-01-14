@@ -8,6 +8,7 @@ private $lastname;
 private $gender;
 private $religion;
 private $dateOfBirth;
+private $selectedSchool;
 
 
 public function getDateOfBirth()
@@ -82,5 +83,16 @@ public function setGuardianNIC($NIC)
     $this->NIC = $NIC;
     return $this;
 }
+public function getSelectedSchool()
+{
+    return $this->selectSchool;
+}
+
+public function setSelectedSchool($selectSchool)
+{
+    $this->selectSchool = $selectSchool;
+    return $this;
+}
+
 
 }
