@@ -36,23 +36,61 @@ class SchoolDBController extends BaseController
 	}
 
     public function postNext(){
+        
+        $applicant_id= Input::get("applicant_id");
+        $username = Input::get("guardian");
+        
+
         $school1 = Input::get("school_name1");
         $school2 = Input::get("school_name2");
         $school3 = Input::get("school_name3");
         $school4 = Input::get("school_name4");
         $school5 = Input::get("school_name5");
         $school6 = Input::get("school_name6");
+        $school7 = Input::get("school_name7");
+        $school8 = Input::get("school_name8");
+        $school9 = Input::get("school_name9");
+        $school10 = Input::get("school_name10");
+        $school11 = Input::get("school_name11");
+        $school12 = Input::get("school_name12");        
+        $school13 = Input::get("school_name13");
+        $school14 = Input::get("school_name14");
+        $school15 = Input::get("school_name15");
+        $school16 = Input::get("school_name16");
         
-        $schoolid_array=array($school1,$school2,$school3,$school4,$school5,$school6);
+        $division1=Input::get("Year1d");
+        $division2=Input::get("Year2d");
+        $division3=Input::get("Year3d");
+        $division4=Input::get("Year4d");
+        $division5=Input::get("Year5d");
+        $division6=Input::get("Year6d");        
+        
+
+        $year1=Input::get("year1");
+        $year2=Input::get("year2");
+        $year3=Input::get("year3");
+        $year4=Input::get("year4");
+        $year5=Input::get("year5");
+        $year6=Input::get("year6");
+                        
+
+        $dArray=array($division1,$division2,$division3,$division4,$division5,$division6);
+
+        $yArray=array($year1,$year2,$year3,$year4,$year5,$year6);
+
+        $schoolid_array=array($school1,$school2,$school3,$school4,$school5,$school6,$school7,$school8,$school9,$school10,$school11,$school12,$school13,$school14,$school15,$school16);
 
         $schools= array();
+
+        $guardian=DBGuardianController::getGuardian($username);
+        $applicant=DBStudentApplicantController::getApplicantById($applicant_id);
 
         foreach ($schoolid_array as $schoolid) {              
                 $schools[] = DBSchoolController::getSchool($schoolid);               
 
         } 
 
-        return View :: make ('G1SAS/SelectionType')->with ('schools',$schools);
+        return View :: make ('G1SAS/SelectionType')->with ('schools',$schools)->with('dArray',$dArray)->with('yArray',$yArray)->with('guardian',$guardian)->with('applicant',$applicant);
     }
 
     public function postApplication()

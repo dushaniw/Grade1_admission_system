@@ -9,9 +9,10 @@
   <br>
 <!--,'action' => 'SchoolDBController@getSchoolList'-->
   {{Form::label('guardian', $guardian->getEmail())}}
+   {{Form::hidden('guardian', $guardian->getEmail())}}
   <div class="form-applicant-group">
       {{Form::label('appplicantsCombo','selectApplicant')}}
-      <select class="form-school-control" name="school_name1">
+      <select class="form-school-control" name="applicant_id">
         @foreach($applicants as $applicant)
             <option value="{{$applicant->getApplicantId()}}">{{$applicant->getFirstName()}}</option>
         @endforeach
@@ -86,17 +87,108 @@
       
   select close school to you instead of selected school
   <br>
-@for($i=0;$i<10;$i++)  
+
         
   <div class="form-school-group">
       {{Form::label('schoollabel', 'School     ');}}   
-      <select class="form-school-control" name=$i>
+      <select class="form-school-control" name="school_name7">
         @foreach($schools as $school)
             <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
         @endforeach
       </select>
   </div>
-  @endfor
+
+
+  <div class="form-school-group">
+      {{Form::label('schoollabel', 'School     ');}}   
+      <select class="form-school-control" name="school_name8">
+        @foreach($schools as $school)
+            <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
+        @endforeach
+      </select>
+  </div>
+  
+
+
+  <div class="form-school-group">
+      {{Form::label('schoollabel', 'School     ');}}   
+      <select class="form-school-control" name="school_name9">
+        @foreach($schools as $school)
+            <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
+        @endforeach
+      </select>
+  </div>
+
+
+  <div class="form-school-group">
+      {{Form::label('schoollabel', 'School     ');}}   
+      <select class="form-school-control" name="school_name10">
+        @foreach($schools as $school)
+            <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
+        @endforeach
+      </select>
+  </div>
+
+
+  <div class="form-school-group">
+      {{Form::label('schoollabel', 'School     ');}}   
+      <select class="form-school-control" name="school_name11">
+        @foreach($schools as $school)
+            <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
+        @endforeach
+      </select>
+  </div>
+
+
+  <div class="form-school-group">
+      {{Form::label('schoollabel', 'School     ');}}   
+      <select class="form-school-control" name="school_name12">
+        @foreach($schools as $school)
+            <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
+        @endforeach
+      </select>
+  </div>
+
+
+  <div class="form-school-group">
+      {{Form::label('schoollabel', 'School     ');}}   
+      <select class="form-school-control" name="school_name13">
+        @foreach($schools as $school)
+            <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
+        @endforeach
+      </select>
+  </div>
+
+
+  <div class="form-school-group">
+      {{Form::label('schoollabel', 'School     ');}}   
+      <select class="form-school-control" name="school_name14">
+        @foreach($schools as $school)
+            <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
+        @endforeach
+      </select>
+  </div>
+
+
+  <div class="form-school-group">
+      {{Form::label('schoollabel', 'School     ');}}   
+      <select class="form-school-control" name="school_name15">
+        @foreach($schools as $school)
+            <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
+        @endforeach
+      </select>
+  </div>
+
+
+  <div class="form-school-group">
+      {{Form::label('schoollabel', 'School     ');}}   
+      <select class="form-school-control" name="school_name16">
+        @foreach($schools as $school)
+            <option value="{{$school->getSchool_id()}}">{{$school->getSchool_name()}}</option>
+        @endforeach
+      </select>
+  </div>
+
 
 <br>
   select electrocal list detail for last five years
@@ -161,7 +253,7 @@
             <option value="{{$division->getGrama_niladari_div_no()}}">{{$division->getName()}}</option>
           @endforeach
       </select>
-      
+
           {{Form::label('year ', 'Year     ');}}
           {{Form::selectRange('year5', 2010, 2015);}}
   </div>
