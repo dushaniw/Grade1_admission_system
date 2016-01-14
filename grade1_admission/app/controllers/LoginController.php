@@ -39,6 +39,24 @@ class LoginController extends BaseController
 
 	}
 
+    public function postSearch(){
+        $childId = Input::get("childIDText");
+       // return Redirect::to('/')->with('resultText',$childId);
+
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();           
+        $query = "select name from studentapplicant st  left join school sc on st.selectedSchoolId=sc.schoolId where applicantId='$childId'";         
+        $result =$mysqli->query($query);
+        
+        if ($result->num_rows > 0) {
+            if($row = $result->fetch_assoc()) {
+                return Redirect::to('/')->with('result',$row['name'])->with('childId',$childId);
+            }
+        } else {
+            return Redirect::to('/')->with('result','Not found')->with('childId',$childId);
+        }
+        
+    }
   
 }
 
