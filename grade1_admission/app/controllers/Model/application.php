@@ -48,6 +48,7 @@ class application
 		public function getType()
 		{
 		    return $this->type;
+		
 		}
 		
 		public function setType($type)
