@@ -33,29 +33,10 @@ class SchoolDBController extends BaseController
         $query="select *  from studentApplicant where NIC='$guardianNic'";
         $result =$mysqli->query($query);
 
-<<<<<<< HEAD
          if($results->num_rows === 0)
         {
             return "first you have to add your child to system";
         }else{
-=======
-        if ($result->num_rows > 0) {
-        	
-        	while ($row = $result->fetch_assoc()) {
-        		$school = new school();
-        		$school->setSchool_id($row["schoolId"]);
-        		$school->setSchool_name($row["name"]);
-        		$school->setMale_percentage($row["genderRatio"]);
-        		$school->setCategory($row["category"]);
-        		$school->setSinhala_percentage($row["mediumRatio"]);
-        		$school->setContact_no($row["contactNumber"]);
-        		$school->setNo_of_classes($row["noofClasses"]);
-        		$school->setEmail($row["email"]);
-        		$school->setPassword($row["password"]);
-        		$schools[] = $school;
-        	}       	
->>>>>>> origin/master
-
                 $appplicants=array();
 
                 if ($result->num_rows > 0) {

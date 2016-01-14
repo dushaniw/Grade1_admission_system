@@ -1,7 +1,7 @@
 <?php
 
 class StudentApplicant{
-private $NIC:
+private $NIC;
 private $applicantId;
 private $firstname;
 private $lastname;
