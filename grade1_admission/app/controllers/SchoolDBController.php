@@ -15,14 +15,11 @@ class SchoolDBController extends BaseController
         $username=Input::get("username");
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
-        
-
-        $query="select *  from guardian where email='$username'";
+        $query="select * from guardian where email='$username'";
         $result =$mysqli->query($query);
-        $guardian=new Guardian();
+        $guardian=new Guardian('','','');
         if ($result->num_rows > 0) {    
-            if ($row = $result->fetch_assoc()) {
-                
+            if ($row = $result->fetch_assoc()) {                            
                 $guardian->setNic($row["NIC"]);
                 $guardian->setEmail($row["email"]);
                 $guardian->setFirstName($row["firstName"]);
@@ -33,7 +30,7 @@ class SchoolDBController extends BaseController
         $query="select *  from studentApplicant where NIC='$guardianNic'";
         $result =$mysqli->query($query);
 
-         if($results->num_rows === 0)
+         if($result->num_rows === 0)
         {
             return "first you have to add your child to system";
         }else{
@@ -62,9 +59,9 @@ class SchoolDBController extends BaseController
                 		$school = new school();
                 		$school->setSchool_id($row["schoolId"]);
                 		$school->setSchool_name($row["name"]);
-                		$school->setMale_percentage($row["genderRatio"]);
+                		$school->setMale_percentage($row["malePercentage"]);
                 		$school->setCategory($row["category"]);
-                		$school->setSinhala_percentage($row["mediumRatio"]);
+                		$school->setSinhala_percentage($row["sinhalaPercentage"]);
                 		$school->setContact_no($row["contactNumber"]);
                 		$school->setNo_of_classes($row["noofClasses"]);
                 		$school->setEmail($row["email"]);
@@ -104,9 +101,9 @@ class SchoolDBController extends BaseController
                     $school = new school();
                     $school->setSchool_id($row["schoolId"]);
                     $school->setSchool_name($row["name"]);
-                    $school->setMale_percentage($row["genderRatio"]);
+                    $school->setMale_percentage($row["malePercentage"]);
                     $school->setCategory($row["category"]);
-                    $school->setSinhala_percentage($row["mediumRatio"]);
+                    $school->setSinhala_percentage($row["sinhalaPercentage"]);
                     $school->setContact_no($row["contactNumber"]);
                     $school->setNo_of_classes($row["noofClasses"]);
                     $school->setEmail($row["email"]);

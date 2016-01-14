@@ -1,6 +1,6 @@
 <?php 
 
-class Child {
+class Guardian {
 
     private $nic;
     private $first_name;
@@ -16,7 +16,8 @@ class Child {
 
 
     private $schoolset; //a list
-    
+   
+
     public function __construct($nic,$email,$password) {
         $this->nic=$nic;
         $this->email=$email;
