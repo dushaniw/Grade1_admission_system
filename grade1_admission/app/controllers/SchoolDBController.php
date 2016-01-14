@@ -95,43 +95,52 @@ class SchoolDBController extends BaseController
 
     public function postApplication()
     {
-        return Input::get("schoolId1")->getSchool_name();
+        
+        $applicantId=Input::get("applicant_id");
         $orderOfPreference=Input::get("schoolPiority");
-        //$typeOfApplication=Input::get("schoolPiority");
         $schoolId=Input::get("schoolId");
         $type=Input::get("type");
         $distance=Input::get("distanceT");
+        $medium='';
         if(Input::get("MediumT")==0){
             $medium='Sinhala';
         }else{
             $medium='Tamil';
 
         }
+        $guardianNic=Input::get("guardianNic");
 
+        $schoolIds=array(Input::get("schoolId1"),Input::get("schoolId2"),Input::get("schoolId3"),Input::get("schoolId4"),Input::get("schoolId5"),Input::get("schoolId6"),Input::get("schoolId7"),Input::get("schoolId8"),Input::get("schoolId9"),Input::get("schoolId10"));
+        $yearset=array(Input::get("year1"),Input::get("year2"),Input::get("year3"),Input::get("year4"),Input::get("year5"),Input::get("year6"));
+        $divisionSet=array(Input::get("division1"),Input::get("division2"),Input::get("division3"),Input::get("division4"),Input::get("division5"),Input::get("division6"));
         $application=new application();
         $application->setOrderOfPreference($orderOfPreference);
         $application->setType($type);
         $application->setSchool_id($schoolId);
         $application->setDistance($distance);
         $application->setMedium($medium);
+        $application->setApplicant_id($applicantId);
+
+
+
         switch ($type) {
             case 0:
-                return  View :: make ('G1SAS/category1')->with('application',$application);
+                return  View :: make ('G1SAS/category1')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;
             case 1: // never reached because "a" is already matched with 0
-               return  View :: make ('G1SAS/category2')->with('application',$application);
+               return  View :: make ('G1SAS/category2')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;
             case 2:
-                return  View :: make ('G1SAS/category3')->with('application',$application);
+                return  View :: make ('G1SAS/category3')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;
             case 3: // never reached because "a" is already matched with 0
-                return  View :: make ('G1SAS/category4')->with('application',$application);
+                return  View :: make ('G1SAS/category4')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;
             case 4:
-                return  View :: make ('G1SAS/category5')->with('application',$application);
+                return  View :: make ('G1SAS/category5')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;
             case 5:
-                return  View :: make ('G1SAS/category6')->with('application',$application);
+                return  View :: make ('G1SAS/category6')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;    
         }   
     }
