@@ -29,8 +29,7 @@ class SchoolDBController extends BaseController
         		$school->setEmail($row["email"]);
         		$school->setPassword($row["password"]);
         		$schools[] = $school;
-        	}
-        	
+        	}       	
 
         }
        return  View :: make ('G1SAS/selection')->with ('schools',$schools);

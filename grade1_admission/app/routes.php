@@ -19,11 +19,18 @@ Route::controller('child','ChildController');
 Route::controller('userpage','UserPageController');
 
 Route::controller('selectSchool','SchoolDBController');
-Route::post('selectedSuccessfully',function(){
-	
-});
+Route::post('selectedSuccessfully',function(){});
+
+
 Route::controller('admin','AdminController');
+
+//Route::post('admin',function(){
+//	return "fsg";
+
+//});
+
 /*
+
 Route::get('/GuardianHome',function(){
 	return View :: make ('Welcome/GuardianHome');
 
