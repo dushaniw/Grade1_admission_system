@@ -50,7 +50,11 @@ class LoginController extends BaseController
         
         if ($result->num_rows > 0) {
             if($row = $result->fetch_assoc()) {
-                return Redirect::to('/')->with('result',$row['name'])->with('childId',$childId);
+                if($row['name']!=null){
+                    return Redirect::to('/')->with('result',$row['name'])->with('childId',$childId);
+                }else{
+                    return Redirect::to('/')->with('result','Not yet assigned')->with('childId',$childId);
+                }
             }
         } else {
             return Redirect::to('/')->with('result','Not found')->with('childId',$childId);
