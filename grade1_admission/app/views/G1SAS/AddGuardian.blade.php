@@ -76,7 +76,7 @@
         {{ Form :: text( 'gramaNiladariDivisionNumberText','GramaNiladariDivisionNumber') ; }}
         <br> 
 
-        {{Form::submit('addGuardian');}}
+        {{Form::submit('Sign Up');}}
 {{ Form:: close()}}
 
         

@@ -8,9 +8,10 @@
 	{{$username}}
 	</div>
 
-{{Form :: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
-        {{Form::submit('Search selected school');}}
-{{ Form:: close()}}
+	{{Form:: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
+	
+    	{{Form::submit('Search selected school');}}
+	{{ Form:: close()}}
 
 
 
