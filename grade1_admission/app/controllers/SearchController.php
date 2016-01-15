@@ -13,7 +13,6 @@ class SearchController extends BaseController{
 	}
 
 	public function postSchoolapplicantsfind(){
-
             $selected=Input::get("school");
             $pieces = explode("-", $selected);
             $schoolId=$pieces[0];

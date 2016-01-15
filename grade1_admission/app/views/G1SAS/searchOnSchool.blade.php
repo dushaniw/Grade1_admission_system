@@ -6,9 +6,10 @@
 <body>	
 	<br>
 		
-	 		{{Form::label('school1label', 'School :   ');}}
 	 		
-
+	 		
+	{{Form:: open(array('url' =>'search/schoolapplicantsfind','method' => 'POST' ))}}  
+		{{Form::label('school1label', 'School :   ');}}
 	  		<select  name="school">
 	    		@foreach($schools as $school)
 	      			<option value="{{$school->getSchool_id()}}">
@@ -16,11 +17,10 @@
 	      			</option>
 	    		@endforeach
 	  		</select>
-		
 	<br>
 	<br>
-	{{Form:: open(array('url' =>'search/schoolapplicantsfind','method' => 'POST' ))}}    
-        {{Form::submit('Find selected students');}}
+	  
+     {{Form::submit('Find selected students');}}
 	{{ Form:: close()}}
 
 </body>
