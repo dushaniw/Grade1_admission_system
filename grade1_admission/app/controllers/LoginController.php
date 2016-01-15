@@ -11,9 +11,10 @@ class LoginController extends BaseController
 	public function postIndex()
 	{
 		$user_type = Input::get("userTypeA");
-         $user_name = Input::get("userNameText");
-            $password = Input::get("password");
-         if($user_type==2){
+        $user_name = Input::get("userNameText");
+        $password = Input::get("password");
+
+        if($user_type==2){
            
             
             $db=Connection::getInstance();
@@ -24,7 +25,7 @@ class LoginController extends BaseController
             if ($result->num_rows > 0) {
         		if($row = $result->fetch_assoc()) {
             		if($row["password"]==$password){
-            			return View :: make ('G1SAS/userpage')->with('username',$user_name);
+            			return View :: make ('G1SAS/userpage')->with('username',$user_name)->with('labelText','Your Child-Your School');
             		}else{
             			return Redirect::to('/');
             		}
@@ -35,6 +36,9 @@ class LoginController extends BaseController
 	   }elseif ($user_type==0) {
                 return View :: make ('G1SAS/adminpage')->with('username',$user_name);
                 
+       }else{
+            $school=DBSchoolController::getSchoolByEmail($user_name);
+            return View :: make ('G1SAS/schoolpage')->with('school',$school);
        }
 
 	}

@@ -1,4 +1,7 @@
 <?php
+
+include("Algorithms/MarksCalculator.php");
+include("Algorithms/SchoolSelector.php");
 class AdminController extends BaseController
 {
 	
@@ -11,7 +14,10 @@ class AdminController extends BaseController
     public  function postCalculate()
 	{
 	       
-        return "drrrikghyjui";
+        MarksCalculator::calculatemarks();
+        SchoolSelector::calculateschool();
+        
+        return "marks calculated successfully";
     
     }
 

@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title> </title>
+	<title> User logged in</title>
 </head>
 
 <body>
@@ -8,6 +8,7 @@
 	
 	</div>
 
+{{Form::label('titlelabel',$labelText)}}
 {{Form :: open(array('url' =>'userpage/studentadd','method' => 'POST' ))}}
         {{Form::hidden('username',$username)}}
         {{Form::submit('Add New Child');}}
