@@ -61,7 +61,7 @@ class LoginController extends BaseController
                 }
             }
         } else {
-            return Redirect::to('/')->with('result','Not found')->with('childId',$childId);
+            return Redirect::to('/')->with('result','Sorry! No School Found')->with('childId',$childId);
         }
         
     }

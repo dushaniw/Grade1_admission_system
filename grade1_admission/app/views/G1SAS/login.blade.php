@@ -1,70 +1,150 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<title>	 login Form</title>
-</head>
+	<head>
+		<title>Grade 1 Admissions - MINISTY OF EDUCATION SRI LANKA</title>
 
-<body>
+		<!-- Bootstrap -->
+		{{ HTML::style('css/bootstrap.min.css') }}
+      
+      
+      	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      
+      	<!--[if lt IE 9]>
+      	<script src = "https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      	<script src = "https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      	<![endif]-->
+ 
 
-{{ Form:: open(array('url' =>'login','method' => 'POST' ))}}
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src = "https://code.jquery.com/jquery.js"></script>
+      
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		{{ HTML::script('js/bootstrap.min.js') }}
 
-        {{Form::label('userType', 'userType :      ');}}
-        {{ Form:: select( 'userTypeA',array('Admin','school','normal user')) ; }}
+		<style>
+		body{
+     		margin: 0;
+     		background: url('img/backgroundimage.jpg');
+     		background-size: 1440px 800px;
+     		background-repeat:no-repeat;
+    		display: compact;
+    		color:black;
+    		
+     		
+		}
 
-       
-	 <br>      
-        {{Form::label('userNameLabel', 'User Name :      ');}}
-        {{ Form:: text( 'userNameText','User Name') ; }}
+		.panel-primary > .panel-heading {
+			border: 0;
+     		background-color: 	#303030 !important;
+     		color:	#B8B8B8;
+		}
+
+		 .panel-transparent {
+		 	 border: 0;
+		 	 background: rgba(255, 255, 255, 0.4);
+ 			 box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+		 		
+		 	
+   		 }
+
+	
+		</style>
+	</head >
+
+	<body >
+		<div class="container">
+			<div class="row"> 
+				<div class="page-header" style="color:white  ">
+					<div class = "media">
+						<div class="pull-left">
+							<img class = "media-object" src = "img/logo.png"  alt = "Media Object">
+						</div>
+						<div class = "media-body">
+							<br/>
+							<h1 class = "media-heading"><b>Admissions of Students for Grade 1 </b></h1>
+							<h4 class="media-heading">MINISTRY OF EDUCATION</h4>
+						
+					</div>
+				</div>
+				</div>
+			</div> 
+			<div class = "page-container">
+			<nav class = "navbar navbar-inverse" role = "navigation">
+				<ul class="nav navbar-nav" >
+					<li class="active"> {{HTML::link('/', 'Home')}} </li>
+					<li>{{HTML::link('#', 'About')}}</li>
+				</ul>
+			</nav>
+			<br/>
+
+			<div class="row"> 
+				<div class="col-md-5"> <div class="col-md-offset-2">
+					<div class = "panel panel-primary panel-transparent">
+						<div class ="panel-heading">
+							<h3 class="panel-title"> <p class="text-center"><span class = "glyphicon glyphicon-user"></span> Sign in to your account </p></h3>
+						</div>	
+						<div class = "panel-body">
+							{{Form::open(array('role'=>'form','url' => 'login', 'method'=>'POST'))}}
+								<div class="form-group"> 
+									{{Form::label('userTypeL', 'User Type');}}
+        							{{Form:: select( 'userTypeA',array('Admin','School','Normal User'),'Normal User',['class'=>'form-control'])}}
+        							<br/>
+									{{Form::label('userNameL','User Name')}}
+									{{Form::text('userNameText',null, array('class' =>'form-control','required','placeholder'=>'User Name'))}} 
+									<br/>
+									{{Form::label('passwordL','Password')}}
+									{{Form::password('password',array('class' => 'form-control','required','placeholder'=>'Password'))}}
+									<br/>
+									{{Form::submit('Sign in',array('class' => 'btn btn-primary' ))}}
+								</div>
+							{{Form::close()}}
+    						<strong>Don't have an account ? {{HTML::link('guardian', 'Register')}}</strong>
+    					</div>
+					</div> 
+				</div> </div>
+					<div class="col-md-6">
+					<div class="col-md-offset-4"> 
+						{{Form::open(array('role'=>'form','url' => 'login/search', 'method'=>'POST'))}}
+							<div class = "panel panel-primary panel-transparent">
+								<div class="panel-heading">
+									<h3 class="panel-title"> <p class="text-center"><span class = "glyphicon glyphicon-list-alt"></span> Admission Results</p> </h3>
+								</div>
+								<div class="panel-body">
+									<div class="form-group">
+										@if(Session::has('childId'))
+											{{Form::text('childIDText',Session::get('childId'),array('class' =>'form-control','placeholder'=>'Application ID','required' ))}}
+										@else
+                							{{ Form:: text('childIDText',null,array('class' =>'form-control','placeholder'=>'Application ID','required'))}}
+        								@endif
+										<br/>
+										{{Form::submit('Submit',array('class' => 'btn btn-primary' ))}}
+										<br/>
+										@if(Session::has('result'))
+											<br/>
+											<br/>
+											{{Form::label('resultL',Session::get('result'))}}
+                						@endif
+									</div>
+								</div>
+							</div> 
+						{{Form::close()}}
+					</div>
+					</div>
+				</div>
+			<!--
+				
+			<div class="row">
+				<div class="col-md-12">
+				
+						<br/>
+						<p class="lead" style = "color:white"> Admission of student for Grade 1 - year 2017 for the government schools are now available. Apply Now !</p>
+					
+				</div>
+			</div> -->
+		</div>
+		</div>
 
 
-        <br>
-        {{Form::label('passwordLabel', 'Password :      ');}}
-        {{Form::password('password');}}	
-
-        <br>
-        {{Form::submit('Login');}}	
-
-{{ Form:: close()}}
-
-{{ Form:: open(array('url' =>'guardian','method' => 'GET' ))}}
-
-        <br>
-        {{Form::label('Not Registered Yet:      ');}}
-
-        <br>
-        {{Form::submit('Sign Up');}}      
-
-{{ Form:: close()}}
-
-{{ Form:: open(array('url' =>'login/search','method' => 'POST' ))}}
-
-        {{Form::label('searchLabel', 'Search for selected school:      ');}}
-        
-         <br>      
-        {{Form::label('enterLabel', 'Enter child ID:      ');}}
-        @if(Session::has('childId'))
-                {{Form::text('childIDText',Session::get('childId'))}}
-        @else
-                {{ Form:: text( 'childIDText','') ; }}
-        @endif
-
-        <br>
-        {{Form::submit('Search');}}  
-
-        <br>
-        {{Form::label('selectedLabel', 'Your School:      ');}}
-        
-        
-        @if(Session::has('result'))
-                {{Form::text('resultTextF',Session::get('result'))}}
-        @else
-                {{Form::text('resultTextF','')}}
-        @endif
-          
-
-       
-
-{{ Form:: close()}}
-
-
-</body>
+	</body>
 </html>
