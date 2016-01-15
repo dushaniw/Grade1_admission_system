@@ -9,6 +9,7 @@ include("DatabaseController/DBStudentApplicantController.php");
 include("DatabaseController/DBSchoolController.php");
 include("DatabaseController/DBGNDDivisionController.php");
 include("Model/GramaNiladariDivision.php");
+include("DatabaseController/DBApplicationController.php");
 include("Model/school.php");
 include("Model/application.php");
 
@@ -156,7 +157,7 @@ class SchoolDBController extends BaseController
         $schoolId=Input::get("schoolId");
         $distance=Input::get("distance");
         $medium=Input::get("Medium");
-        $applicationId='1';
+         $applicationId=DBApplicationController::getNextApplicationId();
         $applicantId=Input::get("applicant_id");
         $guardianNic=Input::get("guardianNic");
 
@@ -167,14 +168,7 @@ class SchoolDBController extends BaseController
 
           $db=Connection::getInstance();
           $mysqli=$db->getConnection();
-          $query="select application_id from application decs limit 1;";
-          $result =$mysqli->query($query);
-
-          if ($result->num_rows > 0) {
-            if ($row = $result->fetch_assoc()) {
-                $applicationId=(int)$row["application_id"]+1;
-            }
-          }
+        
 
         if($type==0){
               $noOfYearsInElectrocalRegister=Input::get('noOfYearsInElectrocalRegister');
