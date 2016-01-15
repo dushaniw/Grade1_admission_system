@@ -31,7 +31,6 @@ class DBSchoolController
 
         public static function getSchool($schoolid)
         {
-
                 $db=Connection::getInstance();
                 $mysqli=$db->getConnection();
                 $query="select * from school where schoolId='$schoolid'";
@@ -52,7 +51,6 @@ class DBSchoolController
                         }
                 }
                 return $school;
-
         }
 
 

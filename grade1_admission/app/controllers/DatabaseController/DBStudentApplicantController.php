@@ -104,5 +104,24 @@ class DBStudentApplicantController
         } 
         return $appplicants;
     }
+
+    public static function getLastApplicantId()
+    {
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="select applicantId from studentApplicant order by applicantId desc limit 1;";
+        $result =$mysqli->query($query);
+       
+        if ($result->num_rows > 0) 
+        {
+           if($row = $result->fetch_assoc())
+           {
+                return $row["applicantId"];
+           }
+           return 0;         
+        } 
+        return 0;
+    }
+
     
 }

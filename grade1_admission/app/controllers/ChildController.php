@@ -8,7 +8,9 @@ class ChildController extends BaseController{
     }
     
 	public function postAdd(){
-        
+    
+        $g_email=Input::get('usernameText');
+        $guardian=DBGuardianController::getGuardainforEmail($g_email);    
         $first_name = Input::get("firstNameText");
         $last_name = Input::get("lastNameText");
         $gender=Input::get("gender");
@@ -17,17 +19,14 @@ class ChildController extends BaseController{
         $month=Input::get("month");
         $date=Input::get("date");
         $dob=$year."/".$month."/".$date;
-        
+        $nic=$guardian->getNic();
+        $applicantId=intval(DBStudentApplicantController::getLastApplicantId()) +1;
 
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
-        $query="insert into guardian values('$nic','$first_name','$last_name','$relation_to_child','$nationality','$religion','$permanent_address','$email','$telephone_number','$grama_niladry_division_number','$password' ); ";
+        $query="insert into studentApplicant values('$nic','$applicantId','$first_name','$last_name','$gender','$religion','$dob',null); ";
         $mysqli->query($query);
-
-
-        
-        //DB::Insert("insert into guardian values(?,?,?,?,?,?,?,?,?,?,?)",array($nic,$first_name,$last_name,$relation_to_child,$nationality,$religion,$permanent_address,$email,$telephone_number,$grama_niladry_division_number,$password ));
-        return View :: make ('G1SAS/AddGuardianSuccessfull');
+        return View :: make ('G1SAS/userpage')->with('username',$g_email)->with('labelText','New Child Added Successfully');
     }
 
 }
