@@ -15,7 +15,7 @@ $db=Connection::getInstance();
         		$school_no;
         		$school = new school();
         		$school->setSchool_id($row["schoolId"]);
-        		$school_no=$row["schoolId"]);
+        		$school_no=$row["schoolId"];
         		$school->setSchool_name($row["name"]);
         		$school->setMale_percentage($row["malePercentage"]);
         		$school->setCategory($row["category"]);
