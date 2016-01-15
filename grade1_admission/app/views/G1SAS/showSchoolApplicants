@@ -1,0 +1,14 @@
+<html>
+<head>
+	<title>Selected Applicants </title>
+</head>
+
+<body>	
+	<br>
+		{{Form::label('title','Selected Applicant List for:	')}}
+		{{Form::text('school_name',$school)}}
+	<br>
+		
+		
+</body>
+</html>

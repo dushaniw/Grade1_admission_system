@@ -8,7 +8,7 @@ class SearchController extends BaseController{
 	public function postSchoolselected(){
             $schools=DBSchoolController::getAllSchool();
             
-            return  View :: make ('G1SAS/searchOnSchool')->with ('schools',$schools)->with('applicants',null);
+            return  View :: make ('G1SAS/searchOnSchool')->with ('schools',$schools);
             
 	}
 
@@ -18,7 +18,7 @@ class SearchController extends BaseController{
             $pieces = explode("-", $selected);
             $schoolId=$pieces[0];
             $applicants=DBStudentApplicantController::getSelectedApplicantsForSchool($schoolId);
-            return  View :: make ('G1SAS/searchOnSchool')->with ('schools',$schools)->with('applicants',$applicants);
+            return  View :: make ('G1SAS/showSchoolApplicants')->with ('school',$selected)->with('applicants',$applicants);
             
 	}
 }

@@ -18,12 +18,5 @@
         {{Form::submit('Find selected students');}}
 	{{ Form:: close()}}
 
-	@if($applicants!=null)
-		<table>
-	    @foreach($applicants as $applicant)
-	        <tr><td>{{$applicant->getApplicantId()}} - {{$applicant->getFirstname()}} - {{$applicant->getLastname()}}</td></tr>
-	    @endforeach
-		</table>
-	@endif
 </body>
 </html>
