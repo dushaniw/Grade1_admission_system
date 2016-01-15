@@ -38,6 +38,8 @@
 	    		<th>Last Name</th>
 	    		<th>Gender</th>
 	    		<th>DateOfBirth</th>
+	    		<th>Guardian Name</th>
+	    		<th>Contact Number</th>
   			</tr>
 	    	@foreach($applicants as $applicant)
 	        <tr>
@@ -46,6 +48,8 @@
 	         	<td>{{$applicant->getLastname()}}</td>
 	         	<td>{{$applicant->getGender()}}</td>
 	         	<td>{{$applicant->getDateOfBirth()}}</td>
+	         	<td>{{$applicant->getGuardian_firstname}}&nsbp;{{$applicant->getGuardian_lastname}}</td>
+	         	<td>{{$applicant->getGuardian_contact}}</td>
 	         </tr>
 	    	@endforeach
 		</table>

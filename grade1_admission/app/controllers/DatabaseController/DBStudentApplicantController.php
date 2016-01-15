@@ -80,7 +80,7 @@ class DBStudentApplicantController
     {
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
-        $query="select * from studentApplicant where selectedSchoolId='$schoolId';";
+        $query="select * from studentApplicant s left join guardian g on g.NIC=s.NIC where selectedSchoolId='$schoolId';";
         $result =$mysqli->query($query);
         $appplicants=array();
         if ($result->num_rows > 0) 
@@ -95,6 +95,10 @@ class DBStudentApplicantController
                 $applicant->setReligion($row["religion"]);
                 $applicant->setDateOfBirth($row["dateofBirth"]);
                 $applicant->setSelectedSchool($row["selectedSchoolId"]);
+                $applicant->setGuardianNic($row["NIC"]);
+                $applicant->setGuardian_lastname($row["g_lastName"]);
+                $applicant->setGuardian_firstname($row["g_firstName"]);
+                $applicant->setGuardian_contact($row["contactNumber"]);
                 $appplicants[]=$applicant;              
             }             
         } 

@@ -9,7 +9,41 @@ private $gender;
 private $religion;
 private $dateOfBirth;
 private $selectedSchool;
+private $guardian_firstname;
+private $guardian_lastname;
+private $guardian_contact;
 
+public function getGuardian_lastname()
+{
+    return $this->guardian_lastname;
+}
+
+public function setGuardian_lastname($lastname)
+{
+    $this->guardian_lastname = $lastname;
+    return $this;
+}
+public function getGuardian_firstname()
+{
+    return $this->guardian_firstname;
+}
+
+public function setGuardian_firstname($firstname)
+{
+    $this->guardian_firstname = $firstname;
+    return $this;
+}
+
+public function getGuardian_contact()
+{
+    return $this->guardian_contact;
+}
+
+public function setGuardian_contact($contact)
+{
+    $this->guardian_contact = $contact;
+    return $this;
+}
 
 public function getDateOfBirth()
 {
@@ -93,6 +127,9 @@ public function setSelectedSchool($selectSchool)
     $this->selectSchool = $selectSchool;
     return $this;
 }
+
+
+
 
 
 }
