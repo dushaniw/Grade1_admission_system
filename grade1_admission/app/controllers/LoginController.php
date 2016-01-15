@@ -37,7 +37,8 @@ class LoginController extends BaseController
                 return View :: make ('G1SAS/adminpage')->with('username',$user_name);
                 
        }else{
-             return View :: make ('G1SAS/schoolpage')->with('labelText',$user_name." signed in");
+            $school=DBSchoolController::getSchoolByEmail($user_name);
+            return View :: make ('G1SAS/schoolpage')->with('school',$school);
        }
 
 	}

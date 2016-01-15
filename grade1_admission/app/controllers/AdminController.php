@@ -16,6 +16,7 @@ class AdminController extends BaseController
 	       
         MarksCalculator::calculatemarks();
         SchoolSelector::calculateschool();
+        
         return "marks calculated successfully";
     
     }
