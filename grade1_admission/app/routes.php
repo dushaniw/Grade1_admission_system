@@ -1,7 +1,7 @@
 <?php
 
 Route::get('welcome',function(){
-	return View::make('G1SAS/welcome');
+	return View::make('G1SAS/layout');
 });
 
 Route::get('/',function(){
@@ -9,9 +9,11 @@ Route::get('/',function(){
 });
 
 
-Route::get('guadian',function(){
+Route::get('guardian',function(){
 	return View :: make ('G1SAS/AddGuardian');
 });
+
+
 
 
 Route::controller('userpage','UserPageController');
