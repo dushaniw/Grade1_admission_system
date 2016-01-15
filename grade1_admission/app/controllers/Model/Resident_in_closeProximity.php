@@ -5,7 +5,7 @@ class Resident_in_closeProximity{
 	private $noOfYearsInElectrocalRegister;
 	private $noOfYearsSpouseInElectrocalRegister;
 	private $typeOfTitleDeed;
-	private $totalServicePeriod;
+	private $closeSchoolCount;
 	private $noOfAditionalDocumentForResident;
 
 public function getNoOfAditionalDocumentForResident()
@@ -19,14 +19,14 @@ public function setNoOfAditionalDocumentForResident($noOfAditionalDocumentForRes
     return $this;
 }
 
-public function getTotalServicePeriod()
+public function getCloseSchoolCount()
 {
-    return $this->totalServicePeriod;
+    return $this->closeSchoolCount;
 }
 
-public function setTotalServicePeriod($totalServicePeriod)
+public function setCloseSchoolCount($closeSchoolCount)
 {
-    $this->totalServicePeriod = $totalServicePeriod;
+    $this->closeSchoolCount = $closeSchoolCount;
     return $this;
 }
 

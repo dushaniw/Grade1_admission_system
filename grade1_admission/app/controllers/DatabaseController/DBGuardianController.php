@@ -25,7 +25,7 @@ class DBGuardianController
                 $guardian->setPassword($row["password"]);
             }
         }else{
-        	return null;
+        	return NULL;
         }
 
         return $guardian;
@@ -39,10 +39,24 @@ class DBGuardianController
         $result =$mysqli->query($query);
          if($result->num_rows === 0)
         {
-            return false;
+            return FALSE;
         }
-        return true;	
+        return TRUE;	
 	}
+
+
+     public static function isGuardianHasEL($guardianNic){
+
+                $db=Connection::getInstance();
+                $mysqli=$db->getConnection();
+                $query="select * from electoral_name_list_proof where NIC='$guardianNic'";
+                $result =$mysqli->query($query);
+                if ($result->num_rows > 0) {    
+                        return TRUE;
+                }
+                return FALSE;
+
+        }
 
     public static function getGuardainforEmail($email){
         $db=Connection::getInstance();
@@ -71,4 +85,5 @@ class DBGuardianController
 
         return $guardian;
     }
+
 }
