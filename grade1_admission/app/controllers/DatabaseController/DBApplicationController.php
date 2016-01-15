@@ -28,7 +28,7 @@ class DBApplicationController{
 
 	}
 
-	public static function addCategory1Application($application,$category1,$schoolIds,$yArray,dArray,$guardianNic){
+	public static function addCategory1($application,$category1,$schoolIds,$yArray,$dArray,$guardianNic){
 			
       
 	}

@@ -54,4 +54,19 @@ class DBSchoolController
                 return $school;
 
         }
+
+
+        public static function addCloseSchoolSet($applicantId,$schoolIdSet)
+        {
+                $db=Connection::getInstance();
+                $mysqli=$db->getConnection();
+                foreach ($schoolIdSet as $schoolId) {
+                        $query="insert into closeSchoolset values( '$schoolId','$applicantId')";
+                        $result=$mysqli->query($query);
+                        if($result==false){
+                                return false;
+                        }
+                } 
+                return true;      
+        }
 }
