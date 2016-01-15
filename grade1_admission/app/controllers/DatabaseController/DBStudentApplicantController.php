@@ -80,7 +80,7 @@ class DBStudentApplicantController
     {
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
-        $query="select * from studentApplicant where selectedSchoolId='$schoolId'";
+        $query="select * from studentApplicant where selectedSchoolId='$schoolId';";
         $result =$mysqli->query($query);
         $appplicants=array();
         if ($result->num_rows > 0) 
