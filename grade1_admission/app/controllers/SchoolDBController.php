@@ -8,6 +8,7 @@ include("DatabaseController/DBGuardianController.php");
 include("DatabaseController/DBStudentApplicantController.php");
 include("DatabaseController/DBSchoolController.php");
 include("DatabaseController/DBGNDDivisionController.php");
+include("DatabaseController/DBApplicationController.php");
 include("Model/GramaNiladariDivision.php");
 include("Model/school.php");
 include("Model/application.php");
@@ -156,25 +157,13 @@ class SchoolDBController extends BaseController
         $schoolId=Input::get("schoolId");
         $distance=Input::get("distance");
         $medium=Input::get("Medium");
-        $applicationId='1';
+        $applicationId=DBApplicationController::getNextApplicationId();
         $applicantId=Input::get("applicant_id");
         $guardianNic=Input::get("guardianNic");
 
         $schoolIds=array(Input::get("schoolId1"),Input::get("schoolId2"),Input::get("schoolId3"),Input::get("schoolId4"),Input::get("schoolId5"),Input::get("schoolId6"),Input::get("schoolId7"),Input::get("schoolId8"),Input::get("schoolId9"),Input::get("schoolId10"));
         $yearset=array(Input::get("year1"),Input::get("year2"),Input::get("year3"),Input::get("year4"),Input::get("year5"),Input::get("year6"));
         $divisionSet=array(Input::get("division1"),Input::get("division2"),Input::get("division3"),Input::get("division4"),Input::get("division5"),Input::get("division6"));
-
-
-          $db=Connection::getInstance();
-          $mysqli=$db->getConnection();
-          $query="select application_id from application decs limit 1;";
-          $result =$mysqli->query($query);
-
-          if ($result->num_rows > 0) {
-            if ($row = $result->fetch_assoc()) {
-                $applicationId=(int)$row["application_id"]+1;
-            }
-          }
 
         if($type==0){
               $noOfYearsInElectrocalRegister=Input::get('noOfYearsInElectrocalRegister');
