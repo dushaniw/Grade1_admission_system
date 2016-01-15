@@ -1,6 +1,8 @@
 <?php
 
-
+Route::get('welcome',function(){
+	return View::make('G1SAS/welcome');
+});
 
 Route::get('/',function(){
 	return View :: make ('G1SAS/login');
