@@ -29,7 +29,15 @@ class DBApplicationController{
 	}
 
 	public static function addCategory1($application,$category1,$schoolIds,$yArray,$dArray,$guardianNic){
-			
+	    $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $mysqli->autocommit(FALSE);
+        $applicantResult=DBApplicationController::addApplication($application);
+        
+
+        $mysqli->query('UPDATE `table` SET `col`=2');
+$mysqli->query('UPDATE `table1` SET `col1`=3;');
+$mysqli->commit();		
       
 	}
 

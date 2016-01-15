@@ -18,7 +18,7 @@ Route::controller('userpage','UserPageController');
 
 Route::controller('search','SearchController');
 
-Route::controller('selectSchool','SchoolDBController');
+Route::controller('selectSchool','SchoolController');
 
 
 
