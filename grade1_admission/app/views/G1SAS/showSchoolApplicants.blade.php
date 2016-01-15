@@ -3,6 +3,6 @@
 	<title>show School applicant</title>
 </head>
 <body>
-	show school applicant
+	show school applicantv
 </body>
 </html>
