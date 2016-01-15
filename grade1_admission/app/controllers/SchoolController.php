@@ -13,7 +13,7 @@ include("DatabaseController/DBApplicationController.php");
 include("Model/school.php");
 include("Model/application.php");
 
-class SchoolDBController extends BaseController
+class SchoolController extends BaseController
 {
 	
 	public function getIndex()
