@@ -2,10 +2,9 @@
 <head>
 	<title>Selected Applicants </title>
 </head>
-<<<<<<< HEAD
+
 <body>
-	show school applicantv
-=======
+	
 
 <body>	
 	<br>
@@ -19,6 +18,5 @@
 	    @endforeach
 		</table>
 	
->>>>>>> origin/master
 </body>
 </html>
