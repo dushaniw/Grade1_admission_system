@@ -44,7 +44,7 @@ class DBGuardianController
         return TRUE;	
 	}
 
-<<<<<<< HEAD
+
      public static function isGuardianHasEL($guardianNic){
 
                 $db=Connection::getInstance();
@@ -57,7 +57,7 @@ class DBGuardianController
                 return FALSE;
 
         }
-=======
+
     public static function getGuardainforEmail($email){
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();   
@@ -85,5 +85,5 @@ class DBGuardianController
 
         return $guardian;
     }
->>>>>>> origin/master
+
 }
