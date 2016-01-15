@@ -1,7 +1,7 @@
 <?php
-class SelectSchool{
+class SchoolSelector{
 
-public function calculateschool(){
+public static function calculateschool(){
 
 $db=Connection::getInstance();
         $mysqli=$db->getConnection();
