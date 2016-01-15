@@ -25,7 +25,7 @@
 		<style>
 		.bckg {
      		margin: 0;
-     		background: url('backgroundimage.jpg');
+     		background: url('img/backgroundimage.jpg');
      		background-size: 1440px 650px;
      		background-repeat:no-repeat;
     		display: compact;
@@ -61,13 +61,13 @@
 				<div class="page-header">
 					<div class = "media">
 						<div class="pull-left">
-							<img class = "media-object" src = "logo.jpg"  alt = "Media Object">
-						
+							<img class = "media-object" src = "img/logo.jpg"  alt = "Media Object">
+						</div>
 						<div class = "media-body">
 							<br/>
 							<h1 class = "media-heading">Admissions of Students for Grade 1 </h1>
 							<h4 class="media-heading">MINISTRY OF EDUCATION</h4>
-						</div>
+						
 					</div>
 				</div>
 			</div>
