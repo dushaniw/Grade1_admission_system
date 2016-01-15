@@ -20,7 +20,7 @@ Route::controller('search','SearchController');
 
 Route::controller('selectSchool','ApplicationController');
 
-Route::controller('school','School1Controller');
+Route::controller('school','SchoolController');
 
 
 Route::controller('login','LoginController');

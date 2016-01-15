@@ -53,6 +53,19 @@ class DBSchoolController
                 return $school;
         }
 
+
+        public static function updateSchool($school)
+        {
+                $db=Connection::getInstance();
+                $mysqli=$db->getConnection();
+                $query="UPDATE school
+SET name='$school->getSchool_name()'
+WHERE schoolid='$school->getSchool_id()'";
+                $result =$mysqli->query($query);
+                
+        }
+
+
         public static function getSchoolByEmail($email)
         {
                 $db=Connection::getInstance();

@@ -10,7 +10,7 @@ class ChildController extends BaseController{
 	public function postAdd(){
     
         $g_email=Input::get('usernameText');
-        $guardian=DBGuardianController::getGuardainforEmail($g_email);    
+        $guardian=DBGuardianController::getGuardian($g_email);    
         $first_name = Input::get("firstNameText");
         $last_name = Input::get("lastNameText");
         $gender=Input::get("gender");
