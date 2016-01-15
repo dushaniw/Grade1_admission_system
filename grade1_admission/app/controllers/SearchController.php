@@ -13,12 +13,12 @@ class SearchController extends BaseController{
 	}
 
 	public function postSchoolapplicantsfind(){
-			$schools=DBSchoolController::getAllSchool();
-            $selected=Input::get('school_name');
+
+            $selected=Input::get("school");
             $pieces = explode("-", $selected);
             $schoolId=$pieces[0];
             $applicants=DBStudentApplicantController::getSelectedApplicantsForSchool($schoolId);
-            return  View :: make ('G1SAS/showSchoolApplicants')->with ('school',$selected)->with('applicants',$applicants);
+            return  View :: make ('G1SAS/showSchoolApplicants')->with ('selected',$selected)->with('applicants',$applicants);
             
 	}
 }
