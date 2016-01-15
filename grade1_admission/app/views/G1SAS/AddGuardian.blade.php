@@ -73,7 +73,7 @@
         <br> 
 
         {{Form::label('gramaNiladariDivisionNumberLabel', 'GramaNiladariDivisionNumber:      ');}}
-        {{ Form :: text( 'gramaNiladariDivisionNumberText','GramaNiladariDivisionNumber') ; }}
+        {{ Form :: select( 'gramaNiladariDivisionNumberText',$divisions) ; }}
         <br> 
 
         {{Form::submit('Sign Up');}}

@@ -6,12 +6,18 @@
  * Date: 12/15/2015
  * Time: 4:36 PM
  */
+
 class GuardianController extends BaseController
 {
     
     public function getIndex()
     {
-        return View :: make ('G1SAS/AddGuardian');
+        $divisions=DBGNDDivisionController::getAllDivision();
+        $divisionIdA=array();
+        foreach ($divisions as $division) {
+            $divisionIdA[]=$division->getGrama_niladari_div_no();
+        }
+        return View :: make ('G1SAS/AddGuardian')->with('divisions',$divisionIdA);
     }   
     
     public function postAdd(){
@@ -34,12 +40,13 @@ class GuardianController extends BaseController
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
         $query="insert into guardian values('$nic','$first_name','$last_name','$relation_to_child','$nationality','$religion','$permanent_address','$email','$telephone_number','$grama_niladry_division_number','$password' ); ";
-        $mysqli->query($query);
-
-
-        
-        //DB::Insert("insert into guardian values(?,?,?,?,?,?,?,?,?,?,?)",array($nic,$first_name,$last_name,$relation_to_child,$nationality,$religion,$permanent_address,$email,$telephone_number,$grama_niladry_division_number,$password ));
+        $result=$mysqli->query($query);
+        if($result){
         return View :: make ('G1SAS/AddGuardianSuccessfull');
+        
+        }else{
+            return "not wel";
+        }
     }
     
 
