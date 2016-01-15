@@ -2,6 +2,15 @@
 
 
 
+Route::get('/',function(){
+	return View :: make ('G1SAS/login');
+});
+
+
+Route::get('guadian',function(){
+	return View :: make ('G1SAS/AddGuardian');
+});
+
 
 Route::controller('userpage','UserPageController');
 
@@ -19,15 +28,6 @@ Route::controller('guardian','GuardianController');
 Route::controller('child','ChildController');
 
 Route::controller('admin','AdminController');
-
-Route::get('/',function(){
-	return View :: make ('G1SAS/login');
-});
-
-
-Route::get('guadian',function(){
-	return View :: make ('G1SAS/AddGuardian');
-});
 
 /*
 
