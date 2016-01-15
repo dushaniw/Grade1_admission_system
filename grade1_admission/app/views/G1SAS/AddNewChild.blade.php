@@ -5,7 +5,9 @@
 <body>
 
 {{ Form :: open(array('url' =>'child/add','method' => 'POST' ))}}
-  
+        
+
+{{$username}} 
         {{Form::label('usernameLabel', 'Username:      ');}}
         {{ Form :: text( 'usernameText',$username) ; }}     
         <br>
