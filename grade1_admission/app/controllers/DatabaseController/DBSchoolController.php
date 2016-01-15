@@ -60,13 +60,30 @@ class DBSchoolController
         {
                 $db=Connection::getInstance();
                 $mysqli=$db->getConnection();
+                
+
                 foreach ($schoolIdSet as $schoolId) {
                         $query="insert into closeSchoolset values( '$schoolId','$applicantId')";
                         $result=$mysqli->query($query);
-                        if($result==false){
-                                return false;
+                        if($result==FALSE){
+                                return FALSE;
                         }
                 } 
-                return true;      
+                return TRUE;      
         }
+
+        public static function isApplicanthasCSS($applicantId){
+
+                $db=Connection::getInstance();
+                $mysqli=$db->getConnection();
+                $query="select * from closeSchoolset where applicantId='$applicantId'";
+                $result =$mysqli->query($query);
+                if ($result->num_rows > 0) {    
+                        return TRUE;
+                }
+                return FALSE;
+
+        }
+
+
 }

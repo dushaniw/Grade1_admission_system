@@ -11,9 +11,10 @@ include("DatabaseController/DBGNDDivisionController.php");
 include("Model/GramaNiladariDivision.php");
 include("DatabaseController/DBApplicationController.php");
 include("Model/school.php");
+include("Model/Resident_in_closeProximity.php");
 include("Model/application.php");
 
-class SchoolController extends BaseController
+class ApplicationController extends BaseController
 {
 	
 	public function getIndex()
@@ -157,13 +158,23 @@ class SchoolController extends BaseController
         $schoolId=Input::get("schoolId");
         $distance=Input::get("distance");
         $medium=Input::get("Medium");
-         $applicationId=DBApplicationController::getNextApplicationId();
+        $applicationId=DBApplicationController::getNextApplicationId();
         $applicantId=Input::get("applicant_id");
-        $guardianNic=Input::get("guardianNic");
+        $guardianNic=Input::get("guardianianNic");
+
+        $application=new Application();
+        $application->setSchool_id($schoolId);
+        $application->setApplication_id($applicationId);
+        $application->setApplicant_id($applicantId);
+        $application->setType($type);
+        $application->setMedium($medium);
+        $application->setOrderOfPreference($orderOfPreference);
+        $application->setDistance($distance);
+        $application->setMark(0);
 
         $schoolIds=array(Input::get("schoolId1"),Input::get("schoolId2"),Input::get("schoolId3"),Input::get("schoolId4"),Input::get("schoolId5"),Input::get("schoolId6"),Input::get("schoolId7"),Input::get("schoolId8"),Input::get("schoolId9"),Input::get("schoolId10"));
-        $yearset=array(Input::get("year1"),Input::get("year2"),Input::get("year3"),Input::get("year4"),Input::get("year5"),Input::get("year6"));
-        $divisionSet=array(Input::get("division1"),Input::get("division2"),Input::get("division3"),Input::get("division4"),Input::get("division5"),Input::get("division6"));
+        $yArray=array(Input::get("year1"),Input::get("year2"),Input::get("year3"),Input::get("year4"),Input::get("year5"),Input::get("year6"));
+        $dArray=array(Input::get("division1"),Input::get("division2"),Input::get("division3"),Input::get("division4"),Input::get("division5"),Input::get("division6"));
 
 
           $db=Connection::getInstance();
@@ -171,12 +182,27 @@ class SchoolController extends BaseController
         
 
         if($type==0){
+             
               $noOfYearsInElectrocalRegister=Input::get('noOfYearsInElectrocalRegister');
               $noOfYearsSpouseInElectrocalRegister=Input::get('noOfYearsSpouseInElectrocalRegister');
               $typeOfTitleDeed =Input::get('typeOfTitleDeed ');
               $noOfAditionalDocumentForResident=Input::get('noOfAditionalDocumentForResident');
               $closeSchoolCount=Input::get('closeSchoolCount');
-               return "type1";
+              $category=new Resident_in_closeProximity();     
+              $category->setNoOfAditionalDocumentForResident($noOfAditionalDocumentForResident);
+              $category->setCloseSchoolCount($closeSchoolCount);
+              $category->setTypeOfTitleDeed($typeOfTitleDeed);
+              $category->setNoOfYearsSpouseInElectrocalRegister($noOfYearsSpouseInElectrocalRegister);
+              $category->setNoOfYearsInElectrocalRegister($noOfYearsInElectrocalRegister);
+              $category->setNic($guardianNic);  
+              $resultC1=DBApplicationController::addCategory1($application,$category1,$schoolIds,$yArray,$dArray,$guardianNic); 
+              if($result){
+                return "application addded successfully";   
+              }else{
+                return "application not added successfully";
+              }
+
+
         }elseif ($type==1) {
             $gurdianNic='930776767v';
             //$gurdianName=

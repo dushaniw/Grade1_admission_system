@@ -33,12 +33,49 @@ class DBApplicationController{
         $mysqli=$db->getConnection();
         $mysqli->autocommit(FALSE);
         $applicantResult=DBApplicationController::addApplication($application);
-        
-
-        $mysqli->query('UPDATE `table` SET `col`=2');
-$mysqli->query('UPDATE `table1` SET `col1`=3;');
-$mysqli->commit();		
-      
+        if($applicantResult){
+             $resultSchoolSet=TRUE;
+             $isApplicanthasCSS=DBSchoolController::isApplicanthasCSS($application->getApplicant_id());
+             if($isApplicanthasCSS){
+                //do not need add school set
+             }else{
+                $resultSchoolSet=DBSchoolController::addCloseSchoolSet($schoolIds,$application>getApplicant_id());
+             }
+             if($resultSchoolSet){
+                $resultEL=TRUE;
+                $isGuardianHasEL=DBGuardianController::isGuardianHasEL($guardianNic);
+                if($isGuardianHasEL){
+                //do not need add EL
+                }else{
+                    $resultEL=DBElectrocalListController::addElectrocalListDetail($dArray,$yArray,$guardianNic);
+                }
+                if($resultEL){
+                    $resultC=DBCategory1Controller::addCategory1($category);
+                    if($result){
+                        $mysqli->commit();      
+                        return TRUE;
+                  
+                    }else{
+                        $mysqli->rollback();
+                        $mysqli->commit();      
+                        return FALSE;
+                        
+                    }
+                }else{
+                    $mysqli->rollback();
+                    $mysqli->commit();      
+                    return FALSE;   
+                }
+             }else{
+                $mysqli->rollback();
+                $mysqli->commit();      
+                return FALSE;
+            }
+        }else{
+            $mysqli->rollback();
+            $mysqli->commit();      
+            return FALSE;
+        }
 	}
 
 }
