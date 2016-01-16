@@ -16,7 +16,7 @@
                                 <div class ="panel-heading">
                                         <h3 class="panel-title"> <p class="text-center"><span class = "glyphicon glyphicon-user"></span> Sign Up </p></h3>
                                 </div>  
-                                <div class = "panel-body"> <div class="col-md-9"> <div class="col-md-offset-4">
+                                <div class = "panel-body"> <div class="col-md-9"> 
                                         {{ Form:: open(array('role'=>'form','url' =>'guardian/add','method' => 'POST' ))}}
                                                 <div class = "form-group">
                                                         {{Form::label('firstNameLabel', 'First Name')}}
@@ -32,24 +32,24 @@
                                                 </div>
                                                  <div class = "form-group">
                                                         {{Form::label('emailLabel', 'Email Address')}}
-                                                        {{Form::email('emailText', null,array('class' => 'form-control','placeholder'=>'Email','required'))}}
+                                                        {{Form::email('emailText', null,array('style'=>'width: 350px','class' => 'form-control','placeholder'=>'Email','required'))}}
                                                 </div>
                                                 <div class = "form-group">
                                                         {{Form::label('passwordLabel', 'Password')}}
-                                                        {{Form::password('password',array('class' => 'form-control','required','placeholder'=>'Password'))}} 
+                                                        {{Form::password('password',array('style'=>'width: 350px','class' => 'form-control','required','placeholder'=>'Password'))}} 
                                                 </div>
                                                 <div class = "form-group">
                                                         {{Form::label('confirmPasswordLabel', 'Confirm Password')}}
-                                                        {{Form::password('confirm_password',array('class' => 'form-control','required','placeholder'=>'Confirm Password'))}} 
+                                                        {{Form::password('confirm_password',array('style'=>'width: 350px','class' => 'form-control','required','placeholder'=>'Confirm Password'))}} 
                                                 </div>
                                                 <div class = "form-group">
                                                         {{Form::label('nicLabel','NIC');}}
-                                                        {{Form:: text('nicText',null,array('class' => 'form-control','required','placeholder'=>'NIC'))}}          
+                                                        {{Form:: text('nicText',null,array('style'=>'width: 250px','class' => 'form-control','required','placeholder'=>'NIC'))}}          
 
                                                 </div>
                                                 <div class = "form-group">
                                                         {{Form::label('telephoneLabel', 'Telephone')}}
-                                                        {{Form:: text( 'telephoneText',null,array('class' => 'form-control','required','placeholder'=>'Telephone') ) }}
+                                                        {{Form:: text( 'telephoneText',null,array('style'=>'width: 250px','class' => 'form-control','required','placeholder'=>'Telephone') ) }}
                                                 </div>
                                                 <div class = "form-group">
                                                         {{Form::label('relationshipLabel', 'Relationship To Child')}}
@@ -70,23 +70,23 @@
                                                 </div>
                                                 <div class = "form-group">
                                                         {{Form::label('religionLabel', 'Religion')}}
-                                                        {{Form:: text( 'religionText',null,array('class' => 'form-control','required','placeholder'=>'Religion'))}}
+                                                        {{Form:: text( 'religionText',null,array('style'=>'width: 250px','class' => 'form-control','required','placeholder'=>'Religion'))}}
                                      
                                                 </div>
                                                 <div class = "form-group">
                                                         {{Form::label('nationalityLabel', 'Nationality')}}
-                                                        {{Form:: text( 'nationalityText',null,array('class' => 'form-control','required','placeholder'=>'Nationality'))}}
+                                                        {{Form:: text( 'nationalityText',null,array('style'=>'width: 250px','class' => 'form-control','required','placeholder'=>'Nationality'))}}
                                                 </div>
                                                 <div class = "form-group">
                                                         {{Form::label('gramaNiladariDivisionNumberLabel', 'Grama Niladari Division Number')}}
-                                                        {{Form:: select( 'gramaNiladariDivisionNumberText',$divisions,$divisions[0],['class'=>'form-control'])}}
+                                                        {{Form:: select( 'gramaNiladariDivisionNumberText',$divisions,$divisions[0],array('style'=>'width: 250px','class'=>'form-control'))}}
                                                 </div>
                                                 <div class = "form-group">
                                                         {{Form::submit('Sign Up',array('class' => 'btn btn-primary' ))}}
                                                      
                                                  </div>
                                         {{ Form:: close()}}
-                                </div> </div> </div>
+                                </div> </div> 
                         </div>
                 </div>
         </div>
