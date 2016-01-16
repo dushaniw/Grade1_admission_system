@@ -96,4 +96,69 @@ class DBApplicationController{
         }
 	}
 
+    
+    public static function addCategory4($application,$category4,$schoolIds,$yArray,$dArray,$guardianNic){
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $mysqli->autocommit(FALSE);
+        $applicantResult=DBApplicationController::addApplication($application);
+       
+        if($applicantResult){
+             
+             $resultSchoolSet=true;
+             $isApplicanthasCSS=DBSchoolController::isApplicanthasCSS($application->getApplicant_id());             
+             if($isApplicanthasCSS){
+                //do not need add school set
+
+             }else{
+               // return $schoolIds[1];
+                
+                $resultSchoolSet=DBSchoolController::addCloseSchoolSet($application->getApplicant_id(),$schoolIds);
+             }
+             if($resultSchoolSet){
+                
+                $resultEL=true;
+
+                $isGuardianHasEL=DBGuardianController::isGuardianHasEL($guardianNic);
+                if($isGuardianHasEL){
+                      
+                }else{
+
+                    $resultEL=DBElectrocalListController::addElectrocalListDetail($dArray,$yArray,$guardianNic);
+                }
+                if($resultEL){
+
+
+                    $resultC=true;
+                    $resultCD=DBGuardianController::hasCategory4Detail($guardianNic);  
+                    if($resultCD==false){
+
+                        $resultC=DBCategory4Controller::addCategory4($category4);
+                    }
+                    if($resultC){
+                        $mysqli->commit();      
+                        return true;
+                    }else{
+                        $mysqli->rollback();
+                        $mysqli->commit();      
+                        return false;
+                    }
+                }else{
+                    $mysqli->rollback();
+                    $mysqli->commit();      
+                    return FALSE;   
+                }
+             }else{
+                $mysqli->rollback();
+                $mysqli->commit();      
+                return FALSE;
+            }
+        }else{
+            $mysqli->rollback();
+            $mysqli->commit();      
+            return FALSE;
+        }
+    }
+
+
 }

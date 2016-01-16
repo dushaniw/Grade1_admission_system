@@ -13,6 +13,19 @@ class EducationalServiceOfficer{
 	private $year2RemLeave;
 	private $year3RemLeave;
 	private $year4RemLeave;
+	private $closeSchoolCount;
+
+
+public function getCloseSchoolCount()
+{
+    return $this->closeSchoolCount;
+}
+
+public function setCloseSchoolCount($closeSchoolCount)
+{
+    $this->closeSchoolCount = $closeSchoolCount;
+    return $this;
+}
 
 
 public function getYear1RemLeave()

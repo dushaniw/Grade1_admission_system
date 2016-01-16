@@ -12,7 +12,9 @@ include("Model/GramaNiladariDivision.php");
 include("DatabaseController/DBApplicationController.php");
 include("DatabaseController/DBElectrocalListController.php");
 include("DatabaseController/DBCategory1Controller.php");
+include("DatabaseController/DBCategory4Controller.php");
 include("Model/school.php");
+include("Model/EducationalServiceOfficer.php");
 include("Model/Resident_in_closeProximity.php");
 include("Model/application.php");
 
@@ -354,8 +356,15 @@ class ApplicationController extends BaseController
             $category4->setYear2RemLeave($year2RemLeave);
             $category4->setYear3RemLeave($year3RemLeave);
             $category4->setYear4RemLeave($year4RemLeave);
-        
-            return $permenentEmployeePost;
+            
+            $resultC1=DBApplicationController::addCategory4($application,$category4,$schoolIds,$yArray,$dArray,$guardianNic); 
+            
+            if($resultC1){
+                return "type 4 application addded successfully";   
+            }else{
+              return "type 4 application not addded successfully";   
+              }
+              
 
         }elseif ($type==4) {
             

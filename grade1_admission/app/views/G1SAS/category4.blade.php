@@ -4,12 +4,12 @@
 </head>
 <body>
 {{ Form :: open(array('url' =>'selectSchool/addcategory','method' => 'POST' ))}}
-	{{ Form :: hidden( 'orderOfPreference',$application->getOrderOfPreference()) ; }}
+		{{ Form :: hidden( 'orderOfPreference',$application->getOrderOfPreference()) ; }}
 		{{ Form :: hidden( 'typeOfApplication',$application->getType()) ; }}
 		{{ Form :: hidden( 'schoolId',$application->getSchool_id()) ; }}
 		{{ Form :: hidden( 'distance',$application->getDistance()) ; }} 
 		{{ Form :: hidden( 'medium',$application->getMedium()) ; }}
-		{{	Form :: hidden( 'applicantId',$application->getApplication_id()) ; }}		
+		{{	Form :: hidden( 'applicantId',$application->getApplicant_id()) ; }}		
 		{{Form::hidden('schoolId1', $schools[0]);}}
 		{{Form::hidden('schoolId2', $schools[1]);}}
 		{{Form::hidden('schoolId3', $schools[2]);}}
