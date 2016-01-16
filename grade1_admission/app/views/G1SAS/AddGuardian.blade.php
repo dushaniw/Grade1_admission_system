@@ -32,13 +32,13 @@
         <br> 
 
 	{{Form::label('confirmPasswordLabel', 'Conform Password :      ');}}
-        {{Form::password('conform_password');}}	
+        {{Form::password('confirm_password');}}	
 
         <br> 
 
 
         {{Form::label('nicLabel', 'NIC :      ');}}
-        {{ Form :: text( 'nicTest','NIC') ; }}		
+        {{ Form :: text( 'nicText','NIC') ; }}		
 
         <br> 
 

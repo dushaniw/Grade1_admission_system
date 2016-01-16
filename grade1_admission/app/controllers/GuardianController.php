@@ -22,18 +22,18 @@ class GuardianController extends BaseController
     
     public function postAdd(){
         
-        $first_name = Input::get("firstNameTex");
-        $last_name = Input::get("lastNameTex");
-        $email = Input::get("emailTex");
-        $permanent_address = Input::get("addressTex");
+        $first_name = Input::get("firstNameText");
+        $last_name = Input::get("lastNameText");
+        $email = Input::get("emailText");
+        $permanent_address = Input::get("addressText");
         $password = Input::get("password");
-        $conform_password = Input::get("conform_password");
-        $nic = Input::get("nicTex");
-        $telephone_number =Input::get("telephoneTex");
+        $conform_password = Input::get("confirm_password");
+        $nic = Input::get("nicText");
+        $telephone_number =Input::get("telephoneText");
         $relation_to_child=Input::get("relationshiptochild");
-        $religion=Input::get("religionTex");
-        $nationality = Input::get("nationalityTex");
-        $grama_niladry_division_number = Input::get("gramaNiladariDivisionNumberTex");
+        $religion=Input::get("religionText");
+        $nationality = Input::get("nationalityText");
+        $grama_niladry_division_number = Input::get("gramaNiladariDivisionNumberText");
         //$district = Input::get("RESULT_RadioButton-12");
         
 
@@ -45,7 +45,7 @@ class GuardianController extends BaseController
         return View :: make ('G1SAS/AddGuardianSuccessfull');
         
         }else{
-            return "not wel";
+            return "not added successfully";
         }
     }
     
