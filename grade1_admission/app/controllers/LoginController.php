@@ -54,7 +54,7 @@ class LoginController extends BaseController
                 
        }else{
             $school=DBSchoolController::getSchoolByEmail($user_name);
-            return View :: make ('G1SAS/schoolpage')->with('school',$school);
+            return View :: make ('G1SAS/schoolpage')->with('school',$school)->with('notice','School information here');
        }
 
 	}

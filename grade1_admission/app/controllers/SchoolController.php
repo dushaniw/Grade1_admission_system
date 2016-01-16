@@ -27,11 +27,15 @@ class SchoolController extends BaseController
 			$school->setCategory($category);
 			$school->setContact_no($contact_number);
 			$school->setNo_of_classes($no_of_classes);
-			DBSchoolController::updateSchool($school);
-
+			
+			$result=DBSchoolController::updateSchool($school);
 			$updated_school=DBSchoolController::getSchool($schoolid);
 
-			return View::make('G1SAS/schoolpage')->with('school',$updated_school);
+			if($result){
+				return View::make('G1SAS/schoolpage')->with('school',$updated_school)->with('notice',"Updated successfully");
+			}else{
+				return View::make('G1SAS/schoolpage')->with('school',$updated_school)->with('notice',"Update Failed");
+			}
 	}
 
 }

@@ -9,6 +9,8 @@
 	</div>
 
 {{Form::label('titlelabel',$school->getSchool_name()." logged in")}}
+<br>
+{{Form::label('noticelabel',$notice)}}
 
 <br>
 {{Form :: open(array('url' =>'school/addpastpupilmarkingcriteria','method' => 'POST' ))}}       

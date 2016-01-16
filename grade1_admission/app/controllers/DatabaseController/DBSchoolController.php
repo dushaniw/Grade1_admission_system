@@ -58,10 +58,16 @@ class DBSchoolController
         {
                 $db=Connection::getInstance();
                 $mysqli=$db->getConnection();
+
                 $name=$school->getSchool_name();
                 $schoolid=$school->getSchool_id();
-                $query="UPDATE school SET name='$name' WHERE schoolId='$schoolid'";
+                $category=$school->getCategory();
+                $no_of_classes=$school->getNo_of_classes();
+                $contact=$school->getContact_no();
+
+                $query="UPDATE school SET name='$name',category='$category',contactNumber='$contact',noofClasses='$no_of_classes' WHERE schoolId='$schoolid'";
                 $result =$mysqli->query($query);
+                return $result;
                 
         }
 
