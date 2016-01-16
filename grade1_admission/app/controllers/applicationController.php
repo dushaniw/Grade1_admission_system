@@ -13,7 +13,9 @@ include("DatabaseController/DBApplicationController.php");
 include("DatabaseController/DBElectrocalListController.php");
 include("DatabaseController/DBCategory1Controller.php");
 include("DatabaseController/DBCategory4Controller.php");
+include("DatabaseController/DBCategory5Controller.php");
 include("Model/school.php");
+include("Model/OfficerOnTransfer.php");
 include("Model/EducationalServiceOfficer.php");
 include("Model/Resident_in_closeProximity.php");
 include("Model/application.php");
@@ -377,9 +379,25 @@ class ApplicationController extends BaseController
             $year3RemLeave =  Input::get("year3RemLeave");    
             $year4RemLeave =Input::get("year4RemLeave");
             $servicePeriod =Input::get("servicePeriod");
+            $category5=new OfficerOnTransfer();
+            $category5->setNic($guardianNic);
+            $category5->setDateOfTransferReceived($dateOfTransferReceived);
+            $category5->setBeforeWorkedPlace($beforeWorkedPlace);        
+            $category5->setAfterWorkedPlace($afterWorkedPlace);
+            $category5->setDistanceOfTransfer($distanceOfTransfer);
+            $category5->setYear1RemLeave($year1RemLeave);
+            $category5->setYear2RemLeave($year2RemLeave);
+            $category5->setYear3RemLeave($year3RemLeave);
+            $category5->setYear4RemLeave($year4RemLeave);
+            $category5->setServicePeriod($servicePeriod);
             
-            return $servicePeriod;
-    
+            $resultC1=DBApplicationController::addCategory5($application,$category5,$schoolIds,$yArray,$dArray,$guardianNic); 
+         
+            if($resultC1){
+                return "type 5 application addded successfully";   
+            }else{
+              return "type 5 application not addded successfully";   
+              }
         }elseif ($type==5) {
             $dateOfReturned=Input::get("dateOfReturned"); 
             $from =Input::get("from");
