@@ -31,7 +31,28 @@
 		{{Form::label('schoolnamelabel','School     :')}}
 		{{Form::text('schoolnametext',$school->getSchool_name())}}
 		<br>
+		
 		{{Form::label('categorylabel','Category    :')}}
+		@if($school->getCategory()=='national')
+			{{Form::label('national', 'National School :');}}
+
+	        {{ Form::radio('category', 'national',true); }}
+
+	        {{Form::label('local_gov', 'Local government school :      ');}}
+
+	        {{ Form::radio('category', 'local government'); }}
+    	@else
+    		{{Form::label('national', 'National School :');}}
+
+	        {{ Form::radio('category', 'national'); }}
+
+	        {{Form::label('local_gov', 'Local government school :      ');}}
+
+	        {{ Form::radio('category', 'local government',true); }}
+    	
+    	@endif
+        <br>
+
 		{{Form::text('categorytext',$school->getCategory())}}
 		<br>
 		{{Form::label('capacitylabel','No of Classes Available:')}}

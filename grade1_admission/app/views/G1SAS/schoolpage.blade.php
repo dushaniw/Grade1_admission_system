@@ -13,7 +13,8 @@
 {{Form::label('noticelabel',$notice)}}
 
 <br>
-{{Form :: open(array('url' =>'school/addpastpupilmarkingcriteria','method' => 'POST' ))}}       
+{{Form :: open(array('url' =>'school/addpastpupilmarkingcriteria','method' => 'POST' ))}}  
+	{{Form::hidden('schoolid',$school->getSchool_id())}}     
         {{Form::submit('Add Past Pupil Marking Criteria');}}
 {{ Form:: close()}}
 

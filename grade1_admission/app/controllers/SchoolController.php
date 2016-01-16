@@ -6,8 +6,15 @@
 class SchoolController extends BaseController
 {
 	public function postAddpastpupilmarkingcriteria(){
-
+			$schoolid=Input::get('schoolid');
+			$school=DBSchoolController::getSchool($schoolid);
+			return View::make('G1SAS/AddPastPupilMarkingCriteria')->with('school',$school);
 	}
+
+	public function postSaveppmarkingcriteria(){
+			
+	}
+
 
 	public function postEdit(){
 			$schoolid=Input::get('schoolidtext');
@@ -17,7 +24,7 @@ class SchoolController extends BaseController
 	public function postSave(){
 			$schoolid=Input::get('schoolidtext');
 			$schoolname=Input::get('schoolnametext');
-			$category=Input::get('categorytext');
+			$category=Input::get('category');
 			$no_of_classes=Input::get('capacitytext');
 			$contact_number=Input::get('contacttext');
 
