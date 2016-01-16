@@ -29,7 +29,9 @@ class SchoolController extends BaseController
 			$school->setNo_of_classes($no_of_classes);
 			DBSchoolController::updateSchool($school);
 
-			return View::make('G1SAS/schoolpage')->with('school',$school);
+			$updated_school=DBSchoolController::getSchool($schoolid);
+
+			return View::make('G1SAS/schoolpage')->with('school',$updated_school);
 	}
 
 }

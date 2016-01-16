@@ -58,9 +58,9 @@ class DBSchoolController
         {
                 $db=Connection::getInstance();
                 $mysqli=$db->getConnection();
-                $query="UPDATE school
-SET name='$school->getSchool_name()'
-WHERE schoolid='$school->getSchool_id()'";
+                $name=$school->getSchool_name();
+                $schoolid=$school->getSchool_id();
+                $query="UPDATE school SET name='$name' WHERE schoolId='$schoolid'";
                 $result =$mysqli->query($query);
                 
         }

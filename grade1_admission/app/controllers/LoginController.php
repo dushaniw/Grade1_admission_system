@@ -34,7 +34,23 @@ class LoginController extends BaseController
         		return Redirect::to('/');
     		}
 	   }elseif ($user_type==0) {
-                return View :: make ('G1SAS/adminpage')->with('username',$user_name);
+             $db=Connection::getInstance();
+            $mysqli=$db->getConnection();           
+            $query = "select password from admin_user where username ='$user_name'";         
+            $result =$mysqli->query($query);
+            
+            if ($result->num_rows > 0) {
+                if($row = $result->fetch_assoc()) {
+                    if($row["password"]==$password){
+                        return View :: make ('G1SAS/adminpage')->with('username',$user_name);
+                    }else{
+                        return Redirect::to('/');
+                    }
+                }
+            } else {
+                return Redirect::to('/');
+            }
+                
                 
        }else{
             $school=DBSchoolController::getSchoolByEmail($user_name);

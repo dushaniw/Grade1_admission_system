@@ -40,8 +40,6 @@
 		{{Form::label('contactlabel','Contact Number:')}}
 		{{Form::text('contacttext',$school->getContact_no())}}
 		<br>
-		
-
         {{Form::submit('Save changes');}}
 {{ Form:: close()}}
 

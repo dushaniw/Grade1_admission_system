@@ -42,7 +42,7 @@
 		<br>
 		{{Form::label('emaillabel','Email    :')}}
 		{{Form::text('emailtext',$school->getEmail(), ['readonly'])}}
-
+		<br>
         {{Form::submit('Edit school details');}}
 {{ Form:: close()}}
 
