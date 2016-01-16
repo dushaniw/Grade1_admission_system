@@ -82,6 +82,19 @@ class DBGuardianController
         return true;    
     }
 
+       public static function hasCategory6Detail($guardianNic)
+    {
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();   
+        $query="select *  from personComingFromAboard where NIC='$guardianNic'";        
+        $result =$mysqli->query($query);
+         if($result->num_rows === 0)
+        {
+            return false;
+        }
+        return true;    
+    }
+
 
 
 

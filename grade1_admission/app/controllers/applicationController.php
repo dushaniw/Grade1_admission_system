@@ -14,7 +14,9 @@ include("DatabaseController/DBElectrocalListController.php");
 include("DatabaseController/DBCategory1Controller.php");
 include("DatabaseController/DBCategory4Controller.php");
 include("DatabaseController/DBCategory5Controller.php");
+include("DatabaseController/DBCategory6Controller.php");
 include("Model/school.php");
+include("Model/PersonComingFromAbroad.php");
 include("Model/OfficerOnTransfer.php");
 include("Model/EducationalServiceOfficer.php");
 include("Model/Resident_in_closeProximity.php");
@@ -400,11 +402,24 @@ class ApplicationController extends BaseController
               }
         }elseif ($type==5) {
             $dateOfReturned=Input::get("dateOfReturned"); 
-            $from =Input::get("from");
-            $to= Input::get("to");
+            $periodAboardStay =Input::get("PeriodOfStayAbroad");
             $reason= Input::get("reason");
-           
-            return $reason;
+            
+            $category6=new PersonComingFromAbroad();
+            $category6->setNic($guardianNic);
+            $category6->setDateOfReturned($dateOfReturned);
+            $category6->setPerioadAbroadStay($periodAboardStay);
+            $category6->setReasonsForStay($reason);
+        
+            $resultC1=DBApplicationController::addCategory6($application,$category6,$schoolIds,$yArray,$dArray,$guardianNic); 
+            
+             
+            if($resultC1){
+                return "type 6 application addded successfully";   
+            }else{
+              return "type 6 application not addded successfully";   
+              }
+        
         }
 
       //application eka add wen ona/////gurdian waguwata sambanda wela add wen on catogary 1 

@@ -11,7 +11,7 @@
 		{{ Form :: hidden( 'schoolId',$application->getSchool_id()) ; }}
 		{{ Form :: hidden( 'distance',$application->getDistance()) ; }} 
 		{{ Form :: hidden( 'medium',$application->getMedium()) ; }}
-	{{	Form :: hidden( 'applicantId',$application->getApplication_id()) ; }}		
+	{{	Form :: hidden( 'applicantId',$application->getApplicant_id()) ; }}		
 			{{Form::hidden('schoolId1', $schools[0]);}}
 		{{Form::hidden('schoolId2', $schools[1]);}}
 		{{Form::hidden('schoolId3', $schools[2]);}}
@@ -48,12 +48,8 @@
 
 		<br>		
 		{{Form::label('Label7','b) Period of stay abroad');}}
-		<br>
-		{{Form::label('Label8', 'From ');}}
-		{{ Form :: text( 'from','') ; }}		
-		
-		{{Form::label('Label8', 'To ');}}
-		{{ Form :: text( 'to','') ; }}		
+		{{ Form :: text( 'PeriodOfStayAbroad','') ; }}		
+			
 
 		<br>	
 
