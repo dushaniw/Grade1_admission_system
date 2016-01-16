@@ -1,5 +1,6 @@
 <?php
 
+
 class DBPastPupilMarkingCriteriaController{
 	public static function  addCriteria($ppmc){
 		$schoolid=$ppmc->getSchoolId();
@@ -32,35 +33,40 @@ class DBPastPupilMarkingCriteriaController{
 	public static function getPastPupilMarkingCriteria($schoolid,$year){
 		$db=Connection::getInstance();
         $mysqli=$db->getConnection();
-		$query="select * from pastpupilmarkingcriteria where schoolid='$schoolid' and refyear='$year';";
+		$query="select * from pastpupilmarkingcriteria where schoolId='$schoolid' and refYear='$year';";
         $result =$mysqli->query($query);
 
         $ppmc=new pastPupil_markingCriteria();
         if ($result->num_rows > 0) {	
         	if ($row = $result->fetch_assoc()) {
-        		$ppmc->setSchoolId($row["schoolId"]);
-				$ppmc->setRefYear($row["refYear"]);
+        		$ppmc->setAll($row["schoolId"],$row["refYear"],$row["internationalEduAchieve"],$row["nationalEduAchieve"],
+        			$row["provincialEduAchieve"],$row["districtEduAchieve"],$row["zonalEduAchieve"],$row["internationalExtraCurricular"]
+        			,$row["nationalExtraCurricular"],$row["provincialExtraCurricular"],$row["districtExtraCurricular"],$row["zonalExtraCurricular"],
+        			$row["pastPupilOrgMember"],$row["contribution"],$row["other_after_school"]);
 
-				$ppmc->setInternationalEduAchieve($row["internationalEduAchieve"]);
-				$ppmc->setNationalEduAchieve($row["nationalEduAchieve"]);
-				$ppmc->setProvincialEduAchieve($row["provincialEduAchieve"]);
-				$ppmc->setDistrictEduAchieve($row["districtEduAchieve"]);
-				$ppmc->setZonalEduAchieve($row["zonalEduAchieve"]);
+        		//$ppmc->setSchoolId($row["schoolId"]);
+				//$ppmc->setRefYear($row["refYear"]);
 
-				$ppmc->setInternationalExtraCurricular($row["internationalExtraCurricular"]);
-				$ppmc->setNationalExtraCurricular($row["nationalExtraCurricular"]);
-				$ppmc->setProvincialExtraCurricular($row["provincialExtraCurricular"]);
-				$ppmc->setDistrictExtraCurricular($row["districtExtraCurricular"]);
-				$ppmc->setZonalExtraCurricular($row["zonalExtraCurricular"]);
+				//$ppmc->setInternationalEduAchieve($row["internationalEduAchieve"]);
+				//$ppmc->setNationalEduAchieve($row["nationalEduAchieve"]);
+				//$ppmc->setProvincialEduAchieve($row["provincialEduAchieve"]);
+				//$ppmc->setDistrictEduAchieve($row["districtEduAchieve"]);
+				//$ppmc->setZonalEduAchieve($row["zonalEduAchieve"]);
 
-				$ppmc->setPastPupilOrgMemeber($row["pastPupilOrgMember"]);
-				$ppmc->setContribution($row["contribution"]);
-				$ppmc->setOther_after_school($row["other_after_school"]);
-				return $ppmc;
+				//$ppmc->setInternationalExtraCurricular($row["internationalExtraCurricular"]);
+				//$ppmc->setNationalExtraCurricular($row["nationalExtraCurricular"]);
+				//$ppmc->setProvincialExtraCurricular($row["provincialExtraCurricular"]);
+				//$ppmc->setDistrictExtraCurricular($row["districtExtraCurricular"]);
+				//$ppmc->setZonalExtraCurricular($row["zonalExtraCurricular"]);
+
+				//$ppmc->setPastPupilOrgMemeber($row["pastPupilOrgMember"]);
+				//$ppmc->setContribution($row["contribution"]);
+				//$ppmc->setOther_after_school($row["other_after_school"]);
+				
         	}
-        	return null;
+        	
         }
-        return null;
+        return $ppmc;
        
 
 	}

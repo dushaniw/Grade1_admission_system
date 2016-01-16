@@ -47,7 +47,7 @@ class DBSchoolController
                                 $school->setNo_of_classes($row["noofClasses"]);
                                 $school->setEmail($row["email"]);
                                 $school->setPassword($row["password"]);
-                                $schools[] = $school;
+                                
                         }
                 }
                 return $school;

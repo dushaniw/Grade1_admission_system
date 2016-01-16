@@ -22,8 +22,8 @@ class SchoolController extends BaseController
 	}
 
 	public function postViewppmarkingcriteria(){
-			$schoolid=Input::get('schoolid');
-			$year=Input::get('year');
+			$schoolid=Input::get('schoolidtext');
+			$year=Input::get('year_sel');
 			$school=DBSchoolController::getSchool($schoolid);
 			$years=DBPastPupilMarkingCriteriaController::getYearsOfAvailableCriteria($schoolid);
 			$ppmc=DBPastPupilMarkingCriteriaController::getPastPupilMarkingCriteria($schoolid,$year);

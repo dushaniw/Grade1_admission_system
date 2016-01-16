@@ -11,7 +11,7 @@
 		<br>
 
 		{{Form::label('yearlabel','Select year of admissions    :')}}
-		{{Form::select('year', $years,$year);}}
+		{{Form::select('year_sel',$years,$year)}}
 		{{Form::submit('View criteria');}}
 		<br><br>
 
