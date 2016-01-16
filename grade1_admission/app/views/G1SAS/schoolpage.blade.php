@@ -13,11 +13,15 @@
 {{Form::label('noticelabel',$notice)}}
 
 <br>
-{{Form :: open(array('url' =>'school/addpastpupilmarkingcriteria','method' => 'POST' ))}}  
+{{Form:: open(array('url' =>'school/addpastpupilmarkingcriteria','method' => 'POST' ))}}  
 	{{Form::hidden('schoolid',$school->getSchool_id())}}     
         {{Form::submit('Add Past Pupil Marking Criteria');}}
 {{ Form:: close()}}
 
+{{Form:: open(array('url' =>'school/viewpastpupilmarkingcriteria','method' => 'POST' ))}}  
+	{{Form::hidden('schoolid',$school->getSchool_id())}}     
+        {{Form::submit('View Available Past Pupil Marking Criteria');}}
+{{ Form:: close()}}
 
 {{Form :: open(array('url' =>'userpage/searchUserSchool','method' => 'POST' ))}}
         {{Form::submit('Search selected school');}}

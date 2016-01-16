@@ -12,6 +12,28 @@ class SchoolController extends BaseController
 			return View::make('G1SAS/AddPastPupilMarkingCriteria')->with('school',$school);
 	}
 
+	public function postViewpastpupilmarkingcriteria(){
+			$schoolid=Input::get('schoolid');
+			$school=DBSchoolController::getSchool($schoolid);
+			$years=DBPastPupilMarkingCriteriaController::getYearsOfAvailableCriteria($schoolid);
+			$lastyear=DBPastPupilMarkingCriteriaController::getLastYearOfAvailableCriteria($schoolid);
+			$lastyear_ppmc=DBPastPupilMarkingCriteriaController::getPastPupilMarkingCriteria($schoolid,$lastyear);
+			return View::make('G1SAS/ViewPastPupilMarkingCriteria')->with('school',$school)->with('years',$years)->with('ppmc',$lastyear_ppmc)->with('year',$lastyear);
+	}
+
+	public function postViewppmarkingcriteria(){
+			$schoolid=Input::get('schoolid');
+			$year=Input::get('year');
+			$school=DBSchoolController::getSchool($schoolid);
+			$years=DBPastPupilMarkingCriteriaController::getYearsOfAvailableCriteria($schoolid);
+			$ppmc=DBPastPupilMarkingCriteriaController::getPastPupilMarkingCriteria($schoolid,$year);
+			if($ppmc!=null){
+				return View::make('G1SAS/ViewPastPupilMarkingCriteria')->with('school',$school)->with('years',$years)->with('ppmc',$ppmc)->with('year',$year);
+			}else{
+				return "Unsuccessful";
+			}
+	}
+
 	public function postSaveppmarkingcriteria(){
 			$schoolid=Input::get('schoolidtext');
 			$year=Input::get('year');
