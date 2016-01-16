@@ -34,15 +34,22 @@ class GuardianController extends BaseController
         $religion=Input::get("religionText");
         $nationality = Input::get("nationalityText");
         $grama_niladry_division_number = Input::get("gramaNiladariDivisionNumberText");
-        //$district = Input::get("RESULT_RadioButton-12");
-        
+        $guardian=new Guardian();
+        $guardian->setNic($nic);
+        $guardian->setFirstName($first_name);
+        $guardian->setLastName($last_name);
+        $guardian->setEmail($email);
+        $guardian->setPermanent_address($permanent_address);
+        $guardian->setPassword($password);
+        $guardian->setContact_number($telephone_number);
+        $guardian->setRelationship($relation_to_child);
+        $guardian->setReligion($religion);
+        $guardian->setNationality($nationality);
+        $guardian->setGrama_nil_div_no($grama_niladry_division_number);
 
-        $db=Connection::getInstance();
-        $mysqli=$db->getConnection();
-        $query="insert into guardian values('$nic','$first_name','$last_name','$relation_to_child','$nationality','$religion','$permanent_address','$email','$telephone_number','$grama_niladry_division_number','$password' ); ";
-        $result=$mysqli->query($query);
+        $result=DBGuardianController::addGuardian($guardian);
         if($result){
-        return View :: make ('G1SAS/AddGuardianSuccessfull');
+            return View :: make ('G1SAS/AddGuardianSuccessfull');
         
         }else{
             return "not added successfully";

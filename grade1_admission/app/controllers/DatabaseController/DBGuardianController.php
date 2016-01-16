@@ -58,6 +58,13 @@ class DBGuardianController
 
         }
 
+    public static function addGuardian($guardian){
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="insert into guardian values('$guardian->getNic()','$guardian->getFirstName()','$guardian->getLastName()','$guardian->getRelationship()','$guardian->getNationality()','$guardian->getReligion()','$guardian->getPermanent_address()','$guardian->getEmail()','$guardian->getContact_number()','$guardian->getGrama_nil_div_no()','$guardian->getPassword()' ); ";
+        $result=$mysqli->query($query);
+        return $result;
+    }    
     
 
 }
