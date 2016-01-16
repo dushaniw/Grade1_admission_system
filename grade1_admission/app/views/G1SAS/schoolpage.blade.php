@@ -23,8 +23,8 @@
         {{Form::submit('View Available Past Pupil Marking Criteria');}}
 {{ Form:: close()}}
 
-{{Form :: open(array('url' =>'userpage/searchUserSchool','method' => 'POST' ))}}
-        {{Form::submit('Search selected school');}}
+{{Form :: open(array('url' =>'school/verifyapplication','method' => 'POST' ))}}
+        {{Form::submit('Verify Applications');}}
 {{ Form:: close()}}
 
 {{Form :: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}

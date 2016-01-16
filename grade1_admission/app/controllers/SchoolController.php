@@ -97,4 +97,13 @@ class SchoolController extends BaseController
 			}
 	}
 
+	public function postVerifyapplication(){
+			$schoolid=Input::get('schoolidtext');
+			$school=DBSchoolController::getSchool($schoolid);
+			
+			return View::make('G1SAS/VerifyApplication')->with('school',$school);
+	}
+
+	
+
 }
