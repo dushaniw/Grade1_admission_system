@@ -21,6 +21,11 @@ class GuardianController extends BaseController
     }   
     
     public function postAdd(){
+        $divisions=DBGNDDivisionController::getAllDivision();
+        $divisionIdA=array();
+        foreach ($divisions as $division) {
+            $divisionIdA[]=$division->getGrama_niladari_div_no();
+        }
         
         $first_name = Input::get("firstNameText");
         $last_name = Input::get("lastNameText");
@@ -33,7 +38,8 @@ class GuardianController extends BaseController
         $relation_to_child=Input::get("relationshiptochild");
         $religion=Input::get("religionText");
         $nationality = Input::get("nationalityText");
-        $grama_niladry_division_number = Input::get("gramaNiladariDivisionNumberText");
+        $div_val = Input::get("gramaNiladariDivisionNumberText");
+        $grama_niladry_division_number = $divisionIdA[$div_val];
         $guardian=new Guardian();
         $guardian->setNic($nic);
         $guardian->setFirstName($first_name);

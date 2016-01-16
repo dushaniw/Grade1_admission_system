@@ -4,7 +4,7 @@
 		<title>Grade 1 Admissions - MINISTY OF EDUCATION SRI LANKA</title>
 
 		<!-- Bootstrap -->
-		{{ HTML::style('css/bootstrap.min.css') }}
+		{{ HTML::style('/css/bootstrap.min.css') }}
       
       
       	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -20,12 +20,12 @@
 		<script src = "https://code.jquery.com/jquery.js"></script>
       
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		{{ HTML::script('js/bootstrap.min.js') }}
+		{{ HTML::script('/js/bootstrap.min.js') }}
 
 		<style>
 		body{
      		margin: 0;
-     		background: url('img/backgroundimage.jpg');
+     		background: url('/img/backgroundimage.jpg');
      		  background-size: cover;
      		background-repeat:no-repeat;
     		display: compact;
@@ -58,7 +58,7 @@
 				<div class="page-header" style="color:white  ">
 					<div class = "media">
 						<div class="pull-left">
-							<img class = "media-object" src = "img/logo.png"  alt = "Media Object">
+							<img class = "media-object" src = "/img/logo.png"  alt = "Media Object">
 						</div>
 						<div class = "media-body">
 							<br/>

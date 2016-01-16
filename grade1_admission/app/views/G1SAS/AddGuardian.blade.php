@@ -79,7 +79,7 @@
                                                 </div>
                                                 <div class = "form-group">
                                                         {{Form::label('gramaNiladariDivisionNumberLabel', 'Grama Niladari Division Number')}}
-                                                        {{Form:: select( 'gramaNiladariDivisionNumberText',$divisions,$divisions[0],array('style'=>'width: 250px','class'=>'form-control'))}}
+                                                        {{Form:: select( 'gramaNiladariDivisionNumberText',$divisions,null,array('style'=>'width: 250px','class'=>'form-control'))}}
                                                 </div>
                                                 <div class = "form-group">
                                                         {{Form::submit('Sign Up',array('class' => 'btn btn-primary' ))}}

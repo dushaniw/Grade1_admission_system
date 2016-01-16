@@ -1,9 +1,5 @@
 <?php
 
-Route::get('welcome',function(){
-	return View::make('G1SAS/normal_user_layout');
-});
-
 Route::get('/',function(){
 	return View :: make ('G1SAS/login');
 });
@@ -12,6 +8,8 @@ Route::get('/',function(){
 Route::get('guardian',function(){
 	return View :: make ('G1SAS/AddGuardian');
 });
+
+
 
 
 
