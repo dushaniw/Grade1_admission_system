@@ -1,5 +1,6 @@
 <?php
-
+include("/Model/pastPupil_markingCriteria.php");
+include '/DatabaseController/DBPastPupilMarkingCriteriaController.php';
 /**
 * 
 */
@@ -12,7 +13,36 @@ class SchoolController extends BaseController
 	}
 
 	public function postSaveppmarkingcriteria(){
+			$schoolid=Input::get('schoolidtext');
+			$year=Input::get('year');
+
+			$intEduAch=Input::get('intEduAchMarks');
+			$natEduAch=Input::get('natEduAchMarks');
+			$proEduAch=Input::get('proEduAchMarks');
+			$disEduAch=Input::get('disEduAchMarks');
+			$zonEduAch=Input::get('zonEduAchMarks');
+
+			$intExtAch=Input::get('intExtAchMarks');
+			$natExtAch=Input::get('natExtAchMarks');
+			$proExtAch=Input::get('proExtAchMarks');
+			$disExtAch=Input::get('disExtAchMarks');
+			$zonExtAch=Input::get('zonExtAchMarks');
+
+			$pastPupOrg=Input::get('pastPupOrgMarks');
+			$contribution=Input::get('contributionMarks');
+			$other=Input::get('otherMarks');
 			
+			$ppmc=new pastPupil_markingCriteria();
+			$ppmc->setAll($schoolid,$year,$intEduAch,$natEduAch,$proEduAch,$disEduAch,$zonEduAch,$intExtAch,$natExtAch,$proExtAch,$disExtAch,$zonExtAch,$pastPupOrg,$contribution,$other);
+			$result=DBPastPupilMarkingCriteriaController::addCriteria($ppmc);
+
+			$school=DBSchoolController::getSchool($schoolid);
+			if($result){
+				return View::make('G1SAS/schoolpage')->with('school',$school)->with('notice',"PatPupil Marking Criteria added successfully");
+			}else{
+				return View::make('G1SAS/schoolpage')->with('school',$school)->with('notice',"PatPupil Marking Criteria addition Failed");
+			}
+
 	}
 
 

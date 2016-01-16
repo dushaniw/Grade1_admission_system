@@ -15,29 +15,49 @@ class pastPupil_markingCriteria{
 	private $districtExtraCurricular;
 	private $zonalExtraCurricular;
 	private $pastPupilOrgMemeber;
-	private $contributionType1;
-	private $contributionType2;
+	private $contribution;
+	private $other_after_school;
+
+    public function setAll($schoolId,$refYear,$internationalEduAchieve,$nationalEduAchieve,$provincialEduAchieve,$districtEduAchieve,$zonalEduAchieve,
+        $internationalExtraCurricular,$nationalExtraCurricular,$provincialExtraCurricular,$districtExtraCurricular,$zonalExtraCurricular,$pastPupilOrgMemeber,$contribution,$other_after_school){
+        
+        $this->schoolId=$schoolId;
+        $this->refYear=$refYear;
+        $this->internationalEduAchieve=$internationalEduAchieve;
+        $this->nationalEduAchieve=$nationalEduAchieve;
+        $this->provincialEduAchieve=$provincialEduAchieve;
+        $this->districtEduAchieve=$districtEduAchieve;
+        $this->zonalEduAchieve=$zonalEduAchieve;
+        $this->internationalExtraCurricular=$internationalExtraCurricular;
+        $this->nationalExtraCurricular=$nationalExtraCurricular;
+        $this->provincialExtraCurricular=$provincialExtraCurricular;
+        $this->districtExtraCurricular=$districtExtraCurricular;
+        $this->zonalExtraCurricular=$zonalExtraCurricular;
+        $this->pastPupilOrgMemeber=$pastPupilOrgMemeber;
+        $this->contribution=$contribution;
+        $this->other_after_school=$other_after_school;
+    }
 
 
-public function getContributionType2()
+public function getOther_after_school()
 {
-    return $this->contributionType2;
+    return $this->other_after_school;
 }
 
-public function setContributionType2($contributionType2)
+public function setOther_after_school($other_after_school)
 {
-    $this->contributionType2 = $contributionType2;
+    $this->other_after_school = $other_after_school;
     return $this;
 }
 
-public function getContributionType1()
+public function getContribution()
 {
-    return $this->contributionType1;
+    return $this->contribution;
 }
 
-public function setContributionType1($contributionType1)
+public function setContribution($contribution)
 {
-    $this->contributionType1 = $contributionType1;
+    $this->contribution = $contribution;
     return $this;
 }
 

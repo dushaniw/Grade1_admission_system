@@ -57,7 +57,7 @@
 		{{Form::selectRange('contributionMarks', 0, 6);}}
 		<br>
 		{{Form::label('otherlabel','Marks for other related:')}}
-		{{Form::selectRange('pastPupOrgMarks', 0, 24);}}
+		{{Form::selectRange('otherMarks', 0, 24);}}
 		<br>
 	 	{{Form::submit('Save criteria');}}
 	{{ Form:: close()}}
