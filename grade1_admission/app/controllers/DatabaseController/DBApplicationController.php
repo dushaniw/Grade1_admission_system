@@ -6,7 +6,15 @@ class DBApplicationController{
 	{
 		$db=Connection::getInstance();
         $mysqli=$db->getConnection();
-		$query="insert into application values('$application->getApplication_id()','$application->getSchool_id()','$application->getApplicant_id()','$application->getMedium()','$application->getType()','$application->getOrderOfPreference()','$application->getDistance()',false); ";
+        $schoolId=$application->getSchool_id();
+        $application_id=$application->getApplication_id();
+        $applicant_id=$application->getApplicant_id();
+        $type=$application->getType();
+        $medium=$application->getMedium();
+        $orderOfPreference=$application->getOrderOfPreference();
+        $distance=$application->getDistance();
+        $isVerified=false;
+		$query="insert into application values('$application_id','$schoolId','$applicant_id','$medium','$type','$orderOfPreference','$distance','$isVerified'); ";
 	    return $mysqli->query($query);       
 
 	}
@@ -15,7 +23,7 @@ class DBApplicationController{
 		$applicantionId='1';
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
-        $query="select application_id from application decs limit 1;";
+        $query="select application_id from application order by application_id desc limit 1;";
         $result =$mysqli->query($query);
 
          if ($result->num_rows > 0) {
@@ -28,38 +36,48 @@ class DBApplicationController{
 
 	}
 
+
 	public static function addCategory1($application,$category1,$schoolIds,$yArray,$dArray,$guardianNic){
 	    $db=Connection::getInstance();
         $mysqli=$db->getConnection();
         $mysqli->autocommit(FALSE);
         $applicantResult=DBApplicationController::addApplication($application);
         if($applicantResult){
-             $resultSchoolSet=TRUE;
-             $isApplicanthasCSS=DBSchoolController::isApplicanthasCSS($application->getApplicant_id());
+             
+             $resultSchoolSet=true;
+             $isApplicanthasCSS=DBSchoolController::isApplicanthasCSS($application->getApplicant_id());             
              if($isApplicanthasCSS){
                 //do not need add school set
+
              }else{
-                $resultSchoolSet=DBSchoolController::addCloseSchoolSet($schoolIds,$application>getApplicant_id());
+               // return $schoolIds[1];
+                
+                $resultSchoolSet=DBSchoolController::addCloseSchoolSet($application->getApplicant_id(),$schoolIds);
              }
              if($resultSchoolSet){
-                $resultEL=TRUE;
+                
+                $resultEL=true;
+
                 $isGuardianHasEL=DBGuardianController::isGuardianHasEL($guardianNic);
                 if($isGuardianHasEL){
-                //do not need add EL
+             
                 }else{
+
                     $resultEL=DBElectrocalListController::addElectrocalListDetail($dArray,$yArray,$guardianNic);
                 }
                 if($resultEL){
-                    $resultC=DBCategory1Controller::addCategory1($category);
-                    if($result){
+                    $resultC=true;
+                    $resultCD=DBGuardianController::hasCategory1Detail($guardianNic);  
+                    if($resultCD==false){
+                        $resultC=DBCategory1Controller::addCategory1($category1);
+                    }
+                    if($resultC){
                         $mysqli->commit();      
-                        return TRUE;
-                  
+                        return true;
                     }else{
                         $mysqli->rollback();
                         $mysqli->commit();      
-                        return FALSE;
-                        
+                        return false;
                     }
                 }else{
                     $mysqli->rollback();

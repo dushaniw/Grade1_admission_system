@@ -10,8 +10,8 @@
 		{{Form :: hidden( 'schoolId',$application->getSchool_id()) ; }}
 		{{Form :: hidden( 'distance',$application->getDistance()) ; }} 
 		{{Form :: hidden( 'medium',$application->getMedium()) ; }}
-		{{Form :: hidden( 'applicantId',$application->getApplication_id()) ; }}		
-		
+
+		{{Form :: hidden( 'applicantId',$application->getApplicant_id());}}
 		{{Form::hidden('schoolId1', $schools[0]);}}
 		{{Form::hidden('schoolId2', $schools[1]);}}
 		{{Form::hidden('schoolId3', $schools[2]);}}
@@ -36,9 +36,8 @@
 		{{Form::hidden('year4', $yArray[3]);}}
 		{{Form::hidden('year5', $yArray[4]);}}
 		{{Form::hidden('year6', $yArray[5]);}}
-
-
 		{{Form::hidden('guardianNic', $guardianNic);}}
+
 		<div id="catogory1" >
 			
 			<h1> Children of residents in close proximity of school </h1>
@@ -61,7 +60,7 @@
 			<br>
 			{{Form::label('Label3', 'Title deed - in the name of applicant/spouse or applicants parents / Registered Lease Bond/ Government official Quarters Documents / un-registered Lease Bond/Any other legal documents to prove ownership');}}
 
-			{{ Form :: text( 'typeOfTitleDeed ','') ; }}		
+			{{ Form :: text( 'typeOfTitleDeed','') ; }}		
 
 
 			<br>

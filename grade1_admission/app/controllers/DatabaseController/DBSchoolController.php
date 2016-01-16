@@ -102,16 +102,16 @@ class DBSchoolController
         {
                 $db=Connection::getInstance();
                 $mysqli=$db->getConnection();
-                
+                $uniqueA=array_unique($schoolIdSet);
 
-                foreach ($schoolIdSet as $schoolId) {
+                foreach ($uniqueA as $schoolId) {
                         $query="insert into closeSchoolset values( '$schoolId','$applicantId')";
                         $result=$mysqli->query($query);
-                        if($result==FALSE){
-                                return FALSE;
+                        if($result==false){
+                                return false;
                         }
                 } 
-                return TRUE;      
+                return true;      
         }
 
         public static function isApplicanthasCSS($applicantId){

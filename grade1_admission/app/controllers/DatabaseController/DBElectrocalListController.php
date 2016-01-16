@@ -6,9 +6,10 @@ class DBElectrocalListController{
 		$db=Connection::getInstance();
         $mysqli=$db->getConnection();
 		for ($i=0; $i <5 ; $i++){
-        
-        	$query="insert into electoral_name_list_proof values( '$guardianNic','$yArray[$i]','$dArray[$i]')";
-        	if($mysqli->query($query)=false){
+            $year=$yArray[$i];
+            $division=$dArray[$i];
+        	$query="insert into electoral_name_list_proof values('$guardianNic','$year','$division')";
+        	if($mysqli->query($query)==false){
             	return false;
         	}
         }                                   

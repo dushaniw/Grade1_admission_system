@@ -3,7 +3,12 @@
 	<title> Selection Type</title>
 </head>
 <body>
-	{{Form::hidden('schoolId1', $schools[6]->getSchool_id());}}
+	
+
+	@for($i=0;$i<6;$i++)
+		{{ Form :: open(array('url' =>'selectSchool/application','method' => 'POST'))}}
+			
+			{{Form::hidden('schoolId1', $schools[6]->getSchool_id());}}
 	{{Form::hidden('schoolId2', $schools[7]->getSchool_id());}}
 	{{Form::hidden('schoolId3', $schools[8]->getSchool_id());}}
 	{{Form::hidden('schoolId4', $schools[9]->getSchool_id());}}
@@ -31,8 +36,7 @@
 	{{Form::hidden('guardianNic', $guardian->getNic());}}
 	{{Form::hidden('applicant_id', $applicant->getApplicantId());}}
 
-	@for($i=0;$i<6;$i++)
-		{{ Form :: open(array('url' =>'selectSchool/application','method' => 'POST'))}}
+
 			{{Form::hidden('schoolPiority', $i);}}
 			{{Form::hidden('schoolId', $schools[$i]->getSchool_id());}}
 			

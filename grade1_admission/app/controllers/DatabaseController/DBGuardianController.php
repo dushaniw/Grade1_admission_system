@@ -35,14 +35,28 @@ class DBGuardianController
 	{
 		$db=Connection::getInstance();
         $mysqli=$db->getConnection();	
-		$query="select *  from studentApplicant where NIC='$guardianNic'";
+		$query="select *  from  where NIC='$guardianNic'";
         $result =$mysqli->query($query);
          if($result->num_rows === 0)
         {
-            return FALSE;
+            return false;
         }
-        return TRUE;	
+        return true;	
 	}
+
+    public static function hasCategory1Detail($guardianNic)
+    {
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();   
+        $query="select *  from residentInClosedProximity where NIC='$guardianNic'";        
+        $result =$mysqli->query($query);
+         if($result->num_rows === 0)
+        {
+            return false;
+        }
+        return true;    
+    }
+
 
 
      public static function isGuardianHasEL($guardianNic){

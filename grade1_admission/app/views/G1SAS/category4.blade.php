@@ -9,7 +9,7 @@
 		{{ Form :: hidden( 'schoolId',$application->getSchool_id()) ; }}
 		{{ Form :: hidden( 'distance',$application->getDistance()) ; }} 
 		{{ Form :: hidden( 'medium',$application->getMedium()) ; }}
-	{{	Form :: hidden( 'applicantId',$application->getApplication_id()) ; }}		
+		{{	Form :: hidden( 'applicantId',$application->getApplication_id()) ; }}		
 		{{Form::hidden('schoolId1', $schools[0]);}}
 		{{Form::hidden('schoolId2', $schools[1]);}}
 		{{Form::hidden('schoolId3', $schools[2]);}}
@@ -72,6 +72,11 @@
 
 		<br>
 
+		{{Form::label('Label41','Close School Count ');}}		
+		 {{ Form :: text( 'closeSchoolCount','') ; }}
+		
+
+		<br>
 
 
 		Un-utilized leaves
@@ -81,10 +86,9 @@
 				<th>2014</th>
 				<th>2013</th>
 				<th>2012</th>
-				<th>2011</th>
 			</tr>
 			<tr>
-				<td>		 {{ Form :: text( 'year1RemLeave','') ; }}		</td
+				<td>		 {{ Form :: text( 'year1RemLeave','') ; }}		</td>
 				<td>		 {{ Form :: text( 'year2RemLeave','') ; }}		</td>
 				<td>		 {{ Form :: text( 'year3RemLeave','') ; }}		</td>	
 				<td>		 {{ Form :: text( 'year4RemLeave','') ; }}		</td>

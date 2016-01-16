@@ -10,6 +10,8 @@ include("DatabaseController/DBSchoolController.php");
 include("DatabaseController/DBGNDDivisionController.php");
 include("Model/GramaNiladariDivision.php");
 include("DatabaseController/DBApplicationController.php");
+include("DatabaseController/DBElectrocalListController.php");
+include("DatabaseController/DBCategory1Controller.php");
 include("Model/school.php");
 include("Model/Resident_in_closeProximity.php");
 include("Model/application.php");
@@ -157,11 +159,10 @@ class ApplicationController extends BaseController
         $orderOfPreference=Input::get("orderOfPreference");
         $schoolId=Input::get("schoolId");
         $distance=Input::get("distance");
-        $medium=Input::get("Medium");
+        $medium=Input::get("medium");
         $applicationId=DBApplicationController::getNextApplicationId();
-        $applicantId=Input::get("applicant_id");
-        $guardianNic=Input::get("guardianianNic");
-
+        $applicantId=Input::get("applicantId");
+        $guardianNic=Input::get("guardianNic");
         $application=new Application();
         $application->setSchool_id($schoolId);
         $application->setApplication_id($applicationId);
@@ -176,7 +177,6 @@ class ApplicationController extends BaseController
         $yArray=array(Input::get("year1"),Input::get("year2"),Input::get("year3"),Input::get("year4"),Input::get("year5"),Input::get("year6"));
         $dArray=array(Input::get("division1"),Input::get("division2"),Input::get("division3"),Input::get("division4"),Input::get("division5"),Input::get("division6"));
 
-
           $db=Connection::getInstance();
           $mysqli=$db->getConnection();
         
@@ -185,7 +185,7 @@ class ApplicationController extends BaseController
              
               $noOfYearsInElectrocalRegister=Input::get('noOfYearsInElectrocalRegister');
               $noOfYearsSpouseInElectrocalRegister=Input::get('noOfYearsSpouseInElectrocalRegister');
-              $typeOfTitleDeed =Input::get('typeOfTitleDeed ');
+              $typeOfTitleDeed =Input::get('typeOfTitleDeed');
               $noOfAditionalDocumentForResident=Input::get('noOfAditionalDocumentForResident');
               $closeSchoolCount=Input::get('closeSchoolCount');
               $category=new Resident_in_closeProximity();     
@@ -195,12 +195,14 @@ class ApplicationController extends BaseController
               $category->setNoOfYearsSpouseInElectrocalRegister($noOfYearsSpouseInElectrocalRegister);
               $category->setNoOfYearsInElectrocalRegister($noOfYearsInElectrocalRegister);
               $category->setNic($guardianNic);  
-              $resultC1=DBApplicationController::addCategory1($application,$category1,$schoolIds,$yArray,$dArray,$guardianNic); 
-              if($result){
+              $resultC1=DBApplicationController::addCategory1($application,$category,$schoolIds,$yArray,$dArray,$guardianNic); 
+             
+              if($resultC1){
                 return "application addded successfully";   
               }else{
                 return "application not added successfully";
               }
+              
 
 
         }elseif ($type==1) {
@@ -332,10 +334,27 @@ class ApplicationController extends BaseController
             $nowInDifficultSchoolService=Input::get("nowInDifficultSchoolService"); 
             $periodOfDifficultSchoolService =Input::get("nowInDifficultSchoolService");
             $servingPeriodOfSchool=Input::get("servingPeriodOfSchool");
+            $closeSchoolCount=Input::get("closeSchoolCount");
             $year1RemLeave =  Input::get("year1RemLeave");    
             $year2RemLeave =Input::get("year2RemLeave");
             $year3RemLeave =Input::get("year3RemLeave");
             $year4RemLeave =Input::get("year4RemLeave");
+            
+            $category4=new EducationalServiceOfficer();
+
+            $category4->setNic($guardianNic);
+            $category4->setPermenentEmployeePost($permenentEmployeePost);
+            $category4->setCloseSchoolCount($closeSchoolCount);        
+            $category4->setDistanceFromResidentToWork($distanceFromResidentToWork);
+            $category4->setNowInDifficultSchoolService($nowInDifficultSchoolService);
+            $category4->setPeriodOfDifficultSchoolService($periodOfDifficultSchoolService);
+            $category4->setServingSchoolId($schoolId);
+            $category4->setServingPeriodOfSchool($servingPeriodOfSchool);
+            $category4->setYear1RemLeave($year1RemLeave);
+            $category4->setYear2RemLeave($year2RemLeave);
+            $category4->setYear3RemLeave($year3RemLeave);
+            $category4->setYear4RemLeave($year4RemLeave);
+        
             return $permenentEmployeePost;
 
         }elseif ($type==4) {
