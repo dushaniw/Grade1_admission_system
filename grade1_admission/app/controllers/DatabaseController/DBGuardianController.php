@@ -59,9 +59,23 @@ class DBGuardianController
         }
 
     public static function addGuardian($guardian){
+        
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
-        $query="insert into guardian values('$guardian->getNic()','$guardian->getFirstName()','$guardian->getLastName()','$guardian->getRelationship()','$guardian->getNationality()','$guardian->getReligion()','$guardian->getPermanent_address()','$guardian->getEmail()','$guardian->getContact_number()','$guardian->getGrama_nil_div_no()','$guardian->getPassword()' ); ";
+        
+        $nic=$guardian->getNic();
+        $first_name =  $guardian->getFirstName();
+        $last_name =  $guardian->getLastName();
+        $email =  $guardian->getEmail();
+        $permanent_address =  $guardian->getPermanent_address();
+        $password =  $guardian->getPassword();
+        $telephone_number = $guardian->getContact_number();
+        $relation_to_child= $guardian->getRelationship();
+        $religion= $guardian->getReligion();
+        $nationality =  $guardian->getNationality();
+        $grama_niladry_division_number =  $guardian->getGrama_nil_div_no();
+
+        $query="insert into guardian values('$nic','$first_name','$last_name','$relation_to_child','$nationality','$religion','$permanent_address','$email','$telephone_number','$grama_niladry_division_number','$password' );";
         $result=$mysqli->query($query);
         return $result;
     }    
