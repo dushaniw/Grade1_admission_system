@@ -7,16 +7,20 @@
 	
 {{Form::label('titlelabel',$school->getSchool_id()." ".$school->getSchool_name())}}
 <br><br>
-
-
+{{Form::label('title',$title)}}
+<br>
 	
 <br>
 
-	{{Form:: open(array('url' =>'school/verifytype','method' => 'POST' ))}}
+	{{Form:: open(array('url' =>'school/verifytype1','method' => 'POST' ))}}
 		{{Form::label('type1label','Applications regarding close proximity:')}}
 		<br>
 		{{Form::hidden('school_id',$school->getSchool_id())}}
-		{{Form::select('type1',$application_set_set[0])}}	
+		<select class="form-school-control" name="type">
+        @foreach($application_set_set[0] as $application)
+            <option value="{{$application}}">{{$application}}</option>
+        @endforeach
+      	</select>	
 		{{Form::submit('Click to verify');}}
 	{{Form:: close()}}
 	<br>

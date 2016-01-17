@@ -36,6 +36,15 @@ class DBApplicationController{
 
 	}
 
+    public static function verifyApplication($application_id){
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="UPDATE application SET isverified='1' where application_id='$application_id';";
+        $result =$mysqli->query($query);
+         return $result;
+
+    }
+
     public static function getApplicationSet($schoolId,$type){
         
         $db=Connection::getInstance();
