@@ -62,6 +62,23 @@ class DBApplicationController{
 
     }
 
+    public static function getApplicationSetIds($schoolId,$type){
+        
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="select application_id from application where schoolId='$schoolId' and typeOfApplication='$type';";
+        $result =$mysqli->query($query);
+        $applicationidset = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $applicationidset[]=$row["application_id"];
+            }
+         }
+
+         return $applicationidset;        
+
+    }
+
 
 	public static function addCategory1($application,$category1,$schoolIds,$yArray,$dArray,$guardianNic){
 	    $db=Connection::getInstance();

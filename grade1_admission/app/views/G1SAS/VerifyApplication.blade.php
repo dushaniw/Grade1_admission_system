@@ -8,56 +8,60 @@
 {{Form::label('titlelabel',$school->getSchool_id()." ".$school->getSchool_name())}}
 <br><br>
 
-{{Form:: open(array('url' =>'school/verifytype1','method' => 'POST' ))}}
-	{{Form::label('type1label','Applications regarding close proximity:')}}
-	<br>
-	@foreach($application_set_set[0] as $type1)
-		
-		{{Form::url('type1',$type1->getApplication_id())}}
+
+	
+<br>
+
+	{{Form:: open(array('url' =>'school/verifytype1','method' => 'POST' ))}}
+		{{Form::label('type1label','Applications regarding close proximity:')}}
 		<br>
-	@endforeach
+		{{Form::select('type1',$application_set_set[0])}}	
+		{{Form::submit('Click to verify');}}
+	{{Form:: close()}}
 	<br>
-{{Form:: close()}}
 
-{{Form::label('type2label','Applications regarding Past Pupils:')}}
-<br>
-@foreach($application_set_set[1] as $type1)
-	{{Form::url('type2',$type1->getApplication_id())}}
+	{{Form:: open(array('url' =>'school/verifytype2','method' => 'POST' ))}}
+		{{Form::label('type2label','Applications regarding past pupils:')}}
+		<br>
+		{{Form::select('type2',$application_set_set[1])}}	
+		{{Form::submit('Click to verify');}}
+	{{Form:: close()}}
 	<br>
-@endforeach
+
+	{{Form:: open(array('url' =>'school/verifytype3','method' => 'POST' ))}}
+		{{Form::label('type3label','Applications regarding current students as siblings:')}}
+		<br>
+		{{Form::select('type3',$application_set_set[2])}}	
+		{{Form::submit('Click to verify');}}
+	{{Form:: close()}}
+	<br>
+
+	{{Form:: open(array('url' =>'school/verifytype4','method' => 'POST' ))}}
+		{{Form::label('type4label','Applications regarding Educational Officers:')}}
+		<br>
+		{{Form::select('type4',$application_set_set[3])}}	
+		{{Form::submit('Click to verify');}}
+	{{Form:: close()}}
+	<br>
+
+	{{Form:: open(array('url' =>'school/verifytype5','method' => 'POST' ))}}
+		{{Form::label('type5label','Applications regarding transferred officers:')}}
+		<br>
+		{{Form::select('type5',$application_set_set[4])}}	
+		{{Form::submit('Click to verify');}}
+	{{Form:: close()}}
+	<br>
+
+	{{Form:: open(array('url' =>'school/verifytype6','method' => 'POST' ))}}
+		{{Form::label('type6label','Applications regarding people coming from abroad:')}}
+		<br>
+		{{Form::select('type6',$application_set_set[5])}}	
+		{{Form::submit('Click to verify');}}
+	{{Form:: close()}}
+	<br>
+
 <br>
 
-{{Form::label('type3label','Applications regarding Current Student Siblings:')}}
-<br>
-@foreach($application_set_set[2] as $type1)
-	{{Form::url('type3',$type1->getApplication_id())}}
-	<br>
-@endforeach
-<br>
-
-{{Form::label('type4label','Applications regarding Educational Officers:')}}
-<br>
-@foreach($application_set_set[3] as $type1)
-	{{Form::url('type4',$type1->getApplication_id())}}
-	<br>
-@endforeach
-<br>
-
-{{Form::label('type5label','Applications regarding transferred officers:')}}
-<br>
-@foreach($application_set_set[4] as $type1)
-	{{Form::url('type5',$type1->getApplication_id())}}
-	<br>
-@endforeach
-<br>
-
-{{Form::label('type6label','Applications regarding people coming from abroad:')}}
-<br>
-@foreach($application_set_set[5] as $type1)
-	{{Form::url('type6',$type1->getApplication_id())}}
-	<br>
-@endforeach
-<br>
 
 {{Form :: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
         {{Form::submit('Search school selected applicants');}}
