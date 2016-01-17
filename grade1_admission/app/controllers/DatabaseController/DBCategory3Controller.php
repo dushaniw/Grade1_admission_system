@@ -5,7 +5,7 @@
 class DBCategory3Controller
 {	
 	public static function addCategory3($category){
-		
+	
 		$db=Connection::getInstance();
         $mysqli=$db->getConnection();
         $schoolId=$category->getSchoolId();
@@ -16,5 +16,6 @@ class DBCategory3Controller
        	$gradeOfAdmission=$category->getGradeOfAdmission();
        	$query="insert into CurrentStudent values('$schoolId','$admissionNumber','$firstName','$lastName','$dateOfAdmission','$gradeOfAdmission')";
        	return $mysqli->query($query);
+	
 	}
 }

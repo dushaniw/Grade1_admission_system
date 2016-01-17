@@ -141,6 +141,21 @@ class DBGuardianController
     
 
 
+        public static function hasCategory3Detail($admissionNumber,$schoolId)
+    {
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();   
+        $query="select *  from CurrentStudent where admissionNumber ='$admissionNumber' and schoolId='$schoolId'";        
+        $result =$mysqli->query($query);
+         if($result->num_rows === 0)
+        {
+            return false;
+        }
+        return true;    
+    }
+    
+
+
 
      public static function isGuardianHasEL($guardianNic){
 
