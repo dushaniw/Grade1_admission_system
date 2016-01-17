@@ -400,7 +400,7 @@ class DBApplicationController{
                     if($resultCD==false){
 
                         $resultC=DBCategory2Controller::addCategory2($category2);
-                        return $r;
+                        
                         $resultEA=DBPPAchievementController::addPPAchievement($eAchievement);
                         
                         $resultCA=DBPPAchievementController::addPPAchievement($cAchievement);
