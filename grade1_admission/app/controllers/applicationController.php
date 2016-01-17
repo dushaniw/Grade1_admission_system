@@ -17,8 +17,14 @@ include("DatabaseController/DBCategory5Controller.php");
 include("DatabaseController/DBCategory6Controller.php");
 include("DatabaseController/DBCategory2Controller.php");
 include("DatabaseController/DBPPAchievementController.php");
+include("DatabaseController/DBCPAchievementController.php");
+include("Model/Cur_pupil_educationalachievement.php");
+include("DatabaseController/DBCurPupilDonationController.php");
 include("Model/PastPupil_achievement.php");
+include("Model/Cur_pupil_donation.php");
 include("Model/school.php");
+include("Model/Sibling.php");
+include("Model/Currentstudent.php");
 include("Model/PastPupil.php");
 include("Model/PersonComingFromAbroad.php");
 include("Model/OfficerOnTransfer.php");
@@ -279,7 +285,7 @@ class ApplicationController extends BaseController
             $category31->setFirstName($firstName1);
             $category31->setLastName($lastName1);
             $category31->setAdmissionNumber($admissionNumber1);
-            $category31->setGradeOfAdmission($gradeOfAdmission1);
+            $category31->setGradeOfAdmission($gradeAdmission1);
             $category31->setDateOfAdmission($dateOfAdmission1);
 
             $eAchievementDetail1=Input::get("eAchievement1");
@@ -318,7 +324,7 @@ class ApplicationController extends BaseController
             $category32->setFirstName($firstName2);
             $category32->setLastName($lastName2);
             $category32->setAdmissionNumber($admissionNumber2);
-            $category32->setGradeOfAdmission($gradeOfAdmission2);
+            $category32->setGradeOfAdmission($gradeAdmission2);
             $category32->setDateOfAdmission($dateOfAdmission2);
 
             $eAchievementDetail2=Input::get("eAchievement2");
@@ -357,7 +363,7 @@ class ApplicationController extends BaseController
             $category33->setFirstName($firstName3);
             $category33->setLastName($lastName3);
             $category33->setAdmissionNumber($admissionNumber3);
-            $category33->setGradeOfAdmission($gradeOfAdmission3);
+            $category33->setGradeOfAdmission($gradeAdmission3);
             $category33->setDateOfAdmission($dateOfAdmission3);
 
             $eAchievementDetail3=Input::get("eAchievement3");
@@ -388,7 +394,9 @@ class ApplicationController extends BaseController
             $achievements=array($achievementObject1,$achievementObject2,$achievementObject3);
             $donations=array($donationObject1,$donationObject2,$donationObject3);
             $siblings=array($sibling1,$sibling2,$sibling3);
-            $resultC1=DBApplicationController::addCategory3($application,$category3,$schoolIds,$yArray,$dArray,$guardianNic,$ppo,$achievements,$donations,$siblings);
+            $resultC1=DBApplicationController::addCategory3($application,$schoolIds,$yArray,$dArray,$guardianNic,$ppo,$achievements,$donations,$siblings);
+
+            return $resultC1;    
 
             if($resultC1){
                 return "type 3 application addded successfully";   
