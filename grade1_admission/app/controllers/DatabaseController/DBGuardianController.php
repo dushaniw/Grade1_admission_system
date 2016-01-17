@@ -31,11 +31,42 @@ class DBGuardianController
         return $guardian;
 	}
 
+    public static function getGuardianByNic($guardianNic){
+
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="select * from guardian where NIC='$guardianNic'";
+        $result =$mysqli->query($query);
+        $guardian=new Guardian();
+        if ($result->num_rows > 0) {    
+            if ($row = $result->fetch_assoc()) {                            
+                $guardian->setNic($row["NIC"]);
+                $guardian->setEmail($row["email"]);
+                $guardian->setFirstName($row["g_firstName"]);
+                $guardian->setLastName($row["g_lastName"]);
+                $guardian->setRelationship($row["relationship"]);
+                $guardian->setNationality($row["g_nationality"]);
+                $guardian->setReligion($row["g_religion"]);
+                $guardian->setPermanent_address($row["permanent_address"]);
+                $guardian->setEmail($row["email"]);
+                $guardian->setContact_number($row["contactNumber"]);
+                $guardian->setGrama_nil_div_no($row["grama_niladari_div_no"]);
+                $guardian->setPassword($row["password"]);
+            }
+        }else{
+            return NULL;
+        }
+
+        return $guardian;
+    }
+
+
+
 	public static function hasApplicant($guardianNic)
 	{
 		$db=Connection::getInstance();
         $mysqli=$db->getConnection();	
-		$query="select *  from  where NIC='$guardianNic'";
+		$query="select *  from  studentApplicant where NIC='$guardianNic'";
         $result =$mysqli->query($query);
          if($result->num_rows === 0)
         {
@@ -95,6 +126,19 @@ class DBGuardianController
         return true;    
     }
 
+        public static function hasCategory2Detail($guardianNic,$schoolId)
+    {
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();   
+        $query="select *  from pastPupil where NIC='$guardianNic' and schoolId='$schoolId'";        
+        $result =$mysqli->query($query);
+         if($result->num_rows === 0)
+        {
+            return false;
+        }
+        return true;    
+    }
+    
 
 
 

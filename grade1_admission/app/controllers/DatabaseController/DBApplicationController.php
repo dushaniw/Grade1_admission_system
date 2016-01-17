@@ -337,4 +337,79 @@ class DBApplicationController{
 
 
 
+     public static function addCategory2($application,$category2,$schoolIds,$yArray,$dArray,$guardianNic,$eAchievement,$cAchievement){
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $mysqli->autocommit(FALSE);
+        $applicantResult=DBApplicationController::addApplication($application);
+        
+        if($applicantResult){
+            
+             $resultSchoolSet=true;
+             $isApplicanthasCSS=DBSchoolController::isApplicanthasCSS($application->getApplicant_id());             
+             if($isApplicanthasCSS){
+                //do not need add school set
+
+             }else{
+               // return $schoolIds[1];
+                
+                $resultSchoolSet=DBSchoolController::addCloseSchoolSet($application->getApplicant_id(),$schoolIds);
+             }
+             if($resultSchoolSet){
+                
+                $resultEL=true;
+
+                $isGuardianHasEL=DBGuardianController::isGuardianHasEL($guardianNic);
+                if($isGuardianHasEL){
+                      
+                }else{
+
+                    $resultEL=DBElectrocalListController::addElectrocalListDetail($dArray,$yArray,$guardianNic);
+                }
+                if($resultEL){
+                    $resultC=true;
+                    $resultEA=true;
+                    $resultCA=true;
+                    $resultCD=DBGuardianController::hasCategory2Detail($guardianNic,$application->getSchool_id());  
+                   
+                    if($resultCD==false){
+
+                        $resultC=DBCategory2Controller::addCategory2($category2);
+                        return $r;
+                        $resultEA=DBPPAchievementController::addPPAchievement($eAchievement);
+                        
+                        $resultCA=DBPPAchievementController::addPPAchievement($cAchievement);
+
+                    }
+                    if($resultC and $resultEA and $resultCA){
+                            
+                            $mysqli->commit();      
+                            return true;
+                        
+                    }else{
+                        $mysqli->rollback();
+                        $mysqli->commit();      
+                        return false;
+                    }
+                }else{
+                    $mysqli->rollback();
+                    $mysqli->commit();      
+                    return FALSE;   
+                }
+             }else{
+                $mysqli->rollback();
+                $mysqli->commit();      
+                return FALSE;
+            }
+        }else{
+            $mysqli->rollback();
+            $mysqli->commit();      
+            return FALSE;
+        }
+    }
+    
+
+
+
+
 }
