@@ -448,9 +448,9 @@ class DBApplicationController{
         $mysqli=$db->getConnection();
         $mysqli->autocommit(FALSE);
         $applicantResult=DBApplicationController::addApplication($application);
-        return "well";
+        return $ppo[1]->getDateOfAdmission();
         if($applicantResult){
-            
+         
              $resultSchoolSet=true;
              $isApplicanthasCSS=DBSchoolController::isApplicanthasCSS($application->getApplicant_id());             
              if($isApplicanthasCSS){
@@ -467,7 +467,7 @@ class DBApplicationController{
 
                 $isGuardianHasEL=DBGuardianController::isGuardianHasEL($guardianNic);
                 if($isGuardianHasEL){
-                      
+                        
                 }else{
 
                     $resultEL=DBElectrocalListController::addElectrocalListDetail($dArray,$yArray,$guardianNic);
@@ -482,10 +482,15 @@ class DBApplicationController{
                         $resultS=true;
                         $resultCD=DBGuardianController::hasCategory3Detail($ppo[$i]->getAdmissionNumber(),$application->getSchool_id());  
                         if($resultCD==false){
+
                             $resultC=DBCategory3Controller::addCategory3($ppo[$i]);
+                          
                             $resultEA=DBCPAchievementController::addCPAchievement($achievements[$i]);
+                             
                             $resultD=DBCurPupilDonationController::addCPDonation($donations[$i]);
+                            
                             $resultS=DBSiblingController::addSibling($siblings[$i]);
+
                         }
                         if($resultC and $resultEA and $resultC and $resultS){
                             

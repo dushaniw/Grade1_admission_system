@@ -25,7 +25,7 @@ class DBCurPupilDonationController
         $admissionNumber=$donation->getAdmissionNumber();
         $donationId=$donation->getDonationId();
         $donationDetail=$donation->getDonationDetail();  
-        $query="insert into cur_pupil_educationalAchievement values('$schoolId','$admissionNumber','$donationId','$donationDetail')";
+        $query="insert into cur_pupil_donation values('$schoolId','$admissionNumber','$donationId','$donationDetail')";
         return $mysqli->query($query);
     }
 

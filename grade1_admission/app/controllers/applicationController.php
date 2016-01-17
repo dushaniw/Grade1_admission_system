@@ -16,6 +16,8 @@ include("DatabaseController/DBCategory4Controller.php");
 include("DatabaseController/DBCategory5Controller.php");
 include("DatabaseController/DBCategory6Controller.php");
 include("DatabaseController/DBCategory2Controller.php");
+include("DatabaseController/DBCategory3Controller.php");
+include("DatabaseController/DBSiblingController.php");
 include("DatabaseController/DBPPAchievementController.php");
 include("DatabaseController/DBCPAchievementController.php");
 include("Model/Cur_pupil_educationalachievement.php");
@@ -278,8 +280,7 @@ class ApplicationController extends BaseController
             $lastName1 =Input::get("lastName1");
             $admissionNumber1=Input::get("admissionNumber1");
             $gradeAdmission1=Input::get("gradeAdmission1");
-            $dateOfAdmission1=Input::get("dateOfAdmission1");
-
+            $dateOfAdmission1=Input::get("dateOfAdmision1");
             $category31=new Currentstudent();
             $category31->setSchoolId($schoolId);
             $category31->setFirstName($firstName1);
@@ -288,7 +289,7 @@ class ApplicationController extends BaseController
             $category31->setGradeOfAdmission($gradeAdmission1);
             $category31->setDateOfAdmission($dateOfAdmission1);
 
-            $eAchievementDetail1=Input::get("eAchievement1");
+            $eAchievementDetail1=Input::get("eAchiement1");
             $eAchievementId1=DBCPAchievementController::getNexCurrentPupilAId($admissionNumber1);
             
             $achievementObject1=new Cur_pupil_educationalachievement();
@@ -317,7 +318,7 @@ class ApplicationController extends BaseController
             $lastName2 =Input::get("lastName2");
             $admissionNumber2=Input::get("admissionNumber2");
             $gradeAdmission2=Input::get("gradeAdmission2");
-            $dateOfAdmission2=Input::get("dateOfAdmission2");
+            $dateOfAdmission2=Input::get("dateOfAdmision2");
 
             $category32=new Currentstudent();
             $category32->setSchoolId($schoolId);
@@ -327,7 +328,7 @@ class ApplicationController extends BaseController
             $category32->setGradeOfAdmission($gradeAdmission2);
             $category32->setDateOfAdmission($dateOfAdmission2);
 
-            $eAchievementDetail2=Input::get("eAchievement2");
+            $eAchievementDetail2=Input::get("eAchiement2");
             $eAchievementId2=DBCPAchievementController::getNexCurrentPupilAId($admissionNumber2);
             
             $achievementObject2=new Cur_pupil_educationalachievement();
@@ -356,7 +357,7 @@ class ApplicationController extends BaseController
             $lastName3 =Input::get("lastName3");
             $admissionNumber3=Input::get("admissionNumber3");
             $gradeAdmission3=Input::get("gradeAdmission3");
-            $dateOfAdmission3=Input::get("dateOfAdmission3");
+            $dateOfAdmission3=Input::get("dateOfAdmision3");
 
             $category33=new Currentstudent();
             $category33->setSchoolId($schoolId);
@@ -366,7 +367,7 @@ class ApplicationController extends BaseController
             $category33->setGradeOfAdmission($gradeAdmission3);
             $category33->setDateOfAdmission($dateOfAdmission3);
 
-            $eAchievementDetail3=Input::get("eAchievement3");
+            $eAchievementDetail3=Input::get("eAchiement3");
             $eAchievementId3=DBCPAchievementController::getNexCurrentPupilAId($admissionNumber3);
             
             $achievementObject3=new Cur_pupil_educationalachievement();
@@ -396,8 +397,8 @@ class ApplicationController extends BaseController
             $siblings=array($sibling1,$sibling2,$sibling3);
             $resultC1=DBApplicationController::addCategory3($application,$schoolIds,$yArray,$dArray,$guardianNic,$ppo,$achievements,$donations,$siblings);
 
-            return $resultC1;    
-
+            
+            return $resultC1;
             if($resultC1){
                 return "type 3 application addded successfully";   
             }else{
