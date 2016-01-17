@@ -110,6 +110,9 @@ class SchoolController extends BaseController
 	}
 
 	public function postVerifytype1(){
-			return 'Type 1';
+			$application=DBApplicationController::getApplication($application_id);
+			$applicant=DBStudentApplicantController::getApplicantById($applicantId);
+			$category=DBCategory1Controller::getCategory1($applicant->getGuardianNIC());
+			return View::make('G1SAS/verifycategoryset/VerifyCategory1')->with('application',$application)->with('applicant',$applicant)->with('category',$category);
 	}
 }
