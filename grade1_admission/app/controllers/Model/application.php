@@ -10,6 +10,9 @@ class application
 	private $orderOfPreference;
 	private $distance;
 	private $mark;
+	private $isverified;
+
+	
 
 	public function getSchool_id()
 	{
@@ -99,6 +102,17 @@ class application
 		{
     		$this->mark = $mark;
     		return $this;
+		}
+
+		public function getIsverified()
+		{
+		    return $this->isverified;
+		}
+		
+		public function setIsverified($isverified)
+		{
+		    $this->isverified = $isverified;
+		    return $this;
 		}
 
 }
