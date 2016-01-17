@@ -4,7 +4,7 @@ class Currentstudent{
 private $schoolId;
 private $admissionNumber;
 private $lastName;
-private $surName;
+private $firstName;
 private $dateOfAdmission;
 private $gradeOfAdmission;
 
@@ -29,14 +29,14 @@ public function setDateOfAdmission($dateOfAdmission)
     return $this;
 }
 
-public function getSurName()
+public function getFirstName()
 {
-    return $this->surName;
+    return $this->firstName;
 }
 
-public function setSurName($surName)
+public function setFirstName($firstName)
 {
-    $this->surName = $surName;
+    $this->firstName = $firstName;
     return $this;
 }
 

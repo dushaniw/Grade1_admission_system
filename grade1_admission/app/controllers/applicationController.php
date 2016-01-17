@@ -15,7 +15,11 @@ include("DatabaseController/DBCategory1Controller.php");
 include("DatabaseController/DBCategory4Controller.php");
 include("DatabaseController/DBCategory5Controller.php");
 include("DatabaseController/DBCategory6Controller.php");
+include("DatabaseController/DBCategory2Controller.php");
+include("DatabaseController/DBPPAchievementController.php");
+include("Model/PastPupil_achievement.php");
 include("Model/school.php");
+include("Model/PastPupil.php");
 include("Model/PersonComingFromAbroad.php");
 include("Model/OfficerOnTransfer.php");
 include("Model/EducationalServiceOfficer.php");
@@ -212,44 +216,85 @@ class ApplicationController extends BaseController
 
 
         }elseif ($type==1) {
-            $gurdianNic='930776767v';
-            //$gurdianName=
-            $gradeOfAdmission=Input::get("typeOfApplication");
-            $gradeOfLeaving =Input::get("typeOfApplication");
+           
+            $gradeOfAdmission=Input::get("gradeOfAdmission");
+            $gradeOfLeaving =Input::get("gradeOfLeaving");
             $pastPupilOrganizationMembership=Input::get("pastPupilOrganizationMembership");
-            $eAchievementId='1';
-            $query="select eAchievementId from paspupil_educationalAchievement decs where NIC='$gurdianNic' limit 1;";
-            $result =$mysqli->query($query);
 
-            if ($result->num_rows > 0) {
-                if ($row = $result->fetch_assoc()) {
-                    $eAchievementId=(int)$row["eAchievementId"]+1;
-                }
-            }
-            $cAchievementId='1';
-            $query="select cAchievementId from pastpupil_cocurricularAchievement decs  where NIC='$gurdianNic' limit 1;";
-            $result =$mysqli->query($query);
-
-            if ($result->num_rows > 0) {
-                if ($row = $result->fetch_assoc()) {
-                    $cAchievementId=(int)$row["cAchievementId"]+1;
-                }
-            } 
             $eAchievementDetail=Input::get("eAchievementDetail");
             $cAchievementDetail =Input::get("cAchievementDetail");
+            $eAchievementId=DBPPAchievementController::getNexPastPupilAId($guardianNic);
+            $cAchievementId=$eAchievementId+1;
+                
+            $guardian=DBGuardianController::getGuardianByNic($guardianNic);
             
-            return $cAchievementDetail;
+
+                            
+            $category2=new PastPupil();
+            $category2->setSchoolId($schoolId);
+            $category2->setNIC($guardianNic);
+            $category2->setName($guardian->getFirstName());
+            $category2->setGradeOfAdmission($gradeOfAdmission);
+            $category2->setGradeOfLeaving($gradeOfLeaving);
+            $category2->setPastPupilOrganizationMembership($pastPupilOrganizationMembership);
+    
+            $eAchievement=new PastPupil_achivement();
+            $eAchievement->setSchoolId($schoolId);
+            $eAchievement->setNIC($guardianNic);
+            $eAchievement->setAchievementID($eAchievementId);
+            $eType='Education';
+            $eAchievement->setType($eType);
+            $eAchievement->setAchievementDetail($eAchievementDetail);
+
+            
+
+            $cAchievement=new PastPupil_achivement();
+            $cAchievement->setSchoolId($schoolId);
+            $cAchievement->setNIC($guardianNic);
+            $cAchievement->setAchievementID($cAchievementId);
+            $cType='Co_curricular';
+            $cAchievement->setType($cType);
+            $cAchievement->setAchievementDetail($eAchievementDetail);
+            
+
+
+             $resultC1=DBApplicationController::addCategory2($application,$category2,$schoolIds,$yArray,$dArray,$guardianNic,$eAchievement,$cAchievement); 
+              return $resultC1;
+             if($resultC1){
+                return "type 2 application addded successfully";   
+            }else{
+              return "type 2 application not addded successfully";   
+              }
+              
         }elseif ($type==2) {
             
             $firstName1=Input::get("firstName1");
             $lastName1 =Input::get("lastName1");
             $admissionNumber1=Input::get("admissionNumber1");
-            $gradeAdmission1=Input::get("firstName1");
-            $lastName1 =Input::get("gradeAdmission1");
+            $gradeAdmission1=Input::get("gradeAdmission1");
             $dateOfAdmission1=Input::get("dateOfAdmission1");
-            $eAchievement1=Input::get("eAchievement1");
+
+            $category31=new Currentstudent();
+            $category31->setSchoolId($schoolId);
+            $category31->setFirstName($firstName1);
+            $category31->setLastName($lastName1);
+            $category31->setAdmissionNumber($admissionNumber1);
+            $category31->setGradeOfAdmission($gradeOfAdmission1);
+            $category31->setDateOfAdmission($dateOfAdmission1);
+
+            $eAchievementDetail1=Input::get("eAchievement1");
+            $eAchievementId1=DBCPAchievementController::getNexCurrentPupilAId($admissionNumber1);
+            
+            $achievementObject1=new Cur_pupil_educationalachievement();
+            $achievementObject1->setAdmissionNumber($admissionNumber1);
+            $achievementObject1->setAchievementID($eAchievementId1);
+            $achievementObject1->setSchoolId($schoolId);
+            $achievementObject1->setAchievementDetail($eAchievementDetail1);
+
+
             $donationDetail1=Input::get("donationDetail1");
-            $eAchievementId1=1;
+           
+
             $query="select eAchievementId from cur_pupil_educationalAchievement decs  where admissionNumber='$admissionNumber1' limit 1;";
             $result =$mysqli->query($query);
 
