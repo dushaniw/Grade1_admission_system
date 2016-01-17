@@ -259,7 +259,7 @@ class ApplicationController extends BaseController
 
 
              $resultC1=DBApplicationController::addCategory2($application,$category2,$schoolIds,$yArray,$dArray,$guardianNic,$eAchievement,$cAchievement); 
-            
+              return $resultC1;
              if($resultC1){
                 return "type 2 application addded successfully";   
             }else{
@@ -271,12 +271,30 @@ class ApplicationController extends BaseController
             $firstName1=Input::get("firstName1");
             $lastName1 =Input::get("lastName1");
             $admissionNumber1=Input::get("admissionNumber1");
-            $gradeAdmission1=Input::get("firstName1");
-            $lastName1 =Input::get("gradeAdmission1");
+            $gradeAdmission1=Input::get("gradeAdmission1");
             $dateOfAdmission1=Input::get("dateOfAdmission1");
-            $eAchievement1=Input::get("eAchievement1");
+
+            $category31=new Currentstudent();
+            $category31->setSchoolId($schoolId);
+            $category31->setFirstName($firstName1);
+            $category31->setLastName($lastName1);
+            $category31->setAdmissionNumber($admissionNumber1);
+            $category31->setGradeOfAdmission($gradeOfAdmission1);
+            $category31->setDateOfAdmission($dateOfAdmission1);
+
+            $eAchievementDetail1=Input::get("eAchievement1");
+            $eAchievementId1=DBCPAchievementController::getNexCurrentPupilAId($admissionNumber1);
+            
+            $achievementObject1=new Cur_pupil_educationalachievement();
+            $achievementObject1->setAdmissionNumber($admissionNumber1);
+            $achievementObject1->setAchievementID($eAchievementId1);
+            $achievementObject1->setSchoolId($schoolId);
+            $achievementObject1->setAchievementDetail($eAchievementDetail1);
+
+
             $donationDetail1=Input::get("donationDetail1");
-            $eAchievementId1=1;
+           
+
             $query="select eAchievementId from cur_pupil_educationalAchievement decs  where admissionNumber='$admissionNumber1' limit 1;";
             $result =$mysqli->query($query);
 
