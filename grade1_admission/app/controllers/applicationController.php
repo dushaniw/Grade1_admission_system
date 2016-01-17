@@ -384,9 +384,18 @@ class ApplicationController extends BaseController
             $sibling3->setApplicantId($applicantId);
             $sibling3->setSchoolId($schoolId);    
 
+            $ppo=array($category31,$category32,$category33);
+            $achievements=array($achievementObject1,$achievementObject2,$achievementObject3);
+            $donations=array($donationObject1,$donationObject2,$donationObject3);
+            $siblings=array($sibling1,$sibling2,$sibling3);
+            $resultC1=DBApplicationController::addCategory3($application,$category3,$schoolIds,$yArray,$dArray,$guardianNic,$ppo,$achievements,$donations,$siblings);
 
-            return $donationId3." ".$donationDetail3."bfhsdkjl";
-
+            if($resultC1){
+                return "type 3 application addded successfully";   
+            }else{
+              return "type 3 application not addded successfully";   
+              }
+            
 
 
             
