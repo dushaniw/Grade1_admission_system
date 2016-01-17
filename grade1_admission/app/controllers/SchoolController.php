@@ -122,7 +122,7 @@ class SchoolController extends BaseController
 			return View::make('G1SAS/verifycategoryset/VerifyCategory1')->with('application_id',$application_id)->with('guardian',$guardian)->with('school',$school)->with('application',$application)->with('applicant',$applicant)->with('category',$category);
 	}
 
-	public function postVerifycat1(){
+	public function postVerifycat(){
 			$application_id=Input::get('application_idtext');
 			$result=DBApplicationController::verifyApplication($application_id);
 			$schoolid=Input::get('schoolIdText');
@@ -137,5 +137,17 @@ class SchoolController extends BaseController
 			}else{
 				return View::make('G1SAS/VerifyApplication')->with('school',$school)->with('application_set_set',$applicationids_set)->with('title','Verification Failed');
 			}			
+	}
+
+	public function postCancelverify(){
+			$schoolid=Input::get('schoolid');
+			$school=DBSchoolController::getSchool($schoolid);
+			$applicationids_set=array();
+			for ($i=1; $i <7 ; $i++) { 
+				$application_ids=DBApplicationController::getUnverifiedApplicationSetIds($schoolid,$i);
+				$applicationids_set[]=$application_ids;
+			}
+			
+			return View::make('G1SAS/VerifyApplication')->with('title','The application was added to pending list')->with('school',$school)->with('application_set_set',$applicationids_set);
 	}
 }

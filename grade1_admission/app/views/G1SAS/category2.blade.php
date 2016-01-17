@@ -45,13 +45,13 @@
 		<br>
 		{{Form::label('Label6', 'From Grade:');}}
 
-		 {{ Form :: text( 'gradeOfAdmission','') ; }}		
+		 {{ Form :: text( 'gradeOfAdmission',$category->getGradeOfAdmission()) ; }}		
 
 
 		
 		{{Form::label('Label7','toGrade');}}
 
-		 {{ Form :: text( 'gradeOfLeaving','') ; }}		
+		 {{ Form :: text( 'gradeOfLeaving',$category->getGradeOfLeaving()) ; }}		
 
 		<br>
 		{{Form::label('Label8', 'Educational achievements gained during schooling period');}}

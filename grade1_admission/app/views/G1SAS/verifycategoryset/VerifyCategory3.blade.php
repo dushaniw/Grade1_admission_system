@@ -1,9 +1,9 @@
 <html>
 <head>
-	<title>Verify Category 1</title>
+	<title>Verify Category 3</title>
 </head>
 <body>
-	{{ Form :: open(array('url' =>'school/verifycat1','method' => 'POST' ))}}
+	{{ Form :: open(array('url' =>'school/verifycat','method' => 'POST' ))}}
 		
 		{{Form :: label( 'schoolid','School id:') ; }}
 		{{Form :: text( 'schoolIdText',$school->getSchool_id()) ; }}
@@ -58,50 +58,61 @@
 		{{Form :: text( 'mediumtext',$application->getMedium()) ; }}
 
 
-		<div id="catogory1" >
-			
-			
-			{{Form::label('Label1', 'Number of years that include the applicant and spouse/Legal guardian in the electoral register');}}
-			{{ Form :: text( 'noOfYearsInElectrocalRegister',$category->getNoOfYearsInElectrocalRegister()) ; }}		
-
-			<br>
-			{{Form::label('Label2','Number of years that include either name of the applicant or the name of the spouse in the electoral register');}}
-			{{ Form :: text( 'noOfYearsSpouseInElectrocalRegister',$category->getNoOfYearsSpouseInElectrocalRegister()) ; }}		
+		<div id="catogory3" >
+		<h1> Brothers/sisters of students who are studying in school at present </h1>
+		a) If applicant's child/children is/are studying in the school
+		<br>
 
 
-			<br>
-			This is applicable for a period of recent 05 years, prior to the year the application is submitted
-			<br>
 
-			b)Ownership of place of residence
-			<br>
-			{{Form::label('Label3', 'Type of Title deed:');}}
-			@if($category->getTypeOfTitleDeed()==1)
-			{{ Form :: text( 'typeOfTitleDeed','In the name of applicant/spouse or applicants parents') ; }}		
-			@elseif($category->getTypeOfTitleDeed()==2)
-			{{ Form :: text( 'typeOfTitleDeed','Registered Lease Bond') ; }}		
-			@elseif($category->getTypeOfTitleDeed()==3)
-			{{ Form :: text( 'typeOfTitleDeed','Government official Quarters Documents') ; }}		
-			@elseif($category->getTypeOfTitleDeed()==4)
-			{{ Form :: text( 'typeOfTitleDeed','un-registered Lease Bond') ; }}		
-			@endif
+		<table border="1" cellpadding="5" cellspacing="5">
+			<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Admission no</th>
+			<th>Admission grade to the school</th>
+			<th>Date of admission</th>
+			<th>Donation done by current students</th>
+			<th>Achievements gained for the school by brothers/sisters in the school and various types of assistance provided by the applicant for the development of the school</th>	
 
-			<br>
-			{{Form::label('Label4','Additional documents which could be submitted in proof of residence (national ID/Water bills/Light bills/Phone bills/Marriage certificate');}}
+			</tr>
+			<tr>
 
-			{{ Form :: text( 'noOfAditionalDocumentForResident',$category->getNoOfAditionalDocumentForResident()) ; }}		
+				<td>		 {{ Form :: text( 'firstName1','') ; }}		</td>
+				<td>		 {{ Form :: text( 'lastName1','') ; }}		</td>	
+				<td>		 {{ Form :: text( 'admissionNumber1','') ; }}		</td>
+				<td>		 {{ Form :: text( 'gradeAdmision1','') ; }}		</td>
+				<td>		 {{ Form :: text( 'dateOfAdmision1','') ; }}		</td>
+				<td>		 {{ Form :: text( 'donationDetail1','') ; }}</td>
+				<td> 		 {{	 Form :: text( 'eAchiement1','') ; }}</td>	
+			</tr>
+			<tr>
 
-			
-			<br>
-			{{Form::label('Label5','No of schools located closer to the place of residence where the child could be admitted than the school applied for');}}
+			<td>		 {{ Form :: text( 'firstName2','') ; }}		</td>
+				<td>		 {{ Form :: text( 'lastName2','') ; }}		</td>	
+				<td>		 {{ Form :: text( 'admissionNumber2','') ; }}		</td>
+				<td>		 {{ Form :: text( 'gradeAdmision2','') ; }}		</td>
+				<td>		 {{ Form :: text( 'dateOfAdmision2','') ; }}		</td>
+				<td>		 {{ Form :: text( 'donationDetail2','') ; }}</td>
+				<td> 		 {{	 Form :: text( 'eAchiement2','') ; }}</td>
+				</tr>
+			<tr>
 
-			{{ Form :: text( 'closeSchoolCount',$category->getCloseSchoolCount()) ; }}
-			<br>
+			<td>		 {{ Form :: text( 'firstName3','') ; }}		</td>
+				<td>		 {{ Form :: text( 'lastName3','') ; }}		</td>	
+				<td>		 {{ Form :: text( 'admissionNumber3','') ; }}		</td>
+				<td>		 {{ Form :: text( 'gradeAdmision3','') ; }}		</td>
+				<td>		 {{ Form :: text( 'dateOfAdmision3','') ; }}		</td>
+				<td>		 {{ Form :: text( 'donationDetail3','') ; }}</td>
+				<td> 		 {{	 Form :: text( 'eAchiement3','') ; }}</td>
+				</tr>
 
-			{{Form::submit('Verify Application')}}		
-			
-		</div>
 
+		</table>
+				
+		
+	</div>
+	{{Form::submit('Verify Application')}}
 	{{Form::close()}}
 
 	{{ Form :: open(array('url' =>'school/cancelverify','method' => 'POST' ))}}

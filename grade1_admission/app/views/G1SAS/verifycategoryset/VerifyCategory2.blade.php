@@ -1,9 +1,9 @@
 <html>
 <head>
-	<title>Verify Category 1</title>
+	<title>Verify Category 2</title>
 </head>
 <body>
-	{{ Form :: open(array('url' =>'school/verifycat1','method' => 'POST' ))}}
+	{{ Form :: open(array('url' =>'school/verifycat','method' => 'POST' ))}}
 		
 		{{Form :: label( 'schoolid','School id:') ; }}
 		{{Form :: text( 'schoolIdText',$school->getSchool_id()) ; }}
@@ -58,49 +58,45 @@
 		{{Form :: text( 'mediumtext',$application->getMedium()) ; }}
 
 
-		<div id="catogory1" >
+		<div id="catogory2" >
+		<h1> Children of Past Pupils </h1>
+		a) Period spent in the school as a pupil
+		<br>
+		{{Form::label('Label6', 'From Grade:');}}
+
+		 {{ Form :: text( 'gradeOfAdmission',$category->getGradeOfAdmission()) ; }}		
+
+
+		
+		{{Form::label('Label7','toGrade');}}
+
+		 {{ Form :: text( 'gradeOfLeaving','') ; }}		
+
+		<br>
+		{{Form::label('Label8', 'Educational achievements gained during schooling period');}}
+		<br>	
+		 {{ Form :: textArea( 'eAchievementDetail','') ; }}		
+
+
+		<br>
+		{{Form::label('Label9','Achievements gained in co-curricular activities during schooling period');}}
+		<br>
+		 {{ Form :: textArea( 'cAchievementDetail','') ; }}		
+
+		
+		<br>
+		{{Form::label('Label10','Membership in past pupil associations, educational achievements after period of schooling and various types of assistance provided for the development of the school');}}
+		<br>
+		 @if($category->getPastPupilOrganizationMembership())
+		 {{ Form :: textArea( 'pastPupilOrganizationMembership','Yes') ; }}		
+		@else
+		 {{ Form :: textArea( 'pastPupilOrganizationMembership','No') ; }}
+		@endif
 			
-			
-			{{Form::label('Label1', 'Number of years that include the applicant and spouse/Legal guardian in the electoral register');}}
-			{{ Form :: text( 'noOfYearsInElectrocalRegister',$category->getNoOfYearsInElectrocalRegister()) ; }}		
-
-			<br>
-			{{Form::label('Label2','Number of years that include either name of the applicant or the name of the spouse in the electoral register');}}
-			{{ Form :: text( 'noOfYearsSpouseInElectrocalRegister',$category->getNoOfYearsSpouseInElectrocalRegister()) ; }}		
-
-
-			<br>
-			This is applicable for a period of recent 05 years, prior to the year the application is submitted
-			<br>
-
-			b)Ownership of place of residence
-			<br>
-			{{Form::label('Label3', 'Type of Title deed:');}}
-			@if($category->getTypeOfTitleDeed()==1)
-			{{ Form :: text( 'typeOfTitleDeed','In the name of applicant/spouse or applicants parents') ; }}		
-			@elseif($category->getTypeOfTitleDeed()==2)
-			{{ Form :: text( 'typeOfTitleDeed','Registered Lease Bond') ; }}		
-			@elseif($category->getTypeOfTitleDeed()==3)
-			{{ Form :: text( 'typeOfTitleDeed','Government official Quarters Documents') ; }}		
-			@elseif($category->getTypeOfTitleDeed()==4)
-			{{ Form :: text( 'typeOfTitleDeed','un-registered Lease Bond') ; }}		
-			@endif
-
-			<br>
-			{{Form::label('Label4','Additional documents which could be submitted in proof of residence (national ID/Water bills/Light bills/Phone bills/Marriage certificate');}}
-
-			{{ Form :: text( 'noOfAditionalDocumentForResident',$category->getNoOfAditionalDocumentForResident()) ; }}		
-
-			
-			<br>
-			{{Form::label('Label5','No of schools located closer to the place of residence where the child could be admitted than the school applied for');}}
-
-			{{ Form :: text( 'closeSchoolCount',$category->getCloseSchoolCount()) ; }}
-			<br>
-
-			{{Form::submit('Verify Application')}}		
-			
-		</div>
+		
+		<br>
+		{{ Form :: submit('Verify Application')}}
+	</div>
 
 	{{Form::close()}}
 
