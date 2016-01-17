@@ -443,12 +443,12 @@ class DBApplicationController{
     }
     
 
-    public static function addCategory3($application,$category3,$schoolIds,$yArray,$dArray,$guardianNic,$siblings,$achievements,$donations,$siblings){
+    public static function addCategory3($application,$schoolIds,$yArray,$dArray,$guardianNic,$ppo,$achievements,$donations,$siblings){
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
         $mysqli->autocommit(FALSE);
         $applicantResult=DBApplicationController::addApplication($application);
-        
+        return "well";
         if($applicantResult){
             
              $resultSchoolSet=true;
@@ -473,30 +473,33 @@ class DBApplicationController{
                     $resultEL=DBElectrocalListController::addElectrocalListDetail($dArray,$yArray,$guardianNic);
                 }
                 if($resultEL){
-                    $resultC=true;
-                    $resultEA=true;
-                    $resultCA=true;
-                    $resultCD=DBGuardianController::hasCategory2Detail($guardianNic,$application->getSchool_id());  
-                   
-                    if($resultCD==false){
+                    
 
-                        $resultC=DBCategory2Controller::addCategory2($category2);
-                        
-                        $resultEA=DBPPAchievementController::addPPAchievement($eAchievement);
-                        
-                        $resultCA=DBPPAchievementController::addPPAchievement($cAchievement);
-
-                    }
-                    if($resultC and $resultEA and $resultCA){
+                    for($i=0;$i<3;$i++){    
+                        $resultC=true;
+                        $resultEA=true;
+                        $resultD=true;
+                        $resultS=true;
+                        $resultCD=DBGuardianController::hasCategory3Detail($ppo[$i]->getAdmissionNumber(),$application->getSchool_id());  
+                        if($resultCD==false){
+                            $resultC=DBCategory3Controller::addCategory3($ppo[$i]);
+                            $resultEA=DBCPAchievementController::addCPAchievement($achievements[$i]);
+                            $resultD=DBCurPupilDonationController::addCPDonation($donations[$i]);
+                            $resultS=DBSiblingController::addSibling($siblings[$i]);
+                        }
+                        if($resultC and $resultEA and $resultC and $resultS){
                             
-                            $mysqli->commit();      
-                            return true;
                         
-                    }else{
-                        $mysqli->rollback();
-                        $mysqli->commit();      
-                        return false;
+                        }else{
+                            $mysqli->rollback();
+                            $mysqli->commit();      
+                            return false;
+                        }
+
                     }
+                    $mysqli->commit();      
+                    return true;
+                    
                 }else{
                     $mysqli->rollback();
                     $mysqli->commit();      
