@@ -62,11 +62,11 @@ class DBApplicationController{
 
     }
 
-    public static function getApplicationSetIds($schoolId,$type){
+    public static function getUnverifiedApplicationSetIds($schoolId,$type){
         
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
-        $query="select application_id from application where schoolId='$schoolId' and typeOfApplication='$type';";
+        $query="select application_id from application where schoolId='$schoolId' and typeOfApplication='$type' and isverified='0';";
         $result =$mysqli->query($query);
         $applicationidset = array();
         if ($result->num_rows > 0) {

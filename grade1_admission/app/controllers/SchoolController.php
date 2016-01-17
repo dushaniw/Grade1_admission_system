@@ -102,7 +102,7 @@ class SchoolController extends BaseController
 			$school=DBSchoolController::getSchool($schoolid);
 			$applicationids_set=array();
 			for ($i=1; $i <7 ; $i++) { 
-				$application_ids=DBApplicationController::getApplicationSetIds($schoolid,$i);
+				$application_ids=DBApplicationController::getUnverifiedApplicationSetIds($schoolid,$i);
 				$applicationids_set[]=$application_ids;
 			}
 			
