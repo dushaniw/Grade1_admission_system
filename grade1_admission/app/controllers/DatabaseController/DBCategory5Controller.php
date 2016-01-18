@@ -17,4 +17,27 @@ class DBCategory5Controller{
        	return $mysqli->query($query);
 	}
 
+    public static function getCategory5($NIC){
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="select * from officerOnTransfer where NIC='$NIC';";
+        $result=$mysqli->query($query);
+        $category=new OfficerOnTransfer();
+        if ($result->num_rows > 0) {
+            if ($row = $result->fetch_assoc()) {
+                $category->setNic($row["NIC"]);
+                $category->setDateOfTransferReceived($row["dateOfTransferReceived"]);
+                $category->setBeforeWorkedPlace($row["beforeWorkedPlace"]);        
+                $category->setAfterWorkedPlace($row["afterWorkedPlace"]);
+                $category->setDistanceOfTransfer($row["distanceOfTransfer"]);
+                $category->setYear1RemLeave($row["year1RemLeave"]);
+                $category->setYear2RemLeave($row["year2RemLeave"]);
+                $category->setYear3RemLeave($row["year3RemLeave"]);
+                $category->setYear4RemLeave($row["year4RemLeave"]);
+                $category->setServicePeriod($row["servicePeriod"]);
+            }
+        }
+        return $category;
+    }
+
 }

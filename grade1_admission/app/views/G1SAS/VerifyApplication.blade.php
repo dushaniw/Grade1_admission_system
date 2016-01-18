@@ -67,7 +67,12 @@
 	{{Form:: open(array('url' =>'school/verifytype5','method' => 'POST' ))}}
 		{{Form::label('type5label','Applications regarding transferred officers:')}}
 		<br>
-		{{Form::select('type5',$application_set_set[4])}}	
+		{{Form::hidden('school_id',$school->getSchool_id())}}
+		<select class="form-school-control" name="type">
+        @foreach($application_set_set[4] as $application)
+            <option value="{{$application}}">{{$application}}</option>
+        @endforeach
+      	</select>	
 		{{Form::submit('Click to verify');}}
 	{{Form:: close()}}
 	<br>
