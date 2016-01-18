@@ -1,15 +1,17 @@
 <?php
 class calculatemarks{
 
-public function calculatemarks(){
+public static function calculate(){
 
 $db=Connection::getInstance();
 $mysqli=$db->getConnection();
 //get data from application table and store them
 $query = "select * from Application";         
 $result =$mysqli->query($query);
-if ($result->num_rows > 0) {
+
+//if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
+    	
 		
 	$typeOfApplication=$row["typeOfApplication"];
 	$distanceToSchool=$row["distanceToSchool"];
@@ -43,13 +45,15 @@ if ($result->num_rows > 0) {
 	$no_of_years_live=0;
 	
 	$noOfYearsInElectrocalRegister=0;
-	$query = "select noOfYearsInElectrocalRegister from residentInClosedPosimaty where NIC ='$NIC'";         
+	$query = "select noOfYearsInElectrocalRegister from residentInClosedProximity where NIC ='$NIC'";         
         $result =$mysqli->query($query);
 	if ($result->num_rows > 0) {
            if($row = $result->fetch_assoc()) {
                 $noOfYearsInElectrocalRegister=$row["noOfYearsInElectrocalRegister"];
 		}
+		
 	}
+	
 	if($noOfYearsInElectrocalRegister<=5){
 		$no_of_years_live=$no_of_years_live+(7*$noOfYearsInElectrocalRegister);
 	}
@@ -58,7 +62,7 @@ if ($result->num_rows > 0) {
 		}
 	$residence_proof=0;
 	$typeOfTitleDeed=5;
-	$query = "select typeOfTitleDeed from residentInClosedPosimaty where NIC ='$NIC'";         
+	$query = "select typeOfTitleDeed from residentInClosedProximity where NIC ='$NIC'";         
         $result =$mysqli->query($query);
 	if ($result->num_rows > 0) {
            if($row = $result->fetch_assoc()) {
@@ -83,7 +87,7 @@ if ($result->num_rows > 0) {
 
 	$res_proof_other=0;
 	$noOfAditionalDocumentForResident=0;
-	$query = "select noOfAditionalDocumentForResident from residentInClosedPosimaty where NIC ='$NIC'";         
+	$query = "select noOfAditionalDocumentForResident from residentInClosedProximity where NIC ='$NIC'";         
         $result =$mysqli->query($query);
 	if ($result->num_rows > 0) {
            if($row = $result->fetch_assoc()) {
@@ -104,7 +108,7 @@ if ($result->num_rows > 0) {
      	$mysqli->query($query);
 }
 
-if($typeOfApplication=='2'){
+elseif($typeOfApplication=='2'){
 	$no_learnt_grades=0;
 	$query = "select * from pastPupil where schoolId ='$schoolId'and NIC ='$NIC'";         
         $result =$mysqli->query($query);
@@ -156,7 +160,7 @@ if($typeOfApplication=='2'){
 	$query = "select type from paspupil_Achievement where NIC ='$NIC' and schoolId ='$schoolId'";         
         $result =$mysqli->query($query);
 	if ($result->num_rows > 0) {
-           if($row = $result->fetch_assoc()) {
+           while($row = $result->fetch_assoc()) {
                 if($row["type"]=='Education'){
 			$achievement_mark= $internationalEduAchieve+$nationalEduAchieve+$provincialEduAchieve+$districtEduAchieve+$zonalEduAchieve;
 			}
@@ -176,7 +180,7 @@ if($typeOfApplication=='2'){
         $result =$mysqli->query($query);
 	
 	if ($result->num_rows > 0) {
-           if($row = $result->fetch_assoc()) {
+           while($row = $result->fetch_assoc()) {
                 $contribution_mark=$pastPupilOrgMember+$contributionType1+$contributionType2;
 		}
 	}
@@ -218,7 +222,7 @@ if($typeOfApplication=='3'){
 	else{$closeness=$closeness+0;}
 	$residence_proof=0;
 	$typeOfTitleDeed=5;
-	$query = "select typeOfTitleDeed from residentInClosedPosimaty where NIC ='$NIC'";         
+	$query = "select typeOfTitleDeed from residentInClosedProximity where NIC ='$NIC'";         
         $result =$mysqli->query($query);
 	if ($result->num_rows > 0) {
            if($row = $result->fetch_assoc()) {
@@ -257,6 +261,7 @@ if($typeOfApplication=='3'){
                $var1=1;
 		}
 	}
+	else{$var1=0;}
 	if($var1==1){$contribution=$contribution+5;}
 	$var2=0;
 	$query = "select * from cur_pupil_donation where admissionNumber ='$admissionNumber' and schoolId='$schoolId'";         
@@ -266,6 +271,7 @@ if($typeOfApplication=='3'){
                $var2=1;
 		}
 	}
+	else{$var2=0;}
 	if($var2==1){$contribution=$contribution+5;}
 	$no_learnt_grades=0;
 	$dateOfAdmission=0;
@@ -276,12 +282,12 @@ if($typeOfApplication=='3'){
               $dateOfAdmission=$row["dateOfAdmission"];
 		}
 	}
-	$split_date = split("-", $dateOfTransferReceived);
+	$split_date =explode("-", $dateOfAdmission);
 	$year =(int) $split_date[0];
 	$yrgap=2016-$year;
-	$no_learnt_grades=$year*3;
+	$no_learnt_grades=$yrgap*3;
 	if($no_learnt_grades>30){
-		$no_learnt_grades==30;
+		$no_learnt_grades=30;
 		}
 	$query="insert into current_student_mark values('$application_id','$no_learnt_grades','$no_living_years','$closeness','$residence_proof','$contribution'); ";
      	$mysqli->query($query);
@@ -297,7 +303,7 @@ if($typeOfApplication=='4'){
                 $totalServicePeriod=$row["totalServicePeriod"];
 		}
 	}
-	$no_working_years=$totalServicePeriod*20;
+	$no_working_years=$totalServicePeriod*1;
 	if($no_working_years>20){
 		$no_working_year=20;
 	}
@@ -431,7 +437,7 @@ if($typeOfApplication=='4'){
 		}
 	}
 	//i dnt know the delimeter
-	$split_date = split("-", $dateOfTransferReceived);
+	$split_date = explode("-", $dateOfTransferReceived);
 	$year =(int) $split_date[0];
 	$yrgap=2016-$year;
 	if($yrgap==1){
@@ -504,17 +510,17 @@ if($typeOfApplication=='6'){
                 $reasonsForStay=$row["reasonsForStay"];
 		}
 	}
-	if($reasonsForStay==1){
+	if($reasonsForStay=='1'){
 		$reason_of_transfer=$reason_of_transfer+40;
 		}
-	if($reasonsForStay==2){
+	if($reasonsForStay=='2'){
 		$reason_of_transfer=$reason_of_transfer+30;
 		}
-	if($reasonsForStay==3){
+	if($reasonsForStay=='3'){
 		$reason_of_transfer=$reason_of_transfer+20;
 		}
 	
-	if($reasonsForStay==4){
+	if($reasonsForStay=='4'){
 		$reason_of_transfer=$reason_of_transfer+10;
 		}
 	$closeness_mark=0;
@@ -529,14 +535,14 @@ if($typeOfApplication=='6'){
 	elseif($distanceToSchool<5.0){
 	$closeness_mark=$closeness_mark+10;}
 	else{$closeness_mark=$closeness_mark+0;}
-	$query="insert into person_abroad_mark values('$application_id','$time_in_abroad,'$reason_of_transfer','$closeness_mark'); ";
-     	$mysqli->query($query);
 	
+	$query="insert into 'person_abroad_mark' values('$application_id','$time_in_abroad','$reason_of_transfer','$closeness_mark'); ";
+     $mysqli->query($query);
 		
 //f	
 }
 
-	}
+//	}
 }
 
 }
