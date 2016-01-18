@@ -21,4 +21,29 @@ class DBCategory4Controller{
        	return $mysqli->query($query);
 	}
 
+	public static function getCategory4($NIC){
+		$db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="select * from educationalServiceOfficer where NIC='$NIC';";
+        $result=$mysqli->query($query);
+        $category=new EducationalServiceOfficer();
+        if ($result->num_rows > 0) {
+            if ($row = $result->fetch_assoc()) {
+               	$category->setNic($row["NIC"]);
+		        $category->setPermenentEmployeePost($row["permenentEmployeePost"]);
+				$category->setCloseSchoolCount($row["closeSchoolCount"]);        
+				$category->setDistanceFromResidentToWork($row["distanceFromResidentToWork"]);
+				$category->setNowInDifficultSchoolService($row["nowInDifficultSchoolService"]);
+				$category->setPeriodOfDifficultSchoolService($row["periodOfDifficultSchoolService"]);
+				$category->setServingSchoolId($row["servingSchoolId"]);
+				$category->setServingPeriodOfSchool($row["servingPeriodOfSchool"]);
+		        $category->setYear1RemLeave($row["year1RemLeave"]);
+		        $category->setYear2RemLeave($row["year2RemLeave"]);
+		        $category->setYear3RemLeave($row["year3RemLeave"]);
+		        $category->setYear4RemLeave($row["year4RemLeave"]);
+            }
+         }
+       	return $category;
+	}
+
 }
