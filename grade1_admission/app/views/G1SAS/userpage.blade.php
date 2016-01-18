@@ -51,6 +51,7 @@
 {{ Form:: close()}}
 
 {{Form:: open(array('url' =>'edit','method' => 'POST' ))}}
+		{{Form::hidden('username',$username)}}
         {{Form::submit('Change Category Detial ')}}
 {{ Form:: close()}}
 
