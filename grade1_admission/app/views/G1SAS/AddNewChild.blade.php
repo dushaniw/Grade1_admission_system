@@ -25,7 +25,7 @@
                                 <h3 class="panel-title"> <p class="text-center"><span class = "glyphicon glyphicon-user"></span> Add New Child </p></h3>
                         </div>
                         <div class = "panel-body"> <div class = "col-md-10">
-                                {{Form :: open(array('url' =>'child/add','method' => 'POST','role'=>'form' ))}}
+                                {{Form:: open(array('url' =>'child/add','method' => 'POST','role'=>'form' ))}}
                                         {{Form::hidden('usernameText',$username)}}
                                         <div class="form-group">
                                                 {{Form::label('applicantIdLabel', 'Your child ID');}}

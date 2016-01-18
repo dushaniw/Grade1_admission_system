@@ -5,7 +5,7 @@
                 <ul class="nav navbar-nav" >
                 <li  class="active" > {{HTML::link('#', 'Home')}} </li>
                 <li>{{HTML::link('#', 'About')}}        </li>
-                <li> {{HTML::link('#','Past Pupil')}} </li>
+                <li> <a href = "/school/viewpastpupilmarkingcriteria?schoolid=<?php echo $school->getSchool_id()?>"> Past Pupil </a> </li>
                 <li>{{HTML::link('#','Applications')}} </li>
         </ul>
                 <p class = "navbar-text pull-right">
@@ -31,22 +31,14 @@
 			</div>
 		</div>
 
-{{Form:: open(array('url' =>'school/addpastpupilmarkingcriteria','method' => 'POST' ))}}  
-	{{Form::hidden('schoolid',$school->getSchool_id())}}     
-        {{Form::submit('Add Past Pupil Marking Criteria');}}
-{{ Form:: close()}}
+            {{Form:: open(array('url' =>'school/addpastpupilmarkingcriteria','method' => 'POST' ))}}  
+	           {{Form::hidden('schoolid',$school->getSchool_id())}}     
+                {{Form::submit('Add Past Pupil Marking Criteria');}}
+            {{ Form:: close()}}
 
-{{Form:: open(array('url' =>'school/viewpastpupilmarkingcriteria','method' => 'POST' ))}}  
-	{{Form::hidden('schoolid',$school->getSchool_id())}}     
-        {{Form::submit('View Available Past Pupil Marking Criteria');}}
-{{ Form:: close()}}
-
-<<<<<<< HEAD
 {{Form:: open(array('url' =>'school/verifyapplication','method' => 'POST' ))}}
-=======
-{{Form :: open(array('url' =>'school/verifyapplication','method' => 'POST' ))}}
 		{{Form::hidden('schoolid',$school->getSchool_id())}} 
->>>>>>> origin/master
+
         {{Form::submit('Verify Applications');}}
 {{ Form:: close()}}
 

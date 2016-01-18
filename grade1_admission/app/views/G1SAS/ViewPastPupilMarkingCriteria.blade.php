@@ -24,77 +24,90 @@
                 <div class="page-header" style="border-color:#303030">
 					<h2><?php echo $school->getSchool_name() ?> | Marking Criteria</h2>
 				</div>
-				{{Form:: open(array('url' =>'school/viewppmarkingcriteria','method' => 'POST' ))}}
+				{{Form:: open(array('url' =>'school/viewppmarkingcriteria','method' => 'POST','role'=>'form' ))}}
 					{{Form::hidden('schoolidtext',$school->getSchool_id())}}
 					{{Form::hidden('schoolnametext',$school->getSchool_name())}}
 					
 					<div class="form-group">
 						{{Form::label('yearlabel','Select year of admissions    :')}}
-					<br/>
-					{{Form::select('year_sel',$years,$year,['class'=>'div-inline','style'=>'width: 100px' ])}}
+						{{Form::select('year_sel',$years,$year,['class'=>'div-inline','style'=>'width: 100px' ])}}
+					
+						{{Form::submit('View criteria',array('class' => 'btn btn-primary' ))}} 
 					</div>
-					<div class="form-group">
-					{{Form::submit('View criteria',array('class' => 'btn btn-primary' ))}}
-					</div>
+
+					
+					
+				
+				{{ Form:: close()}}
 			</div>
-
-
-			</div>
-			<div>
-
-
+		</div>
+		<div class="row">
+			<div class="col-md-12"> <div class="col-md-offset-4">
+				<h5><strong><u>  Marks recommended for Educational Achievements during school</u></strong></h5>
+		</div> </div></div>
+		<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for International Educational Achievements :</strong> <?php echo $ppmc->getInternationalEduAchieve()?></h5>
+		</div></div></div>
+			<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for National Educational Achievements : </strong><?php echo $ppmc->getNationalEduAchieve()?></h5>
+		</div></div></div>
+			<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for Provincial Educational Achievements : </strong><?php echo $ppmc->getProvincialEduAchieve()?></h5>
+		</div></div></div>
+			<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for District level Educational Achievements : </strong><?php echo $ppmc->getDistrictEduAchieve()?></h5>
+		</div></div></div>
+			<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for Zonal Educational Achievements : </strong><?php echo $ppmc->getZonalEduAchieve()?></h5>
+		</div></div></div>
+		<br/>
+		<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-4">
+				<h5><strong><u>Marks recommended for ExtraCurrricular Achievements during school</u></strong></h5>
+		</div></div></div>
+			<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for International ExtraCurrricular Achievements : </strong><?php echo $ppmc->getInternationalExtraCurricular()?></h5>
+		</div></div></div>
+		<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for National ExtraCurrricular Achievements : </strong><?php echo $ppmc->getNationalExtraCurricular()?></h5>
+		</div></div></div>
+		<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for Provincial ExtraCurrricular Achievements : </strong><?php echo $ppmc->getProvincialExtraCurricular() ?></h5>
+		</div></div></div>
+			<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for District level ExtraCurrricular Achievement : </strong><?php echo $ppmc->getDistrictExtraCurricular()?></h5>
+		</div></div></div>
+			<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for Zonal ExtraCurrricular Achievements : </strong><?php echo $ppmc->getZonalExtraCurricular()?></h5>
+		</div></div></div>
+				<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for being a Past Pupil Organization Member : </strong><?php echo $ppmc->getPastPupilOrgMemeber()?></h5>
+		</div></div></div>
+		<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for donations to school development : </strong><?php echo $ppmc->getContribution() ?></h5>
+		</div></div></div>
+		<div class ="row">
+			<div class="col-md-12"> <div class="col-md-offset-3">
+				<h5><strong>Marks for other related : </strong><?php echo $ppmc->getOther_after_school()?></h5>
+		</div></div></div>
+		
+	
+			
 
 	
-		<br><br>
-
-		{{Form::label('eduAchlabel','Marks recommended for Educational Achievements during school:')}}
-		<br><br>
-		{{Form::label('intEduAchlabel','Marks for International Educational Achievements:')}}
-		{{Form::text('intEduAchMarkstext',$ppmc->getInternationalEduAchieve(), ['readonly'])}}
-		<br>
-		{{Form::label('natEduAchlabel','Marks for National Educational Achievements:')}}
-		{{Form::text('natEduAchMarkstext',$ppmc->getNationalEduAchieve(), ['readonly'])}}
-		<br>
-		{{Form::label('proEduAchlabel','Marks for Provincial Educational Achievements:')}}
-		{{Form::text('proEduAchMarkstext',$ppmc->getProvincialEduAchieve(), ['readonly'])}}
-		<br>
-		{{Form::label('disEduAchlabel','Marks for District level Educational Achievements:')}}
-		{{Form::text('disEduAchMarkstext',$ppmc->getDistrictEduAchieve(), ['readonly'])}}
-		<br>
-		{{Form::label('zonEduAchlabel','Marks for Zonal Educational Achievements:')}}
-		{{Form::text('zonEduAchMarkstext',$ppmc->getZonalEduAchieve(), ['readonly'])}}
-		<br>
-		<br>
-		{{Form::label('extAchlabel','Marks recommended for ExtraCurrricular Achievements during school:')}}
-		<br><br>
-		{{Form::label('intExtAchlabel','Marks for International ExtraCurrricular Achievements:')}}
-		{{Form::text('intExtAchMarkstext',$ppmc->getInternationalExtraCurricular(), ['readonly'])}}
-		<br>
-		{{Form::label('natExtAchlabel','Marks for National ExtraCurrricular Achievements:')}}
-		{{Form::text('natExtAchMarkstext',$ppmc->getNationalExtraCurricular(), ['readonly'])}}
-		<br>
-		{{Form::label('proExtAchlabel','Marks for Provincial ExtraCurrricular Achievements:')}}
-		{{Form::text('proExtAchMarkstext',$ppmc->getProvincialExtraCurricular(), ['readonly'])}}
-		<br>
-		{{Form::label('disExtAchlabel','Marks for District level ExtraCurrricular Achievements:')}}
-		{{Form::text('disExtAchMarkstext',$ppmc->getDistrictExtraCurricular(), ['readonly'])}}
-		<br>
-		{{Form::label('zonExtAchlabel','Marks for Zonal ExtraCurrricular Achievements:')}}
-		{{Form::text('zonExtAchMarkstext',$ppmc->getZonalExtraCurricular(), ['readonly'])}}
-		<br>
-		<br>
-		{{Form::label('pastPupOrglabel','Marks for being a Past Pupil Organization Member:')}}
-		{{Form::text('pastPupOrgMarkstext',$ppmc->getPastPupilOrgMemeber(), ['readonly'])}}
-		<br>
-		{{Form::label('contributionlabel','Marks for donations to school development:')}}
-		{{Form::text('contributionMarkstext',$ppmc->getContribution(), ['readonly'])}}
-		
-		<br>
-		{{Form::label('otherlabel','Marks for other related:')}}
-		{{Form::text('otherMarkstext',$ppmc->getOther_after_school(), ['readonly'])}}
-		<br>
 	 	
-	{{ Form:: close()}}
 
-</div>
+
 @stop

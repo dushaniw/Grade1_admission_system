@@ -15,8 +15,8 @@ class SchoolController extends BaseController
 			return View::make('G1SAS/AddPastPupilMarkingCriteria')->with('school',$school);
 	}
 
-	public function postViewpastpupilmarkingcriteria(){
-			$schoolid=Input::get('schoolid');
+	public function getViewpastpupilmarkingcriteria(){
+			$schoolid=$_GET['schoolid'];
 			$school=DBSchoolController::getSchool($schoolid);
 			$years=DBPastPupilMarkingCriteriaController::getYearsOfAvailableCriteria($schoolid);
 			$lastyear=DBPastPupilMarkingCriteriaController::getLastYearOfAvailableCriteria($schoolid);
