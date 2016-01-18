@@ -14,13 +14,15 @@
 	{{Form:: open(array('url' =>'edit/editcategory','method' => 'POST' ))}}
 	         {{Form::hidden('nic',$nic)}}
 			 {{Form::hidden('type',1)}}
-		<select class="form-school-control" name="schoolId">
+		
+
+	        {{Form::submit('Edit Category2 Detial ')}}
+<select class="form-school-control" name="schoolId">
         @foreach($schools as $school)
             <option value="{{$school}}">{{$school}}</option>
         @endforeach
       </select>
 
-	        {{Form::submit('Edit Category2 Detial ')}}
 	{{ Form:: close()}}
 
 	{{Form:: open(array('url' =>'edit/editcategory','method' => 'POST' ))}}
@@ -32,7 +34,8 @@
 	{{Form:: open(array('url' =>'edit/editcategory','method' => 'POST' ))}}
 	         {{Form::hidden('nic',$nic)}}
 			 {{Form::hidden('type',3)}}
-	        {{Form::submit('Edit Category Detial ')}}
+	        {{Form::submit('Edit Category 4 Detial ')}}
+
 	{{ Form:: close()}}
 
 	{{Form:: open(array('url' =>'edit/editcategory','method' => 'POST' ))}}

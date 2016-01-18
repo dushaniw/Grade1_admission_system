@@ -24,7 +24,7 @@ class EditController extends BaseController{
         			return "you don't have category 1 type application";
         		}	
     	
-      }elseif ($type=1) {
+      }elseif ($type==1) {
             $schoolId=Input::get("schoolId");
             $category2=DBCategory2Controller::getCategory2($schoolId,$nic);
             $achieve=DBPPAchievementController::getPastPupilAch($schoolId,$nic);
@@ -33,6 +33,19 @@ class EditController extends BaseController{
             
             return View :: make ('G1SAS/category2edit')->with('category2',$category2)->with('eAch',$eAch)->with('cAch',$cAch);
                     
+
+      }elseif ($type==2) {
+        # code...
+      }elseif ($type==3) {
+          $hasCategory4=DBCategory4Controller::hasCategory4($nic);
+            if($hasCategory4){
+              $category4=DBCategory4Controller::getCategory4($nic);
+              return View :: make ('G1SAS/category4edit')->with('category4',$category4);
+            }else{
+              return "you don't have category 4 type application";
+            } 
+          
+
 
       }
 
@@ -111,6 +124,48 @@ class EditController extends BaseController{
                return "category 1 editted well"; 
           }else{
             return "category 1 not editted well";
+          }  
+    }
+
+
+     public function postEditcategory4()
+    {
+        $nic=Input::get('nic');
+          $schoolId=Input::get("schoolId");
+         
+            $permenentEmployeePost=Input::get("permenentEmployeePost"); 
+            $distanceFromResidentToWork= Input::get("distanceFromResidentToWork");
+            $nowInDifficultSchoolService=Input::get("nowInDifficultSchoolService"); 
+            $periodOfDifficultSchoolService =Input::get("nowInDifficultSchoolService");
+            $servingPeriodOfSchool=Input::get("servingPeriodOfSchool");
+            $closeSchoolCount=Input::get("closeSchoolCount");
+            $year1RemLeave =  Input::get("year1RemLeave");    
+            $year2RemLeave =Input::get("year2RemLeave");
+            $year3RemLeave =Input::get("year3RemLeave");
+            $year4RemLeave =Input::get("year4RemLeave");
+            
+            $category4=new EducationalServiceOfficer();
+
+            $category4->setNic($nic);
+            $category4->setPermenentEmployeePost($permenentEmployeePost);
+            $category4->setCloseSchoolCount($closeSchoolCount);        
+            $category4->setDistanceFromResidentToWork($distanceFromResidentToWork);
+            $category4->setNowInDifficultSchoolService($nowInDifficultSchoolService);
+            $category4->setPeriodOfDifficultSchoolService($periodOfDifficultSchoolService);
+            $category4->setServingSchoolId($schoolId);
+            $category4->setServingPeriodOfSchool($servingPeriodOfSchool);
+            $category4->setYear1RemLeave($year1RemLeave);
+            $category4->setYear2RemLeave($year2RemLeave);
+            $category4->setYear3RemLeave($year3RemLeave);
+            $category4->setYear4RemLeave($year4RemLeave);
+                
+
+            $result=DBCategory4Controller::editCategory4($category4); 
+        
+          if($result){
+               return "category 4 editted well"; 
+          }else{
+            return "category 4 not editted well";
           }  
     }
 
