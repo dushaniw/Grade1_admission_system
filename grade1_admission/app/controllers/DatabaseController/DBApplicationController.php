@@ -523,7 +523,4 @@ class DBApplicationController{
     }
     
 
-
-
-
 }
