@@ -10,10 +10,6 @@ Route::get('guardian',function(){
 });
 
 
-
-
-
-
 Route::controller('userpage','UserPageController');
 
 Route::controller('search','SearchController');
@@ -31,6 +27,8 @@ Route::controller('guardian','GuardianController');
 Route::controller('child','ChildController');
 
 Route::controller('admin','AdminController');
+
+Route::controller('edit','EditController');
 
 
 /*

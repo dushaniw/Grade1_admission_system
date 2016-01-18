@@ -4,7 +4,6 @@
 class PastPupil{
 	private $schoolId;
 	private $NIC;
-	private $name;
 	private $gradeOfAdmission;
 	private $gradeOfLeaving;
 	private $pastPupilOrganizationMembership;
@@ -40,16 +39,7 @@ class PastPupil{
 	    $this->gradeOfAdmission = $gradeOfAdmission;
 	    return $this;
 	}
-	public function getName()
-	{
-	    return $this->name;
-	}
 	
-	public function setName($name)
-	{
-	    $this->name = $name;
-	    return $this;
-	}
 	public function getNIC()
 	{
 	    return $this->NIC;

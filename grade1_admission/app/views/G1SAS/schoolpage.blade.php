@@ -41,7 +41,12 @@
         {{Form::submit('View Available Past Pupil Marking Criteria');}}
 {{ Form:: close()}}
 
+<<<<<<< HEAD
 {{Form:: open(array('url' =>'school/verifyapplication','method' => 'POST' ))}}
+=======
+{{Form :: open(array('url' =>'school/verifyapplication','method' => 'POST' ))}}
+		{{Form::hidden('schoolid',$school->getSchool_id())}} 
+>>>>>>> origin/master
         {{Form::submit('Verify Applications');}}
 {{ Form:: close()}}
 

@@ -21,6 +21,7 @@ class DBStudentApplicantController
 				$applicant->setReligion($row["religion"]);
                 $applicant->setDateOfBirth($row["dateofBirth"]);
                 $applicant->setSelectedSchool($row["selectedSchoolId"]);
+                $applicant->setGuardianNIC($row["NIC"]);
                 $appplicants[]=$applicant;              
             }             
         } 
@@ -46,6 +47,7 @@ class DBStudentApplicantController
 				$applicant->setReligion($row["religion"]);
                 $applicant->setDateOfBirth($row["dateofBirth"]);
                 $applicant->setSelectedSchool($row["selectedSchoolId"]);
+                $applicant->setGuardianNIC($row["NIC"]);
                 $appplicants[]=$applicant;              
             }             
         } 
@@ -69,7 +71,8 @@ class DBStudentApplicantController
                 $applicant->setGender($row["gender"]);
                 $applicant->setReligion($row["religion"]);
                 $applicant->setDateOfBirth($row["dateofBirth"]);
-                $applicant->setSelectedSchool($row["selectedSchoolId"]);              
+                $applicant->setSelectedSchool($row["selectedSchoolId"]); 
+                $applicant->setGuardianNIC($row["NIC"]);             
             }             
         } 
         return $applicant;

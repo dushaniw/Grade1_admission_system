@@ -5,6 +5,18 @@ Class Sibling {
 private $admissionNumber;
 private $applicantId;
 private $schoolId;
+private $cur_pupil;
+
+public function getCur_pupil()
+{
+    return $this->cur_pupil;
+}
+
+public function setCur_pupil($cur_pupil)
+{
+    $this->cur_pupil = $cur_pupil;
+    return $this;
+}
 
 public function getAdmissionNumber()
 {
@@ -39,4 +51,5 @@ public function setSchoolId($schoolId)
     $this->schoolId = $schoolId;
     return $this;
 }
+
 }

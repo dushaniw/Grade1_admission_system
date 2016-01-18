@@ -4,9 +4,32 @@ class Currentstudent{
 private $schoolId;
 private $admissionNumber;
 private $lastName;
-private $surName;
+private $firstName;
 private $dateOfAdmission;
 private $gradeOfAdmission;
+private $cur_pup_donation_set;
+private $cur_pup_ach_set;
+
+public function getCur_pup_donation_set()
+{
+    return $this->cur_pup_donation_set;
+}
+
+public function setCur_pup_donation_set($cur_pup_donation_set)
+{
+    $this->cur_pup_donation_set = $cur_pup_donation_set;
+    return $this;
+}
+public function getCur_pup_ach_set()
+{
+    return $this->cur_pup_ach_set;
+}
+
+public function setCur_pup_ach_set($cur_pup_ach_set)
+{
+    $this->cur_pup_ach_set = $cur_pup_ach_set;
+    return $this;
+}
 
 public function getGradeOfAdmission()
 {
@@ -29,14 +52,14 @@ public function setDateOfAdmission($dateOfAdmission)
     return $this;
 }
 
-public function getSurName()
+public function getFirstName()
 {
-    return $this->surName;
+    return $this->firstName;
 }
 
-public function setSurName($surName)
+public function setFirstName($firstName)
 {
-    $this->surName = $surName;
+    $this->firstName = $firstName;
     return $this;
 }
 

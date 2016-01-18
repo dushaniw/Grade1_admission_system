@@ -1,6 +1,9 @@
 <?php
 include("/Model/pastPupil_markingCriteria.php");
 include '/DatabaseController/DBPastPupilMarkingCriteriaController.php';
+include '/DatabaseController/DBPPContributionController.php';
+//include '/DatabaseController/DBCPAchievementController.php';
+
 /**
 * 
 */
@@ -106,12 +109,101 @@ class SchoolController extends BaseController
 	}
 
 	public function postVerifyapplication(){
-			$schoolid=Input::get('schoolidtext');
+			$schoolid=Input::get('schoolid');
 			$school=DBSchoolController::getSchool($schoolid);
+			$applicationids_set=array();
+			for ($i=1; $i <7 ; $i++) { 
+				$application_ids=DBApplicationController::getUnverifiedApplicationSetIds($schoolid,$i);
+				$applicationids_set[]=$application_ids;
+			}
 			
-			return View::make('G1SAS/VerifyApplication')->with('school',$school);
+			return View::make('G1SAS/VerifyApplication')->with('title','Select applications to verify')->with('school',$school)->with('application_set_set',$applicationids_set);
 	}
 
-	
+	public function postVerifytype1(){
+			$application_id=Input::get('type');
+			$schoolid=Input::get('school_id');
+			$school=DBSchoolController::getSchool($schoolid);
+			$application=DBApplicationController::getApplication($application_id);
+			$applicant_id=$application->getApplicant_id();
+			$applicant=DBStudentApplicantController::getApplicantById($applicant_id);
+			$NIC=$applicant->getGuardianNIC();
+			$guardian=DBGuardianController::getGuardianByNic($NIC);
+			$category=DBCategory1Controller::getCategory1($NIC);
+			return View::make('G1SAS/verifycategoryset/VerifyCategory1')->with('application_id',$application_id)->with('guardian',$guardian)->with('school',$school)->with('application',$application)->with('applicant',$applicant)->with('category',$category);
+	}
 
+	public function postVerifytype2(){
+			$application_id=Input::get('type');
+			$schoolid=Input::get('school_id');
+			$school=DBSchoolController::getSchool($schoolid);
+			$application=DBApplicationController::getApplication($application_id);
+			$applicant_id=$application->getApplicant_id();
+			$applicant=DBStudentApplicantController::getApplicantById($applicant_id);
+			$NIC=$applicant->getGuardianNIC();
+			$guardian=DBGuardianController::getGuardianByNic($NIC);
+			$category=DBCategory2Controller::getCategory2($schoolid,$NIC);
+			$pp_ach_set=DBPPAchievementController::getPastPupilAch($schoolid,$NIC);
+			$pp_con_set=DBPPContributionController::getPastPupilCon($schoolid,$NIC);
+			return View::make('G1SAS/verifycategoryset/VerifyCategory2')->with('application_id',$application_id)
+			->with('guardian',$guardian)->with('school',$school)->with('application',$application)
+			->with('applicant',$applicant)->
+			with('category',$category)->with('ach_set',$pp_ach_set)->with('con_set',$pp_con_set);
+	}
+
+	public function postVerifytype3(){
+			$application_id=Input::get('type');
+			$schoolid=Input::get('school_id');
+			$school=DBSchoolController::getSchool($schoolid);
+			$application=DBApplicationController::getApplication($application_id);
+			$applicant_id=$application->getApplicant_id();
+			$applicant=DBStudentApplicantController::getApplicantById($applicant_id);
+			$NIC=$applicant->getGuardianNIC();
+			$guardian=DBGuardianController::getGuardianByNic($NIC);
+			$siblings=DBSiblingController::getSiblings($applicant_id);
+			foreach ($siblings as $sibling) {
+				$schoolId=$sibling->getSchoolId();
+				$admissionNumber=$sibling->getAdmissionNumber();
+				$category=DBCategory3Controller::getCategory3($schoolId,$admissionNumber);
+				$cur_ach_set=DBCPAchievementController::getCPAchievements($schoolId,$admissionNumber);
+				$category->setCur_pup_ach_set($cur_ach_set);
+				$cur_don_set=DBCurPupilDonationController::getCPDonations($schoolId,$admissionNumber);
+				$category->setCur_pup_donation_set($cur_don_set);
+				$sibling->setCur_pupil($category);
+			}
+			
+			return View::make('G1SAS/verifycategoryset/VerifyCategory3')->with('application_id',$application_id)
+			->with('guardian',$guardian)->with('school',$school)->with('application',$application)
+			->with('applicant',$applicant)->with('siblings',$siblings);
+	}
+
+
+	public function postVerifycat(){
+			$application_id=Input::get('application_idtext');
+			$result=DBApplicationController::verifyApplication($application_id);
+			$schoolid=Input::get('schoolIdText');
+			$school=DBSchoolController::getSchool($schoolid);
+			$applicationids_set=array();
+			for ($i=1; $i <7 ; $i++) { 
+				$application_ids=DBApplicationController::getUnverifiedApplicationSetIds($schoolid,$i);
+				$applicationids_set[]=$application_ids;
+			}
+			if($result){
+				return View::make('G1SAS/VerifyApplication')->with('school',$school)->with('application_set_set',$applicationids_set)->with('title','Verification added');
+			}else{
+				return View::make('G1SAS/VerifyApplication')->with('school',$school)->with('application_set_set',$applicationids_set)->with('title','Verification Failed');
+			}			
+	}
+
+	public function postCancelverify(){
+			$schoolid=Input::get('schoolid');
+			$school=DBSchoolController::getSchool($schoolid);
+			$applicationids_set=array();
+			for ($i=1; $i <7 ; $i++) { 
+				$application_ids=DBApplicationController::getUnverifiedApplicationSetIds($schoolid,$i);
+				$applicationids_set[]=$application_ids;
+			}
+			
+			return View::make('G1SAS/VerifyApplication')->with('title','The application was added to pending list')->with('school',$school)->with('application_set_set',$applicationids_set);
+	}
 }

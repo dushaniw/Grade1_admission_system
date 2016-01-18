@@ -18,12 +18,12 @@ public function setAchievementDetail($achievementDetail)
     return $this;
 }
 
-public function getEAchievementId()
+public function getAchievementId()
 {
     return $this->eAchievementId;
 }
 
-public function setEAchievementId($eAchievementId)
+public function setAchievementId($eAchievementId)
 {
     $this->eAchievementId = $eAchievementId;
     return $this;
