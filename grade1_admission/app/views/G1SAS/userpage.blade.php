@@ -50,4 +50,9 @@
         {{Form::submit('Search school selected applicants')}}
 {{ Form:: close()}}
 
+{{Form:: open(array('url' =>'edit','method' => 'POST' ))}}
+        {{Form::submit('Change Category Detial ')}}
+{{ Form:: close()}}
+
+
 @stop
