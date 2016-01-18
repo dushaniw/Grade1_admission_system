@@ -7,6 +7,29 @@ private $lastName;
 private $firstName;
 private $dateOfAdmission;
 private $gradeOfAdmission;
+private $cur_pup_donation_set;
+private $cur_pup_ach_set;
+
+public function getCur_pup_donation_set()
+{
+    return $this->cur_pup_donation_set;
+}
+
+public function setCur_pup_donation_set($cur_pup_donation_set)
+{
+    $this->cur_pup_donation_set = $cur_pup_donation_set;
+    return $this;
+}
+public function getCur_pup_ach_set()
+{
+    return $this->cur_pup_ach_set;
+}
+
+public function setCur_pup_ach_set($cur_pup_ach_set)
+{
+    $this->cur_pup_ach_set = $cur_pup_ach_set;
+    return $this;
+}
 
 public function getGradeOfAdmission()
 {

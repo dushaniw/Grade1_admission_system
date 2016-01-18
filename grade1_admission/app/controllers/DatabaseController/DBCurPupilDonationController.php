@@ -29,4 +29,23 @@ class DBCurPupilDonationController
         return $mysqli->query($query);
     }
 
+    public static function getCPDonations($schoolId,$admissionNumber){
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="select * from cur_pupil_donation where schoolId='$schoolId' and admissionNumber='$admissionNumber';";
+        $result=$mysqli->query($query);
+        $cur_don_set=array();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $donation=new Cur_pupil_donation();
+                $donation->setSchoolId($row["schoolId"]);
+                $donation->setAdmissionNumber($row["admissionNumber"]);
+                $donation->setDonationId($row["donationId"]);
+                $donation->setDonationDetail($row["donationDetail"]);
+                $cur_don_set[]=$donation;
+            }
+        }
+        return $cur_don_set;
+    }
+
 }

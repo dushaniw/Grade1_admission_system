@@ -2,6 +2,8 @@
 include("/Model/pastPupil_markingCriteria.php");
 include '/DatabaseController/DBPastPupilMarkingCriteriaController.php';
 include '/DatabaseController/DBPPContributionController.php';
+//include '/DatabaseController/DBCPAchievementController.php';
+
 /**
 * 
 */
@@ -140,6 +142,33 @@ class SchoolController extends BaseController
 			->with('applicant',$applicant)->
 			with('category',$category)->with('ach_set',$pp_ach_set)->with('con_set',$pp_con_set);
 	}
+
+	public function postVerifytype3(){
+			$application_id=Input::get('type');
+			$schoolid=Input::get('school_id');
+			$school=DBSchoolController::getSchool($schoolid);
+			$application=DBApplicationController::getApplication($application_id);
+			$applicant_id=$application->getApplicant_id();
+			$applicant=DBStudentApplicantController::getApplicantById($applicant_id);
+			$NIC=$applicant->getGuardianNIC();
+			$guardian=DBGuardianController::getGuardianByNic($NIC);
+			$siblings=DBSiblingController::getSiblings($applicant_id);
+			foreach ($siblings as $sibling) {
+				$schoolId=$sibling->getSchoolId();
+				$admissionNumber=$sibling->getAdmissionNumber();
+				$category=DBCategory3Controller::getCategory3($schoolId,$admissionNumber);
+				$cur_ach_set=DBCPAchievementController::getCPAchievements($schoolId,$admissionNumber);
+				$category->setCur_pup_ach_set($cur_ach_set);
+				$cur_don_set=DBCurPupilDonationController::getCPDonations($schoolId,$admissionNumber);
+				$category->setCur_pup_donation_set($cur_don_set);
+				$sibling->setCur_pupil($category);
+			}
+			
+			return View::make('G1SAS/verifycategoryset/VerifyCategory3')->with('application_id',$application_id)
+			->with('guardian',$guardian)->with('school',$school)->with('application',$application)
+			->with('applicant',$applicant)->with('siblings',$siblings);
+	}
+
 
 	public function postVerifycat(){
 			$application_id=Input::get('application_idtext');

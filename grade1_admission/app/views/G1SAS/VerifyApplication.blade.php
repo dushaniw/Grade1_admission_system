@@ -41,7 +41,12 @@
 	{{Form:: open(array('url' =>'school/verifytype3','method' => 'POST' ))}}
 		{{Form::label('type3label','Applications regarding current students as siblings:')}}
 		<br>
-		{{Form::select('type3',$application_set_set[2])}}	
+		{{Form::hidden('school_id',$school->getSchool_id())}}
+		<select class="form-school-control" name="type">
+        @foreach($application_set_set[2] as $application)
+            <option value="{{$application}}">{{$application}}</option>
+        @endforeach
+      	</select>
 		{{Form::submit('Click to verify');}}
 	{{Form:: close()}}
 	<br>
