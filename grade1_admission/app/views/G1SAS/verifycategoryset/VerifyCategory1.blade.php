@@ -3,7 +3,7 @@
 	<title>Verify Category 1</title>
 </head>
 <body>
-	{{ Form :: open(array('url' =>'school/verifycat1','method' => 'POST' ))}}
+	{{ Form :: open(array('url' =>'school/verifycat','method' => 'POST' ))}}
 		
 		{{Form :: label( 'schoolid','School id:') ; }}
 		{{Form :: text( 'schoolIdText',$school->getSchool_id(), ['readonly']) ; }}
