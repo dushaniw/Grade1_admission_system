@@ -80,7 +80,12 @@
 	{{Form:: open(array('url' =>'school/verifytype6','method' => 'POST' ))}}
 		{{Form::label('type6label','Applications regarding people coming from abroad:')}}
 		<br>
-		{{Form::select('type6',$application_set_set[5])}}	
+		{{Form::hidden('school_id',$school->getSchool_id())}}
+		<select class="form-school-control" name="type">
+        @foreach($application_set_set[5] as $application)
+            <option value="{{$application}}">{{$application}}</option>
+        @endforeach
+      	</select>	
 		{{Form::submit('Click to verify');}}
 	{{Form:: close()}}
 	<br>
