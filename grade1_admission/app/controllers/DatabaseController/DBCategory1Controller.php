@@ -62,4 +62,5 @@ class DBCategory1Controller{
         return $mysqli->query($query);
   }
 
+  
 }

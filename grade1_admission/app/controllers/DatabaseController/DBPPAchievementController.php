@@ -21,8 +21,8 @@ class DBPPAchievementController{
         $pastPupilAID='1';
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
-        $query="select * from pastpupil_Achievement where NIC='$guardianNic' and schoolId='$schoolid';";
-        $result =$mysqli->query($query);
+        $query="select * from pastpupil_Achievement where NIC='$guardianNic' and schoolId='$schoolid'";
+        $result =$mysqli->query($query);     
         $ach_set=array();
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
@@ -35,8 +35,7 @@ class DBPPAchievementController{
                 $ach_set[]=$achievement;
             }
          }
-
-         return $ach_set;
+        return $ach_set;
 
     }
 
@@ -49,6 +48,18 @@ class DBPPAchievementController{
         $type=$achievement->getType();
         $achievementDetail=$achievement->getAchievementDetail();
         $query="insert into pastpupil_Achievement values('$schoolId','$nic','$achievementId','$type','$achievementDetail')";
+        return $mysqli->query($query);
+    }
+
+    public static function editPPAchievement($achievement){
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $schoolId=$achievement->getSchoolId();
+        $nic=$achievement->getNIC();
+        $achievementId=$achievement->getAchievementID();
+        $type=$achievement->getType();
+        $achievementDetail=$achievement->getAchievementDetail();
+        $query="update pastpupil_Achievement set type='$type', achievementDetail='$achievementDetail' where schoolId='$schoolId' and NIC='$nic' and  AchievementId='$achievementId'";
         return $mysqli->query($query);
     }
 

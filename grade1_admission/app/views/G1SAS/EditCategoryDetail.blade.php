@@ -14,6 +14,12 @@
 	{{Form:: open(array('url' =>'edit/editcategory','method' => 'POST' ))}}
 	         {{Form::hidden('nic',$nic)}}
 			 {{Form::hidden('type',1)}}
+		<select class="form-school-control" name="schoolId">
+        @foreach($schools as $school)
+            <option value="{{$school}}">{{$school}}</option>
+        @endforeach
+      </select>
+
 	        {{Form::submit('Edit Category2 Detial ')}}
 	{{ Form:: close()}}
 
