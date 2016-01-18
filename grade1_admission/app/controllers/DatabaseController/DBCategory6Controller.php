@@ -11,4 +11,21 @@ class DBCategory6Controller{
        	return $mysqli->query($query);
 	}
 
+  public static function getCategory6($NIC){
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="select * from personComingFromAboard where NIC='$NIC';";
+        $result=$mysqli->query($query);
+        $category=new PersonComingFromAbroad();
+        if ($result->num_rows > 0) {
+            if ($row = $result->fetch_assoc()) {
+                $category->setNic($row["NIC"]);
+                $category->setDateOfReturned($row["dateOfReturned"]);
+                $category->setPerioadAbroadStay($row["periodAboardStay"]);
+                $category->setReasonsForStay($row["reasonsForStay"]);
+            }
+         }        
+        return $category;
+  }
+
 }

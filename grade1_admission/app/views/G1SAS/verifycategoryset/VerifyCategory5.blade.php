@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Verify Category 1</title>
+	<title>Verify Category 4</title>
 </head>
 <body>
 	{{ Form :: open(array('url' =>'school/verifycat','method' => 'POST' ))}}
@@ -62,50 +62,52 @@
 		{{Form :: text( 'mediumtext',$application->getMedium(), ['readonly']) ; }}
 
 
-		<div id="catogory1" >
-			
-			
-			{{Form::label('Label1', 'Number of years that include the applicant and spouse/Legal guardian in the electoral register');}}
-			{{ Form :: text( 'noOfYearsInElectrocalRegister',$category->getNoOfYearsInElectrocalRegister(), ['readonly']) ; }}		
+		<div id="catogory5" >
+		<h1> Children of officers transfferd on exigencies of service </h1>
+		
+		<br>
+		{{Form::label('Label41', 'a) Date of transfer received lastly');}}
 
+		 {{ Form :: text( 'dateOfTransferReceived',$category->getDateOfTransferReceived(), ['readonly']) ; }}		
+
+
+		<br>
+		{{Form::label('Label42','Name & address of work place before receiving the transfer');}}
+		<br>
+		 {{ Form :: text( 'beforeWorkedPlace',$category->getBeforeWorkedPlace(), ['readonly']) ; }}		
+		<br>
+
+		{{Form::label('Label43', 'Name & address of work place after receiving the transfer');}}
+		<br>
+		{{ Form :: text( 'afterWorkedPlace',$category->getAfterWorkedPlace(), ['readonly']) ; }}		
+		<br>
+
+		{{Form::label('Label44','c) Distance between the earlier place of work and place arrived on transfer (in km)');}}
+		{{ Form :: text( 'distanceOfTransfer',$category->getDistanceOfTransfer()." km", ['readonly']) ; }}		
+
+		<br>
+
+		{{Form::label('Label46','e) Period of service as a State/Corporation/Statutory Bank/State Bank employee');}}		
+		 {{ Form :: text( 'servicePeriod',$category->getServicePeriod(), ['readonly']) ; }}
+		 <br>
+
+		Un-utilized leaves
+			{{ Form :: label( 'year1RemLeave','Year 1 :') ; }}
+			{{ Form :: text( 'year1RemLeaveText',$category->getYear1RemLeave()." days", ['readonly']) ; }}
+			<br>	
+			{{ Form :: label( 'year2RemLeave','Year 2 :') ; }}	
+			{{ Form :: text( 'year2RemLeaveText',$category->getYear2RemLeave()." days", ['readonly']) ; }}
+			<br>	
+			{{ Form :: label( 'year3RemLeave','Year 3 :') ; }}		
+			{{ Form :: text( 'year3RemLeaveText',$category->getYear3RemLeave()." days", ['readonly']) ; }}
+			<br>	
+			{{ Form :: label( 'year4RemLeave','Year 4 :') ; }}			
+			{{ Form :: text( 'year4RemLeaveText',$category->getYear4RemLeave()." days", ['readonly']) ; }}
 			<br>
-			{{Form::label('Label2','Number of years that include either name of the applicant or the name of the spouse in the electoral register');}}
-			{{ Form :: text( 'noOfYearsSpouseInElectrocalRegister',$category->getNoOfYearsSpouseInElectrocalRegister(), ['readonly']) ; }}		
 
 
-			<br>
-			This is applicable for a period of recent 05 years, prior to the year the application is submitted
-			<br>
-
-			b)Ownership of place of residence
-			<br>
-			{{Form::label('Label3', 'Type of Title deed:');}}
-			@if($category->getTypeOfTitleDeed()==1)
-			{{ Form :: text( 'typeOfTitleDeed','In the name of applicant/spouse or applicants parents', ['readonly']) ; }}		
-			@elseif($category->getTypeOfTitleDeed()==2)
-			{{ Form :: text( 'typeOfTitleDeed','Registered Lease Bond', ['readonly']) ; }}		
-			@elseif($category->getTypeOfTitleDeed()==3)
-			{{ Form :: text( 'typeOfTitleDeed','Government official Quarters Documents', ['readonly']) ; }}		
-			@elseif($category->getTypeOfTitleDeed()==4)
-			{{ Form :: text( 'typeOfTitleDeed','un-registered Lease Bond', ['readonly']) ; }}		
-			@endif
-
-			<br>
-			{{Form::label('Label4','Additional documents which could be submitted in proof of residence (national ID/Water bills/Light bills/Phone bills/Marriage certificate');}}
-
-			{{ Form :: text( 'noOfAditionalDocumentForResident',$category->getNoOfAditionalDocumentForResident(), ['readonly']) ; }}		
-
-			
-			<br>
-			{{Form::label('Label5','No of schools located closer to the place of residence where the child could be admitted than the school applied for');}}
-
-			{{ Form :: text( 'closeSchoolCount',$category->getCloseSchoolCount(), ['readonly']) ; }}
-			<br>
-
-			{{Form::submit('Verify Application')}}		
-			
-		</div>
-
+	</div>
+	{{Form::submit('Verify Application')}}
 	{{Form::close()}}
 
 	{{ Form :: open(array('url' =>'school/cancelverify','method' => 'POST' ))}}

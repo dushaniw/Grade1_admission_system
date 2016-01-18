@@ -28,6 +28,10 @@
                                 {{Form :: open(array('url' =>'child/add','method' => 'POST','role'=>'form' ))}}
                                         {{Form::hidden('usernameText',$username)}}
                                         <div class="form-group">
+                                                {{Form::label('applicantIdLabel', 'Your child ID');}}
+                                                {{Form:: text('idText',$applicantId,array('class' =>'form-control','required','readonly' => 'true','style'=>'width: 100px','placeholder'=>'First Name'))}}    
+                                        </div>
+                                        <div class="form-group">
                                                 {{Form::label('firstNameLabel', 'First Name');}}
                                                 {{Form::hidden('usernameText',$username)}}
                                                 {{Form:: text('firstNameText',null, array('class' =>'form-control','required','placeholder'=>'First Name'))}}    

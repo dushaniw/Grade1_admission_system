@@ -62,45 +62,35 @@
 		{{Form :: text( 'mediumtext',$application->getMedium(), ['readonly']) ; }}
 
 
-		<div id="catogory1" >
+		<div id="catogory6" >
 			
+			<h1>Childern of persons arriving after living abroad with child</h1>
+
+		{{Form::label('Label6', 'a) Date returned to country ');}}
+
+		 {{ Form :: text( 'dateOfReturned',$category->getDateOfReturned(), ['readonly']) ; }}		
+
+
+		<br>		
+		{{Form::label('Label7','b) Period of stay abroad');}}
+		{{ Form :: text( 'PeriodOfStayAbroad',$category->getPerioadAbroadStay()." years", ['readonly']) ; }}		
 			
-			{{Form::label('Label1', 'Number of years that include the applicant and spouse/Legal guardian in the electoral register');}}
-			{{ Form :: text( 'noOfYearsInElectrocalRegister',$category->getNoOfYearsInElectrocalRegister(), ['readonly']) ; }}		
 
-			<br>
-			{{Form::label('Label2','Number of years that include either name of the applicant or the name of the spouse in the electoral register');}}
-			{{ Form :: text( 'noOfYearsSpouseInElectrocalRegister',$category->getNoOfYearsSpouseInElectrocalRegister(), ['readonly']) ; }}		
+		<br>	
 
+		{{Form::label('Label8', 'c) Reason for stay :');}}
+		@if($category->getReasonsForStay()==1)
+			{{Form::text('labler1', 'On Sri lankan dutha mandala duty',array('size'=>'30x1'), ['readonly']);}}
+		@elseif($category->getReasonsForStay()==2)
+			{{Form::text('labelr2', 'On Sri lankan goverment duty purpose', ['readonly']);}}
+        @elseif($category->getReasonsForStay()==3)
+        	{{Form::text('labelr3', 'Scholarship ', ['readonly']);}}
+        @elseif($category->getReasonsForStay()==4)
+        	{{Form::text('labelr4', 'Personal Reason', ['readonly']);}}
+        @endif
 
-			<br>
-			This is applicable for a period of recent 05 years, prior to the year the application is submitted
-			<br>
+        <br>
 
-			b)Ownership of place of residence
-			<br>
-			{{Form::label('Label3', 'Type of Title deed:');}}
-			@if($category->getTypeOfTitleDeed()==1)
-			{{ Form :: text( 'typeOfTitleDeed','In the name of applicant/spouse or applicants parents', ['readonly']) ; }}		
-			@elseif($category->getTypeOfTitleDeed()==2)
-			{{ Form :: text( 'typeOfTitleDeed','Registered Lease Bond', ['readonly']) ; }}		
-			@elseif($category->getTypeOfTitleDeed()==3)
-			{{ Form :: text( 'typeOfTitleDeed','Government official Quarters Documents', ['readonly']) ; }}		
-			@elseif($category->getTypeOfTitleDeed()==4)
-			{{ Form :: text( 'typeOfTitleDeed','un-registered Lease Bond', ['readonly']) ; }}		
-			@endif
-
-			<br>
-			{{Form::label('Label4','Additional documents which could be submitted in proof of residence (national ID/Water bills/Light bills/Phone bills/Marriage certificate');}}
-
-			{{ Form :: text( 'noOfAditionalDocumentForResident',$category->getNoOfAditionalDocumentForResident(), ['readonly']) ; }}		
-
-			
-			<br>
-			{{Form::label('Label5','No of schools located closer to the place of residence where the child could be admitted than the school applied for');}}
-
-			{{ Form :: text( 'closeSchoolCount',$category->getCloseSchoolCount(), ['readonly']) ; }}
-			<br>
 
 			{{Form::submit('Verify Application')}}		
 			

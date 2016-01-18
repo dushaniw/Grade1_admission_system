@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Verify Category 1</title>
+	<title>Verify Category 4</title>
 </head>
 <body>
 	{{ Form :: open(array('url' =>'school/verifycat','method' => 'POST' ))}}
@@ -62,50 +62,67 @@
 		{{Form :: text( 'mediumtext',$application->getMedium(), ['readonly']) ; }}
 
 
-		<div id="catogory1" >
-			
-			
-			{{Form::label('Label1', 'Number of years that include the applicant and spouse/Legal guardian in the electoral register');}}
-			{{ Form :: text( 'noOfYearsInElectrocalRegister',$category->getNoOfYearsInElectrocalRegister(), ['readonly']) ; }}		
+		<div id="catogory4" >
+		<h1> Childern of persons belonging to staff in institution directly involved in school education </h1>
+		
+		<br>
+		{{Form::label('Label29', 'a) Post held as permanent employee in the relevant institutions');}}
 
-			<br>
-			{{Form::label('Label2','Number of years that include either name of the applicant or the name of the spouse in the electoral register');}}
-			{{ Form :: text( 'noOfYearsSpouseInElectrocalRegister',$category->getNoOfYearsSpouseInElectrocalRegister(), ['readonly']) ; }}		
+		 {{ Form :: text( 'permenentEmployeePost',$category->getPermenentEmployeePost(), ['readonly']) ; }}		
+
+		<br>
+		{{Form::label('Label31', 'b) Distance from place of residence to place of work');}}
+		 {{ Form :: text( 'distanceFromResidentToWork',$category->getDistanceFromResidentToWork()." km", ['readonly']) ; }}		
 
 
-			<br>
-			This is applicable for a period of recent 05 years, prior to the year the application is submitted
-			<br>
+		<br>
+		{{Form::label('Label32','c) If serving presently in a difficult school, period of difficult school service');}}
+		@if($category->getNowInDifficultSchoolService())
+		 {{ Form :: text( 'nowInDifficultSchoolService','Yes', ['readonly']) ; }}		
+		@else
+		{{ Form :: text( 'nowInDifficultSchoolService','No', ['readonly']) ; }}	
+		@endif
 
-			b)Ownership of place of residence
-			<br>
-			{{Form::label('Label3', 'Type of Title deed:');}}
-			@if($category->getTypeOfTitleDeed()==1)
-			{{ Form :: text( 'typeOfTitleDeed','In the name of applicant/spouse or applicants parents', ['readonly']) ; }}		
-			@elseif($category->getTypeOfTitleDeed()==2)
-			{{ Form :: text( 'typeOfTitleDeed','Registered Lease Bond', ['readonly']) ; }}		
-			@elseif($category->getTypeOfTitleDeed()==3)
-			{{ Form :: text( 'typeOfTitleDeed','Government official Quarters Documents', ['readonly']) ; }}		
-			@elseif($category->getTypeOfTitleDeed()==4)
-			{{ Form :: text( 'typeOfTitleDeed','un-registered Lease Bond', ['readonly']) ; }}		
-			@endif
+		<br>
+		{{Form::label('Label33','d) If served earlier in a in a difficult school such period of service');}}		
+		 {{ Form :: text( 'periodInDifficultSchoolService',$category->getPeriodOfDifficultSchoolService()." years", ['readonly']) ; }}		
+		
+		 <br>
+		 {{Form::label('Label40','Currently Serving School:');}}		
+		 {{ Form :: text( 'servingPeriodOfSchool',$cur_school->getSchool_name(), ['readonly']) ; }}
+		
 
-			<br>
-			{{Form::label('Label4','Additional documents which could be submitted in proof of residence (national ID/Water bills/Light bills/Phone bills/Marriage certificate');}}
+		<br>
 
-			{{ Form :: text( 'noOfAditionalDocumentForResident',$category->getNoOfAditionalDocumentForResident(), ['readonly']) ; }}		
+		{{Form::label('Label40','Period of service in this school:');}}		
+		 {{ Form :: text( 'servingPeriodOfSchool',$category->getServingPeriodOfSchool(), ['readonly']) ; }}
+		
 
-			
-			<br>
-			{{Form::label('Label5','No of schools located closer to the place of residence where the child could be admitted than the school applied for');}}
+		<br>
 
-			{{ Form :: text( 'closeSchoolCount',$category->getCloseSchoolCount(), ['readonly']) ; }}
-			<br>
+		{{Form::label('Label41','Close School Count ');}}		
+		 {{ Form :: text( 'closeSchoolCount',$category->getCloseSchoolCount(), ['readonly']) ; }}
+		
 
-			{{Form::submit('Verify Application')}}		
-			
-		</div>
+		<br>
 
+
+		Un-utilized leaves
+			{{ Form :: label( 'year1RemLeave','Year 1 :') ; }}
+			{{ Form :: text( 'year1RemLeaveText',$category->getYear1RemLeave()." days", ['readonly']) ; }}
+			<br>	
+			{{ Form :: label( 'year2RemLeave','Year 2 :') ; }}	
+			{{ Form :: text( 'year2RemLeaveText',$category->getYear2RemLeave()." days", ['readonly']) ; }}
+			<br>	
+			{{ Form :: label( 'year3RemLeave','Year 3 :') ; }}		
+			{{ Form :: text( 'year3RemLeaveText',$category->getYear3RemLeave()." days", ['readonly']) ; }}
+			<br>	
+			{{ Form :: label( 'year4RemLeave','Year 4 :') ; }}			
+			{{ Form :: text( 'year4RemLeaveText',$category->getYear4RemLeave()." days", ['readonly']) ; }}
+			<br>			
+
+	</div>
+	{{Form::submit('Verify Application')}}
 	{{Form::close()}}
 
 	{{ Form :: open(array('url' =>'school/cancelverify','method' => 'POST' ))}}

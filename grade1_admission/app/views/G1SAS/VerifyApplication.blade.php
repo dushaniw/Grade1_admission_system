@@ -54,7 +54,12 @@
 	{{Form:: open(array('url' =>'school/verifytype4','method' => 'POST' ))}}
 		{{Form::label('type4label','Applications regarding Educational Officers:')}}
 		<br>
-		{{Form::select('type4',$application_set_set[3])}}	
+		{{Form::hidden('school_id',$school->getSchool_id())}}
+		<select class="form-school-control" name="type">
+        @foreach($application_set_set[3] as $application)
+            <option value="{{$application}}">{{$application}}</option>
+        @endforeach
+      	</select>	
 		{{Form::submit('Click to verify');}}
 	{{Form:: close()}}
 	<br>
@@ -62,7 +67,12 @@
 	{{Form:: open(array('url' =>'school/verifytype5','method' => 'POST' ))}}
 		{{Form::label('type5label','Applications regarding transferred officers:')}}
 		<br>
-		{{Form::select('type5',$application_set_set[4])}}	
+		{{Form::hidden('school_id',$school->getSchool_id())}}
+		<select class="form-school-control" name="type">
+        @foreach($application_set_set[4] as $application)
+            <option value="{{$application}}">{{$application}}</option>
+        @endforeach
+      	</select>	
 		{{Form::submit('Click to verify');}}
 	{{Form:: close()}}
 	<br>
@@ -70,7 +80,12 @@
 	{{Form:: open(array('url' =>'school/verifytype6','method' => 'POST' ))}}
 		{{Form::label('type6label','Applications regarding people coming from abroad:')}}
 		<br>
-		{{Form::select('type6',$application_set_set[5])}}	
+		{{Form::hidden('school_id',$school->getSchool_id())}}
+		<select class="form-school-control" name="type">
+        @foreach($application_set_set[5] as $application)
+            <option value="{{$application}}">{{$application}}</option>
+        @endforeach
+      	</select>	
 		{{Form::submit('Click to verify');}}
 	{{Form:: close()}}
 	<br>
