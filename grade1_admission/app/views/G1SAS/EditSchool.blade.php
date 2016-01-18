@@ -1,69 +1,97 @@
-<html>
-<head>
-	<title> Edit School </title>
-</head>
+@extends('G1SAS/layouts/normal_user_layout')
+@section('content')
 
-<body>
-	<div>
-	
-	</div>
+<nav class = "navbar navbar-inverse" role = "navigation">
+                <ul class="nav navbar-nav" >
+                <li  class="active" > {{HTML::link('#', 'Home')}} </li>
+                <li>{{HTML::link('#', 'About')}}        </li>
+                <li> {{HTML::link('#','Past Pupil')}} </li>
+                <li>{{HTML::link('#','Applications')}} </li>
+        </ul>
+                <p class = "navbar-text pull-right">
+         Signed in as <a href = "#" class = "navbar-link"><?php echo $school->getEmail()?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
+        </nav>
+        <div class="row">
+        	<div class="col-md-3">
+            	    <br/>
+                	<ul class = "nav nav-pills nav-stacked" role = "navigation">
+                        <li ><a href = "/school/overview?schoolidtext=<?php echo $school->getSchool_id()?>">Overview</a></li>
+                        <li class="active"><a href = "/school/edit?schoolidtext=<?php echo $school->getSchool_id()?>">Edit School Details</a>
+						</li>
+                	</ul>
+        	</div>
 
-{{Form::label('titlelabel',$school->getSchool_name()." logged in")}}
-
-<br>
-{{Form :: open(array('url' =>'school/addpastpupilmarkingcriteria','method' => 'POST' ))}}       
-        {{Form::submit('Add Past Pupil Marking Criteria');}}
-{{ Form:: close()}}
-
-
-{{Form :: open(array('url' =>'userpage/searchUserSchool','method' => 'POST' ))}}
-        {{Form::submit('Search selected school');}}
-{{ Form:: close()}}
-
-{{Form :: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
-        {{Form::submit('Search school selected applicants');}}
-{{ Form:: close()}}
-
-{{Form :: open(array('url' =>'school/save','method' => 'POST' ))}}
-		{{Form::label('schoolidlabel','School ID   :')}}
-		{{Form::text('schoolidtext',$school->getSchool_id(), ['readonly'])}}
-		<br>
-		{{Form::label('schoolnamelabel','School     :')}}
-		{{Form::text('schoolnametext',$school->getSchool_name())}}
-		<br>
+        	<div class = "col-md-9">
+                <div class = "panel panel-primary panel-transparent">
+                        <div class ="panel-heading">
+                                <h3 class="panel-title"> <p class="text-center"><span class = "glyphicon glyphicon-edit"></span>  Edit School Details </p></h3>
+                        </div>
+                        <div class = "panel-body"> <div class = "col-md-10">
+                        	{{Form:: open(array('url' =>'school/save','method' => 'POST' ))}}
+                        	<div class="form-group">
+								{{Form::label('schoolidlabel','School ID')}}
+								{{Form::text('schoolidtext',$school->getSchool_id(), array('class'=>'form-control','readonly'))}}
+							</div>
+							<div class ="form-group">
+								{{Form::label('schoolnamelabel','School')}}
+								{{Form::text('schoolnametext',$school->getSchool_name(),array('class' =>'form-control','required'))}}
+							</div>
+							<div class="form-group">
 		
-		{{Form::label('categorylabel','Category    :')}}
-		@if($school->getCategory()=='national')
-			{{Form::label('national', 'National School :');}}
+								{{Form::label('categorylabel','Category')}}
 
-	        {{ Form::radio('category', 'national',true); }}
+								@if($school->getCategory()=='national')
+								 	<div class = "radio">
+								 		<label>
+								 			{{ Form::radio('category', 'national',true); }}
+								 			National School
 
-	        {{Form::label('local_gov', 'Local government school :      ');}}
+								 		</label>
+								 		<label>
+								 			{{ Form::radio('category', 'local government'); }}
+								 			Local Government School
+								 		</label>
+									        					
+	        						</div>
+    							@else
+    								<div class= "radio">
+    										<label>
+								 			{{ Form::radio('category', 'national'); }}
+								 			National School
 
-	        {{ Form::radio('category', 'local government'); }}
-    	@else
-    		{{Form::label('national', 'National School :');}}
-
-	        {{ Form::radio('category', 'national'); }}
-
-	        {{Form::label('local_gov', 'Local government school :      ');}}
-
-	        {{ Form::radio('category', 'local government',true); }}
+								 		</label>
+								 		<label>
+								 			{{ Form::radio('category', 'local government',true); }}
+								 			Local Government School
+								 		</label>
     	
-    	@endif
-        <br>
+    								</div>
+    							@endif
+       
+    						</div>
+    						<div class="form-group">
+													
+									{{Form::label('capacitylabel','No of Classes Available:')}}
+									{{Form::text('capacitytext',$school->getNo_of_classes(),array('style'=>'width: 150px','class' =>'form-control','required'))}}
+							</div>
+							<div class="form-group">
+		
+									{{Form::label('contactlabel','Contact Number:')}}
+									{{Form::text('contacttext',$school->getContact_no(),array('style'=>'width: 150px','class' =>'form-control','required'))}}
+							</div>
+							<div class="form-group">
+								 {{Form::submit('Save Changes',array('class' => 'btn btn-primary' ))}}
+        						
+        					</div>
+									
+									{{ Form:: close()}}
+                        </div> </div>
 
-		{{Form::text('categorytext',$school->getCategory())}}
-		<br>
-		{{Form::label('capacitylabel','No of Classes Available:')}}
-		{{Form::text('capacitytext',$school->getNo_of_classes())}}
-		<br>
-		{{Form::label('contactlabel','Contact Number:')}}
-		{{Form::text('contacttext',$school->getContact_no())}}
-		<br>
-        {{Form::submit('Save changes');}}
-{{ Form:: close()}}
 
 
-</body>
-</html>
+
+
+
+
+
+@stop

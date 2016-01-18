@@ -71,11 +71,19 @@ class SchoolController extends BaseController
 	}
 
 
-	public function postEdit(){
-			$schoolid=Input::get('schoolidtext');
+	public function getEdit(){
+			//$schoolid=Input::get('schoolidtext');
+			$schoolid =  $_GET['schoolidtext'];
 			$school=DBSchoolController::getSchool($schoolid);
 			return View::make('G1SAS/EditSchool')->with('school',$school);
 	}
+
+	public function getOverview(){
+			$schoolid =  $_GET['schoolidtext'];
+			$school=DBSchoolController::getSchool($schoolid);
+			return View:: make ('G1SAS/schoolpage')->with('school',$school);
+	}
+
 	public function postSave(){
 			$schoolid=Input::get('schoolidtext');
 			$schoolname=Input::get('schoolnametext');

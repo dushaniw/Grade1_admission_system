@@ -1,18 +1,50 @@
-<html>
-<head>
-	<title>Past Pupil Marking Criteria</title>
-</head>
-<body>
-	{{Form :: open(array('url' =>'school/viewppmarkingcriteria','method' => 'POST' ))}}
-		{{Form::label('schoolidlabel','School ID   :')}}
-		{{Form::text('schoolidtext',$school->getSchool_id(), ['readonly'])}}
-		{{Form::label('schoolnamelabel','School     :')}}
-		{{Form::text('schoolnametext',$school->getSchool_name(), ['readonly'])}}
-		<br>
+@extends('G1SAS/layouts/normal_user_layout')
+@section('content')
 
-		{{Form::label('yearlabel','Select year of admissions    :')}}
-		{{Form::select('year_sel',$years,$year)}}
-		{{Form::submit('View criteria');}}
+<nav class = "navbar navbar-inverse" role = "navigation">
+                <ul class="nav navbar-nav" >
+                <li> {{HTML::link('#', 'Home')}} </li>
+                <li>{{HTML::link('#', 'About')}}        </li>
+                <li class="active"> {{HTML::link('#','Past Pupil')}} </li>
+                <li>{{HTML::link('#','Applications')}} </li>
+        </ul>
+                <p class = "navbar-text pull-right">
+         Signed in as <a href = "#" class = "navbar-link"><?php echo $school->getEmail()?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
+        </nav>
+        <div class="row">
+        	<div class="col-md-3">
+            	    <br/>
+                	<ul class = "nav nav-pills nav-stacked" role = "navigation">
+                        <li class="active"><a href = "/school/viewpastpupilmarkingcriteria?schoolid=<?php echo $school->getSchool_id()?>">Marking Criteria</a></li>
+                        <li ><a href = "/school/edit?schoolidtext=<?php echo $school->getSchool_id()?>">Add New Marking Criteria</a>
+						</li>
+                	</ul>
+        	</div>
+        	<div class = "col-md-9">
+                <div class="page-header" style="border-color:#303030">
+					<h2><?php echo $school->getSchool_name() ?> | Marking Criteria</h2>
+				</div>
+				{{Form:: open(array('url' =>'school/viewppmarkingcriteria','method' => 'POST' ))}}
+					{{Form::hidden('schoolidtext',$school->getSchool_id())}}
+					{{Form::hidden('schoolnametext',$school->getSchool_name())}}
+					
+					<div class="form-group">
+						{{Form::label('yearlabel','Select year of admissions    :')}}
+					<br/>
+					{{Form::select('year_sel',$years,$year,['class'=>'div-inline','style'=>'width: 100px' ])}}
+					</div>
+					<div class="form-group">
+					{{Form::submit('View criteria',array('class' => 'btn btn-primary' ))}}
+					</div>
+			</div>
+
+
+			</div>
+			<div>
+
+
+
+	
 		<br><br>
 
 		{{Form::label('eduAchlabel','Marks recommended for Educational Achievements during school:')}}
@@ -64,5 +96,5 @@
 	 	
 	{{ Form:: close()}}
 
-</body>
-</html>
+</div>
+@stop

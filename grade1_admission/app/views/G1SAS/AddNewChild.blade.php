@@ -26,6 +26,7 @@
                         </div>
                         <div class = "panel-body"> <div class = "col-md-10">
                                 {{Form :: open(array('url' =>'child/add','method' => 'POST','role'=>'form' ))}}
+                                        {{Form::hidden('usernameText',$username)}}
                                         <div class="form-group">
                                                 {{Form::label('applicantIdLabel', 'Your child ID');}}
                                                 {{Form:: text('idText',$applicantId,array('class' =>'form-control','required','readonly' => 'true','style'=>'width: 100px','placeholder'=>'First Name'))}}    

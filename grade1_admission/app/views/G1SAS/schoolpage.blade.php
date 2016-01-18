@@ -1,18 +1,36 @@
-<html>
-<head>
-	<title> School Log In</title>
-</head>
+@extends('G1SAS/layouts/normal_user_layout')
+@section('content')
 
-<body>
-	<div>
-	
-	</div>
+<nav class = "navbar navbar-inverse" role = "navigation">
+                <ul class="nav navbar-nav" >
+                <li  class="active" > {{HTML::link('#', 'Home')}} </li>
+                <li>{{HTML::link('#', 'About')}}        </li>
+                <li> {{HTML::link('#','Past Pupil')}} </li>
+                <li>{{HTML::link('#','Applications')}} </li>
+        </ul>
+                <p class = "navbar-text pull-right">
+         Signed in as <a href = "#" class = "navbar-link"><?php echo $school->getEmail()?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
+        </nav>
+        <div class="row">
+        	<div class="col-md-3">
+            	    <br/>
+                	<ul class = "nav nav-pills nav-stacked" role = "navigation">
+                        <li class="active"><a href = "/school/overview?schoolidtext=<?php echo $school->getSchool_id()?>">Overview</a></li>
+                        <li ><a href = "/school/edit?schoolidtext=<?php echo $school->getSchool_id()?>">Edit School Details</a>
+						</li>
+                	</ul>
+        	</div>
+        	<div class ="col-md-9">
+				<div class="page-header" style="border-color:#303030">
+					<h2><?php echo $school->getSchool_name() ?></h2>
+				</div>
+				<h4><strong>School ID : </strong><?php echo $school->getSchool_id() ?></h4> <br/>
+				<h4><strong>Category : </strong><?php echo $school->getCategory() ?></h4> <br/>
+				<h4><strong>No of Classes : </strong><?php echo $school->getNo_of_classes()?></h4>	<br/>						
+				<h4><strong>Contact no : </strong><?php echo $school->getContact_no()?></h4>							
+			</div>
+		</div>
 
-{{Form::label('titlelabel',$school->getSchool_name()." logged in")}}
-<br>
-{{Form::label('noticelabel',$notice)}}
-
-<br>
 {{Form:: open(array('url' =>'school/addpastpupilmarkingcriteria','method' => 'POST' ))}}  
 	{{Form::hidden('schoolid',$school->getSchool_id())}}     
         {{Form::submit('Add Past Pupil Marking Criteria');}}
@@ -23,37 +41,19 @@
         {{Form::submit('View Available Past Pupil Marking Criteria');}}
 {{ Form:: close()}}
 
+<<<<<<< HEAD
+{{Form:: open(array('url' =>'school/verifyapplication','method' => 'POST' ))}}
+=======
 {{Form :: open(array('url' =>'school/verifyapplication','method' => 'POST' ))}}
 		{{Form::hidden('schoolid',$school->getSchool_id())}} 
+>>>>>>> origin/master
         {{Form::submit('Verify Applications');}}
 {{ Form:: close()}}
 
-{{Form :: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
+{{Form:: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
         {{Form::submit('Search school selected applicants');}}
 {{ Form:: close()}}
 
-{{Form :: open(array('url' =>'school/edit','method' => 'POST' ))}}
-		{{Form::label('schoolidlabel','School ID   :')}}
-		{{Form::text('schoolidtext',$school->getSchool_id(), ['readonly'])}}
-		<br>
-		{{Form::label('schoolnamelabel','School     :')}}
-		{{Form::text('schoolnametext',$school->getSchool_name(), ['readonly'])}}
-		<br>
-		{{Form::label('categorylabel','Category    :')}}
-		{{Form::text('categorytext',$school->getCategory(), ['readonly'])}}
-		<br>
-		{{Form::label('capacitylabel','No of Classes Available:')}}
-		{{Form::text('capacitytext',$school->getNo_of_classes(), ['readonly'])}}
-		<br>
-		{{Form::label('contactlabel','Contact Number:')}}
-		{{Form::text('contacttext',$school->getContact_no(), ['readonly'])}}
-		<br>
-		{{Form::label('emaillabel','Email    :')}}
-		{{Form::text('emailtext',$school->getEmail(), ['readonly'])}}
-		<br>
-        {{Form::submit('Edit school details');}}
-{{ Form:: close()}}
 
 
-</body>
-</html>
+@stop
