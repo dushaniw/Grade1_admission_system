@@ -26,5 +26,31 @@ class EditController extends BaseController{
     	}
     }
 
+    public function postEditcategory1()
+    {
+         
+            $guardianNic=Input::get("guardianNic");
+            $noOfYearsInElectrocalRegister=Input::get('noOfYearsInElectrocalRegister');
+            $noOfYearsSpouseInElectrocalRegister=Input::get('noOfYearsSpouseInElectrocalRegister');
+            $typeOfTitleDeed =Input::get('typeOfTitleDeed');
+            $noOfAditionalDocumentForResident=Input::get('noOfAditionalDocumentForResident');
+            $closeSchoolCount=Input::get('closeSchoolCount');  
+
+          $category=new Resident_in_closeProximity();     
+          $category->setNoOfAditionalDocumentForResident($noOfAditionalDocumentForResident);
+          $category->setCloseSchoolCount($closeSchoolCount);
+          $category->setTypeOfTitleDeed($typeOfTitleDeed);
+          $category->setNoOfYearsSpouseInElectrocalRegister($noOfYearsSpouseInElectrocalRegister);
+          $category->setNoOfYearsInElectrocalRegister($noOfYearsInElectrocalRegister);
+          $category->setNic($guardianNic); 
+
+          $result=DBCategory1Controller::editCategory1($category); 
+          if($result){
+               return "category 1 editted well"; 
+          }else{
+            return "category 1 not editted well";
+          }  
+    }
+
 
 }
