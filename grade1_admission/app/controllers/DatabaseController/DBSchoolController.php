@@ -127,5 +127,25 @@ class DBSchoolController
 
         }
 
+        public static function addSchool($school)
+        {
+                $db=Connection::getInstance();
+                $mysqli=$db->getConnection();
+
+                $name=$school->getSchool_name();
+                $schoolid=$school->getSchool_id();
+                $category=$school->getCategory();
+                $no_of_classes=$school->getNo_of_classes();
+                $contact=$school->getContact_no();
+                $male_per=$school->getMale_percentage();
+                $sinhala_per=$school->getSinhala_percentage();
+                $email=$school->getEmail();
+                $password=$school->getPassword();
+
+                $query="insert into school values( '$schoolid','$name','$male_per','$category','$sinhala_per','$contact','$no_of_classes','$email','$password')";
+                $result=$mysqli->query($query);
+                return $result;                      
+        }
+
 
 }

@@ -248,4 +248,34 @@ class SchoolController extends BaseController
 			
 			return View::make('G1SAS/VerifyApplication')->with('title','The application was added to pending list')->with('school',$school)->with('application_set_set',$applicationids_set);
 	}
+
+	public function postAddschool(){
+			$schoolid=Input::get('schoolidtext');
+            $schoolname=Input::get('schoolnametext');
+            $category=Input::get('category');
+            $no_of_classes=Input::get('capacitytext');
+            $contact_number=Input::get('contacttext');
+            $male_per=Input::get('malepertext');
+            $sinhala_per=Input::get('sinhalapertext');
+            $email=Input::get('emailtext');
+            $password=Input::get('passwordtext');
+
+            $school=new school();
+            $school->setSchool_id($schoolid);
+            $school->setSchool_name($schoolname);
+            $school->setCategory($category);
+            $school->setContact_no($contact_number);
+            $school->setNo_of_classes($no_of_classes);
+            $school->setMale_percentage($male_per);
+            $school->setSinhala_percentage($sinhala_per);
+            $school->setEmail($email);
+            $school->setPassword($password);
+            
+            $result=DBSchoolController::addSchool($school);
+            if($result){
+            	return View::make('G1SAS/adminpage')->with('title','School added successfully');
+        	}else{
+        		return View::make('G1SAS/adminpage')->with('title','School was not added');
+        	}
+	}
 }

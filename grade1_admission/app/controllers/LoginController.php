@@ -42,7 +42,7 @@ class LoginController extends BaseController
             if ($result->num_rows > 0) {
                 if($row = $result->fetch_assoc()) {
                     if($row["password"]==$password){
-                        return View :: make ('G1SAS/adminpage')->with('username',$user_name);
+                        return View :: make ('G1SAS/adminpage')->with('title',"You are logged in as:".$user_name);
                     }else{
                         return Redirect::to('/');
                     }
