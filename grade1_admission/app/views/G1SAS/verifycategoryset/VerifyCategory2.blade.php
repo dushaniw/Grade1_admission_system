@@ -68,29 +68,35 @@
 
 
 		
-		{{Form::label('Label7','toGrade');}}
+		{{Form::label('Label7','to Grade :');}}
 
-		 {{ Form :: text( 'gradeOfLeaving','') ; }}		
+		 {{ Form :: text( 'gradeOfLeaving',$category->getGradeOfLeaving()) ; }}		
 
 		<br>
 		{{Form::label('Label8', 'Educational achievements gained during schooling period');}}
 		<br>	
-		 {{ Form :: textArea( 'eAchievementDetail','') ; }}		
-
+		@foreach($ach_set as $ach)
+		 {{ Form :: text( 'eAchievementDetail',$ach->getType()." -".$ach->getAchievementDetail()) ; }}	
+		 <br>	
+		@endforeach
 
 		<br>
 		{{Form::label('Label9','Achievements gained in co-curricular activities during schooling period');}}
 		<br>
-		 {{ Form :: textArea( 'cAchievementDetail','') ; }}		
+		 <br>	
+		@foreach($con_set as $con)
+		 {{ Form :: text( 'coDetail',$con->getContributionDetail()) ; }}	
+		 <br>	
+		@endforeach	
 
 		
 		<br>
 		{{Form::label('Label10','Membership in past pupil associations, educational achievements after period of schooling and various types of assistance provided for the development of the school');}}
 		<br>
 		 @if($category->getPastPupilOrganizationMembership())
-		 {{ Form :: textArea( 'pastPupilOrganizationMembership','Yes') ; }}		
+		 {{ Form :: text( 'pastPupilOrganizationMembership','Yes') ; }}		
 		@else
-		 {{ Form :: textArea( 'pastPupilOrganizationMembership','No') ; }}
+		 {{ Form :: text( 'pastPupilOrganizationMembership','No') ; }}
 		@endif
 			
 		

@@ -20,7 +20,11 @@
 		{{Form :: text( 'applicant_nametext',$applicant->getFirstname()." ".$applicant->getLastname()); }}
 		<br>
 		{{Form :: label( 'guardian_name','Guardian Name:') ; }}
-		
+		{{Form :: text( 'guardian_nametext',$guardian->getFirstName()." ".$guardian->getLastName()); }}
+		<br>
+		{{Form :: label( 'guardian_nic','Guardian NIC:') ; }}
+		{{Form :: text( 'guardian_nictext',$guardian->getNic()); }}
+		<br>
 		<br>
 		{{Form :: label( 'gender','Gender:') ; }}
 		{{Form :: text( 'gendertext',$applicant->getGender()); }}
@@ -52,7 +56,7 @@
 
 		<br>
 		{{Form :: label( 'distance','Distance to school:') ; }} 
-		{{Form :: text( 'distancetext',$application->getDistance()) ; }} 
+		{{Form :: text( 'distancetext',$application->getDistance()." km") ; }} 
 		<br>
 		{{Form :: label( 'medium','Learning Medium requested:') ; }}
 		{{Form :: text( 'mediumtext',$application->getMedium()) ; }}

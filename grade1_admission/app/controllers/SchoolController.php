@@ -1,6 +1,7 @@
 <?php
 include("/Model/pastPupil_markingCriteria.php");
 include '/DatabaseController/DBPastPupilMarkingCriteriaController.php';
+include '/DatabaseController/DBPPContributionController.php';
 /**
 * 
 */
@@ -120,6 +121,24 @@ class SchoolController extends BaseController
 			$guardian=DBGuardianController::getGuardianByNic($NIC);
 			$category=DBCategory1Controller::getCategory1($NIC);
 			return View::make('G1SAS/verifycategoryset/VerifyCategory1')->with('application_id',$application_id)->with('guardian',$guardian)->with('school',$school)->with('application',$application)->with('applicant',$applicant)->with('category',$category);
+	}
+
+	public function postVerifytype2(){
+			$application_id=Input::get('type');
+			$schoolid=Input::get('school_id');
+			$school=DBSchoolController::getSchool($schoolid);
+			$application=DBApplicationController::getApplication($application_id);
+			$applicant_id=$application->getApplicant_id();
+			$applicant=DBStudentApplicantController::getApplicantById($applicant_id);
+			$NIC=$applicant->getGuardianNIC();
+			$guardian=DBGuardianController::getGuardianByNic($NIC);
+			$category=DBCategory2Controller::getCategory2($schoolid,$NIC);
+			$pp_ach_set=DBPPAchievementController::getPastPupilAch($schoolid,$NIC);
+			$pp_con_set=DBPPContributionController::getPastPupilCon($schoolid,$NIC);
+			return View::make('G1SAS/verifycategoryset/VerifyCategory2')->with('application_id',$application_id)
+			->with('guardian',$guardian)->with('school',$school)->with('application',$application)
+			->with('applicant',$applicant)->
+			with('category',$category)->with('ach_set',$pp_ach_set)->with('con_set',$pp_con_set);
 	}
 
 	public function postVerifycat(){

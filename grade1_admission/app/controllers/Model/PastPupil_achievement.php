@@ -1,6 +1,6 @@
 <?php
 
-class PastPupil_achivement{
+class PastPupil_achievement{
 
 	private $schoolId;
 	private $NIC;
