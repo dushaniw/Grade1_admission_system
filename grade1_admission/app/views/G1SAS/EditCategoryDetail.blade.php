@@ -4,7 +4,6 @@
 </head>
 <body>
 	<h1> edit category detail </h1>
-{{$nic}}
 
 	{{Form:: open(array('url' =>'edit/editcategory','method' => 'POST' ))}}
 			 {{Form::hidden('nic',$nic)}}

@@ -3,7 +3,7 @@
 	<title>Category 1 Edit</title>
 </head>
 <body>
-	{{Form :: open(array('url' =>'selectSchool/editcategory','method' => 'POST' ))}}
+	{{Form :: open(array('url' =>'edit/editcategory1','method' => 'POST' ))}}
 		
 		{{Form::hidden('guardianNic', $category1->getNic());}}
 

@@ -46,4 +46,20 @@ class DBCategory1Controller{
         }
         return false;
   }
+
+
+  public static function editCategory1($category){
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $nic=$category->getNic();
+        $noOfYearsInElectrocalRegister=$category->getNoOfYearsInElectrocalRegister();
+        $typeOfTitleDeed=$category->getTypeOfTitleDeed();
+        $noOfYearsSpouseInElectrocalRegister=$category-> getNoOfYearsSpouseInElectrocalRegister();
+        $closeSchoolCount=$category->getCloseSchoolCount();
+        $noOfAditionalDocumentForResident=$category->getNoOfAditionalDocumentForResident();
+       
+        $query="update residentInClosedProximity set noOfYearsInElectrocalRegister ='$noOfYearsInElectrocalRegister',noOfYearsSpouseInElectrocalRegister='$noOfYearsSpouseInElectrocalRegister',typeOfTitleDeed='$typeOfTitleDeed',closeSchoolCount='$closeSchoolCount',noOfAditionalDocumentForResident='$noOfAditionalDocumentForResident' where NIC='$nic'";
+        return $mysqli->query($query);
+  }
+
 }
