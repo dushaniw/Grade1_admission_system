@@ -30,8 +30,8 @@ class ChildController extends BaseController{
         $db=Connection::getInstance();
         $conn=$db->getConnection();
         // prepare and bind
-$stmt = $conn->prepare("INSERT INTO studentApplicant  VALUES (?, ?, ?,?,?,?,?,?)");
-$stmt->bind_param("ssssssss", $nic,$applicantId,$first_name,$last_name,$gender,$religion,$dob,$isverified);
+        $stmt = $conn->prepare("INSERT INTO studentApplicant  VALUES (?, ?, ?,?,?,?,?,?)");
+        $stmt->bind_param("ssssssss", $nic,$applicantId,$first_name,$last_name,$gender,$religion,$dob,$isverified);
 
         $g_email=Input::get('usernameText');
         $guardian=DBGuardianController::getGuardian($g_email);    

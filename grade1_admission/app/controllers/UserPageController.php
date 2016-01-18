@@ -10,7 +10,7 @@ class UserPageController extends BaseController
 		$username=Input::get("username");
 		$applicantId=intval(DBStudentApplicantController::getLastApplicantId()) +1;
     		
-    		return View :: make('G1SAS/AddNewChild')->with('username',$username)->with('applicantId',$applicantId);
+    	return View :: make('G1SAS/AddNewChild')->with('username',$username)->with('applicantId',$applicantId);
 	
 	}
 

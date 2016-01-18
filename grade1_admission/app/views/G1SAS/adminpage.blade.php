@@ -4,13 +4,17 @@
 </head>
 <body>
 	<div>
-		{{Form::label('usernameLabel','You are loged in as  :'.$username)}}
+		{{Form::label('Label',$title)}}
     </div>
 
 	{{Form :: open(array('url' =>'admin/calculate','method' => 'POST' ))}}
-        {{Form::hidden('username',$username)}}
+        {{Form::hidden('username',$title)}}
         {{Form::submit('calculate marks');}}
 	{{ Form:: close()}}
 
+	{{Form :: open(array('url' =>'admin/addnewschool','method' => 'POST' ))}}
+        
+        {{Form::submit('Add New School');}}
+	{{ Form:: close()}}
 </body>
 </html>
