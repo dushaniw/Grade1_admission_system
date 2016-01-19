@@ -3,10 +3,10 @@
 
 <nav class = "navbar navbar-inverse" role = "navigation">
                 <ul class="nav navbar-nav" >
-                <li> {{HTML::link('#', 'Home')}} </li>
+                <li> <a href = "/school/overview?schoolidtext=<?php echo $school->getSchool_id()?>">Home</a></li>
                 <li>{{HTML::link('#', 'About')}}        </li>
-                <li class="active"> {{HTML::link('#','Past Pupil')}} </li>
-                <li>{{HTML::link('#','Applications')}} </li>
+                <li class="active"><a href = "/school/viewpastpupilmarkingcriteria?schoolid=<?php echo $school->getSchool_id()?>"> Past Pupil </a>  </li>
+                <li><a href = "/school/verifyapplication?schoolid=<?php echo $school->getSchool_id()?>">Applications</a></li>
         </ul>
                 <p class = "navbar-text pull-right">
          Signed in as <a href = "#" class = "navbar-link"><?php echo $school->getEmail()?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
@@ -16,7 +16,7 @@
             	    <br/>
                 	<ul class = "nav nav-pills nav-stacked" role = "navigation">
                         <li class="active"><a href = "/school/viewpastpupilmarkingcriteria?schoolid=<?php echo $school->getSchool_id()?>">Marking Criteria</a></li>
-                        <li ><a href = "/school/edit?schoolidtext=<?php echo $school->getSchool_id()?>">Add New Marking Criteria</a>
+                        <li ><a href = "/school/addpastpupilmarkingcriteria?schoolid=<?php echo $school->getSchool_id()?>">Add New Marking Criteria</a>
 						</li>
                 	</ul>
         	</div>

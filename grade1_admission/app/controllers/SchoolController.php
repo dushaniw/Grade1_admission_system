@@ -9,8 +9,8 @@ include '/DatabaseController/DBPPContributionController.php';
 */
 class SchoolController extends BaseController
 {
-	public function postAddpastpupilmarkingcriteria(){
-			$schoolid=Input::get('schoolid');
+	public function getAddpastpupilmarkingcriteria(){
+			$schoolid=$_GET['schoolid'];
 			$school=DBSchoolController::getSchool($schoolid);
 			return View::make('G1SAS/AddPastPupilMarkingCriteria')->with('school',$school);
 	}
@@ -108,8 +108,8 @@ class SchoolController extends BaseController
 			}
 	}
 
-	public function postVerifyapplication(){
-			$schoolid=Input::get('schoolid');
+	public function getVerifyapplication(){
+			$schoolid=$_GET['schoolid'];
 			$school=DBSchoolController::getSchool($schoolid);
 			$applicationids_set=array();
 			for ($i=1; $i <7 ; $i++) { 

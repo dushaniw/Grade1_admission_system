@@ -3,10 +3,10 @@
 
 <nav class = "navbar navbar-inverse" role = "navigation">
                 <ul class="nav navbar-nav" >
-                <li  class="active" > {{HTML::link('#', 'Home')}} </li>
+                <li  class="active" > <a href = "/school/overview?schoolidtext=<?php echo $school->getSchool_id()?>">Home</a> </li>
                 <li>{{HTML::link('#', 'About')}}        </li>
                 <li> <a href = "/school/viewpastpupilmarkingcriteria?schoolid=<?php echo $school->getSchool_id()?>"> Past Pupil </a> </li>
-                <li>{{HTML::link('#','Applications')}} </li>
+                <li><a href = "/school/verifyapplication?schoolid=<?php echo $school->getSchool_id()?>">Applications</a> </li>
         </ul>
                 <p class = "navbar-text pull-right">
          Signed in as <a href = "#" class = "navbar-link"><?php echo $school->getEmail()?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
@@ -31,20 +31,8 @@
 			</div>
 		</div>
 
-            {{Form:: open(array('url' =>'school/addpastpupilmarkingcriteria','method' => 'POST' ))}}  
-	           {{Form::hidden('schoolid',$school->getSchool_id())}}     
-                {{Form::submit('Add Past Pupil Marking Criteria');}}
-            {{ Form:: close()}}
+          
 
-{{Form:: open(array('url' =>'school/verifyapplication','method' => 'POST' ))}}
-		{{Form::hidden('schoolid',$school->getSchool_id())}} 
-
-        {{Form::submit('Verify Applications');}}
-{{ Form:: close()}}
-
-{{Form:: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
-        {{Form::submit('Search school selected applicants');}}
-{{ Form:: close()}}
 
 
 
