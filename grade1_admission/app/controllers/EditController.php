@@ -57,9 +57,16 @@ class EditController extends BaseController{
             } 
           
           
+      }elseif ($type==5) {
+          $hasCategory6=DBCategory6Controller::hasCategory6($nic);
+          if($hasCategory6){
+              $category6=DBCategory6Controller::getCategory6($nic);
+              return View :: make ('G1SAS/category6edit')->with('category6',$category6);
+            }else{
+              return "you don't have category 6 type application";
+            }  
+
       }
-
-
 
     }
 
@@ -181,9 +188,8 @@ class EditController extends BaseController{
 
  public function postEditcategory5()
     {
-        $nic=Input::get('nic');
-         
-             $dateOfTransferReceived=Input::get("dateOfTransferReceived"); 
+            $nic=Input::get('nic');
+            $dateOfTransferReceived=Input::get("dateOfTransferReceived"); 
             $beforeWorkedPlace =Input::get("beforeWorkedPlace");
             $afterWorkedPlace= Input::get("afterWorkedPlace");
             $distanceOfTransfer=Input::get("distanceOfTransfer"); 
@@ -203,14 +209,35 @@ class EditController extends BaseController{
             $category5->setYear3RemLeave($year3RemLeave);
             $category5->setYear4RemLeave($year4RemLeave);
             $category5->setServicePeriod($servicePeriod);
-          
             $result=DBCategory5Controller::editCategory5($category5); 
         
-          if($result){
-               return "category 5 editted well"; 
-          }else{
-            return "category 5 not editted well";
-          }  
+            if($result){
+                 return "category 5 editted well"; 
+            }else{
+              return "category 5 not editted well";
+            }  
+    }
+
+
+    public function postEditcategory6()
+    {
+            $nic=Input::get('nic');
+            $dateOfReturned=Input::get("dateOfReturned"); 
+            $periodAboardStay =Input::get("PeriodOfStayAbroad");
+            $reason= Input::get("reason");
+            
+            $category6=new PersonComingFromAbroad();
+            $category6->setNic($nic);
+            $category6->setDateOfReturned($dateOfReturned);
+            $category6->setPerioadAbroadStay($periodAboardStay);
+            $category6->setReasonsForStay($reason);
+            $result=DBCategory6Controller::editCategory6($category6); 
+        
+            if($result){
+                 return "category 6 editted well"; 
+            }else{
+              return "category 6 not editted well";
+            }  
     }
 
 
