@@ -88,7 +88,7 @@
 							{{Form:: text( 'distancetext',$application->getDistance()." km", array('class' =>'form-control','style'=>'width: 150px; background-color:white','readonly')) }} 
 						</div>
 						<div class="form-group">
-							{{Form:: label( 'medium','Requested Learning Medium') ; }}
+							{{Form:: label( 'medium','Requested Learning Medium')  }}
 							{{Form:: text( 'mediumtext',$application->getMedium(), array('class' =>'form-control','style'=>'width: 150px; background-color:white','readonly')) }}
 						</div>
 					<div id="catogory2" >
