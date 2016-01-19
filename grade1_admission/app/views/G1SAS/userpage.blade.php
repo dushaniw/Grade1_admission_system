@@ -4,10 +4,10 @@
 
 <nav class = "navbar navbar-inverse" role = "navigation">
 	<ul class="nav navbar-nav" >
-		<li class="active"> {{HTML::link('#', 'Home')}} </li>
+		<li class="active"> <a href="/userpage/home?username=<?php echo $username ?>">Home</a></li>
 		<li>{{HTML::link('#', 'About')}}	</li>
 		
-		<li> {{HTML::link('children','My Children')}} </li>
+		<li> <a href="/child/childrenoverview?username=<?php echo $username ?>">My Children</a></li>
 		<li>{{HTML::link('#','My Applications')}} </li>
 	</ul>
 		<p class = "navbar-text pull-right">
@@ -24,22 +24,18 @@
 	</div>
 	<div class ="col-md-9">
 		<div class="page-header" style="border-color:#303030">
-		<h2>Your Name: {{Form::label('namelabel',$guardian->getFirstName()." ".$guardian->getLastName())}}</h2>
+		<h2><?php echo $guardian->getFirstName()." ".$guardian->getLastName()?></h2>
 		</div>
-		<h4>NIC     :{{Form::label('niclabel',$guardian->getNIC())}}</h4>
-		<h4>Address :{{Form::label('addresslabel',$guardian->getPermanent_address())}}</h4>
-		<h4>Nationality   :{{Form::label('niclabel',$guardian->getNationality())}}</h4>
-		<h4>Religion      :{{Form::label('addresslabel',$guardian->getReligion())}}</h4>
-		<h4>Contact Number  :{{Form::label('niclabel',$guardian->getContact_number())}}</h4>
+
+		<h4><strong>NIC     	    : </strong><?php echo  $guardian->getNIC() ?></h4>
+		<h4><strong>Address         : </strong><?php echo  $guardian->getPermanent_address()?></h4>
+		<h4><strong>Nationality     : </strong><?php echo  $guardian->getNationality()?></h4>
+		<h4><strong>Religion        : </strong><?php echo $guardian->getReligion()?></h4>
+		<h4><strong>Contact Number  :</strong> <?php echo $guardian->getContact_number() ?></h4>
 		
 	</div>
 </div>
 
-{{Form::open(array('role'=>'form','url' => 'userpage/studentadd', 'method'=>'POST'))}}
-       {{Form::hidden('username',$username)}}
-       {{Form::submit('Add New Child',array('class' => 'btn btn-primary' ))}}
-       
-{{ Form:: close()}}
 
 {{Form:: open(array('url' =>'selectSchool','method' => 'GET' ))}}
 		{{Form::hidden('username',$username)}}

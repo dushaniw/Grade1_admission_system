@@ -3,9 +3,9 @@
 
         <nav class = "navbar navbar-inverse" role = "navigation">
                 <ul class="nav navbar-nav" >
-                <li > {{HTML::link('#', 'Home')}} </li>
+                <li > <a href="/userpage/home?username=<?php echo $username ?>">Home</a> </li>
                 <li>{{HTML::link('#', 'About')}}        </li>
-                <li class="active"> {{HTML::link('#','My Children')}} </li>
+                <li class="active"><a href = "/userpage/studentadd?username=<?php echo $username ?>">My Children </a></li>
                 <li>{{HTML::link('#','My Applications')}} </li>
         </ul>
                 <p class = "navbar-text pull-right">
@@ -15,8 +15,8 @@
         <div class="col-md-3">
                 <br/>
                 <ul class = "nav nav-pills nav-stacked" role = "navigation">
-                        <li><a href = "#">Overview</a></li>
-                        <li class="active"><a href = "#">Add New Child</a></li>
+                        <li><a href="/child/childrenoverview?username=<?php echo $username ?>">Overview</a></li>
+                        <li class="active"><a href = "/userpage/studentadd?username=<?php echo $username ?>">Add New Child</a></li>
                 </ul>
         </div>
         <div class = "col-md-9">

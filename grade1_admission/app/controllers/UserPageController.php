@@ -3,11 +3,16 @@
 class UserPageController extends BaseController
 {
 	
+	public function getHome(){
+		$username=$_GET["username"];
+        $guardian=DBGuardianController::getGuardian($username);
+        return View :: make ('G1SAS/userpage')->with('guardian',$guardian)->with('username',$username);
+
+    }
 	
-	
-	public function postStudentadd()
+	public function getStudentadd()
 	{
-		$username=Input::get("username");
+		$username=$_GET["username"];
 		$applicantId=intval(DBStudentApplicantController::getLastApplicantId()) +1;
     		
     	return View :: make('G1SAS/AddNewChild')->with('username',$username)->with('applicantId',$applicantId);

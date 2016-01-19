@@ -4,9 +4,16 @@ class ChildController extends BaseController{
 
 	public function getIndex()
     {
-        return View :: make ('G1SAS/AddNewChild');
+        return View:: make ('G1SAS/AddNewChild');
     }
     
+
+    public function getChildrenoverview(){
+        $username=$_GET['username'];
+        return View::make('G1SAS/children_overview')->with('username',$username);
+    }
+
+
 	public function postAdd(){
     
         //$g_email=Input::get('usernameText');

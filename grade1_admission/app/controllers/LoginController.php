@@ -38,6 +38,9 @@ class LoginController extends BaseController
 
 	}
 
+   
+
+
     public function postSearch(){
         $childId = Input::get("childIDText");
        // return Redirect::to('/')->with('resultText',$childId);
