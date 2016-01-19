@@ -24,10 +24,14 @@
 	</div>
 	<div class ="col-md-9">
 		<div class="page-header" style="border-color:#303030">
-		<h2>Your Name</h2>
+		<h2>Your Name: {{Form::label('namelabel',$guardian->getFirstName()." ".$guardian->getLastName())}}</h2>
 		</div>
-		<h4>NIC</h4>
-		<h4>Address</h4>
+		<h4>NIC     :{{Form::label('niclabel',$guardian->getNIC())}}</h4>
+		<h4>Address :{{Form::label('addresslabel',$guardian->getPermanent_address())}}</h4>
+		<h4>Nationality   :{{Form::label('niclabel',$guardian->getNationality())}}</h4>
+		<h4>Religion      :{{Form::label('addresslabel',$guardian->getReligion())}}</h4>
+		<h4>Contact Number  :{{Form::label('niclabel',$guardian->getContact_number())}}</h4>
+		
 	</div>
 </div>
 

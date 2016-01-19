@@ -4,6 +4,8 @@
 * 
 */
 include("AdminController.php");
+include("/DatabaseController/DBAdminController.php");
+include ('Model/Admin_user.php');
 
 class LoginController extends BaseController
 {
@@ -15,43 +17,20 @@ class LoginController extends BaseController
         $password = Input::get("password");
 
         if($user_type==2){
-           
-            
-            $db=Connection::getInstance();
-            $mysqli=$db->getConnection();       	
-            $query = "select password from guardian where email ='$user_name'";        	
-            $result =$mysqli->query($query);
-            
-            if ($result->num_rows > 0) {
-        		if($row = $result->fetch_assoc()) {
-            		if($row["password"]==$password){
-            			return View :: make ('G1SAS/userpage')->with('username',$user_name)->with('labelText','Your Child-Your School');
-            		}else{
-            			return Redirect::to('/');
-            		}
-        		}
-    		} else {
-        		return Redirect::to('/');
-    		}
+            $guardian=DBGuardianController::getGuardian($user_name);
+    		if($guardian->getPassword()==$password){
+    			return View :: make ('G1SAS/userpage')->with('guardian',$guardian)->with('username',$user_name)->with('labelText','Your Child-Your School');
+    		}else{
+    			return Redirect::to('/');
+    		}	
 	   }elseif ($user_type==0) {
-             $db=Connection::getInstance();
-            $mysqli=$db->getConnection();           
-            $query = "select password from admin_user where username ='$user_name'";         
-            $result =$mysqli->query($query);
-            
-            if ($result->num_rows > 0) {
-                if($row = $result->fetch_assoc()) {
-                    if($row["password"]==$password){
-                        return View :: make ('G1SAS/adminpage')->with('title',"You are logged in as:".$user_name);
-                    }else{
-                        return Redirect::to('/');
-                    }
-                }
-            } else {
+            $user=DBAdminController::getAdmin($user_name);
+            if($user->getPassword()==$password){
+                return View :: make ('G1SAS/adminpage')->with('title',"You are logged in as:".$user_name);
+            }else{
                 return Redirect::to('/');
             }
-                
-                
+                    
        }else{
             $school=DBSchoolController::getSchoolByEmail($user_name);
             return View :: make ('G1SAS/schoolpage')->with('school',$school)->with('notice','School information here');

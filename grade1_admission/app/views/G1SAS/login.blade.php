@@ -68,14 +68,14 @@
 			</div>
 		</div>
 	</div>
-			<!--
+			
 				
 			<div class="row">
 				<div class="col-md-12">
 				
 						<br/>
-						<p class="lead" style = "color:white"> Admission of student for Grade 1 - year 2017 for the government schools are now available. Apply Now !</p>
+						<p class="lead" style = "color:black"> Admission of student for Grade 1 for the government schools are now available until {{Form::label('deadline',DBDeadlineController::getDeadline())  }}</p>
 					
 				</div>
-			</div> -->
+			</div> 
 @stop
