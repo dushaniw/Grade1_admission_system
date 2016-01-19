@@ -5,7 +5,7 @@
 
 class SearchController extends BaseController{
 
-      public function postSchoolselected(){
+      public function getSchoolselected(){
             $schools=DBSchoolController::getAllSchool();
             return  View :: make ('G1SAS/searchOnSchool')->with ('schools',$schools);
       }

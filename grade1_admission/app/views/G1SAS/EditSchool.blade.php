@@ -3,10 +3,10 @@
 
 <nav class = "navbar navbar-inverse" role = "navigation">
                 <ul class="nav navbar-nav" >
-                <li  class="active" > {{HTML::link('#', 'Home')}} </li>
-                <li>{{HTML::link('#', 'About')}}        </li>
-                <li> {{HTML::link('#','Past Pupil')}} </li>
-                <li>{{HTML::link('#','Applications')}} </li>
+                <li  class="active" ><a href = "/school/edit?schoolidtext=<?php echo $school->getSchool_id()?>"> Home</a> </li>
+                <li>{{HTML::link('#', 'About')}}</li>
+                <li> <a href = "/school/viewpastpupilmarkingcriteria?schoolid=<?php echo $school->getSchool_id()?>"> Past Pupil </a> </li>
+                <li><a href = "/school/verifyapplication?schoolid=<?php echo $school->getSchool_id()?>">Applications</a> </li>
         </ul>
                 <p class = "navbar-text pull-right">
          Signed in as <a href = "#" class = "navbar-link"><?php echo $school->getEmail()?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
@@ -27,10 +27,10 @@
                                 <h3 class="panel-title"> <p class="text-center"><span class = "glyphicon glyphicon-edit"></span>  Edit School Details </p></h3>
                         </div>
                         <div class = "panel-body"> <div class = "col-md-10">
-                        	{{Form:: open(array('url' =>'school/save','method' => 'POST' ))}}
+                        	{{Form:: open(array('url' =>'school/save','method' => 'POST','role'=>'form' ))}}
                         	<div class="form-group">
 								{{Form::label('schoolidlabel','School ID')}}
-								{{Form::text('schoolidtext',$school->getSchool_id(), array('class'=>'form-control','readonly'))}}
+								{{Form::text('schoolidtext',$school->getSchool_id(), array('style'=>'width: 150px','class'=>'form-control','readonly'))}}
 							</div>
 							<div class ="form-group">
 								{{Form::label('schoolnamelabel','School')}}
