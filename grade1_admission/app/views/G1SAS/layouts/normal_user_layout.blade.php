@@ -23,6 +23,31 @@
 		{{ HTML::script('/js/bootstrap.min.js') }}
 
 		<style>
+
+
+		table{
+		border-collapse: collapse;
+		border-spacing: 10px;
+		width:100% ;
+		}
+	
+		th{
+		background-color: #4CAF50;
+    	color: white;
+    	
+		}
+	
+		table,th,td{
+		
+		text-align: left;
+		height: 30px;
+		padding: 15px;
+		border-bottom: 1px solid #ddd;
+    	
+		}
+		
+		tr:hover{background-color:#f5f5f5}
+
 		body{
      		margin: 0;
      		background: url('/img/school.png');

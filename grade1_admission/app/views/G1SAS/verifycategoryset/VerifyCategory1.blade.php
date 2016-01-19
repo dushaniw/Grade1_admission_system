@@ -16,7 +16,7 @@
             	    <br/>
                 	<ul class = "nav nav-pills nav-stacked" role = "navigation">
                         <li class="active"><a href = "/school/verifyapplication?schoolid=<?php echo $school->getSchool_id()?>">Verify Applications</a></li>
-                        <li ><a href = "/search/schoolselected">Search Selected Applicants</a>
+                        <li ><a href = "/school/verifyapplication?schoolid=<?php echo $school->getSchool_id()?>">Search Selected Applicants</a>
 						</li>
                 	</ul>
         	</div>

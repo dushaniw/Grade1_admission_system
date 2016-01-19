@@ -16,7 +16,7 @@
             	    <br/>
                 	<ul class = "nav nav-pills nav-stacked" role = "navigation">
                         <li class="active"><a href = "/school/verifyapplication?schoolid=<?php echo $school->getSchool_id()?>">Verify Applications</a></li>
-                        <li ><a href = "/search/schoolselected">Search Selected Applicants</a>
+                        <li ><a href = "/search/schoolselected?schoolid=<?php echo $school->getSchool_id()?>">Search Selected Applicants</a>
 						</li>
                 	</ul>
         	</div>
@@ -38,7 +38,7 @@
         					</select>	
         	            </div>
         	            <div class="form-group">
-        	            	@if(empty($application_set_set[1]))
+        	            	@if(empty($application_set_set[0]))
 								{{Form::submit('Click to Verify',array('class' =>'btn btn-primary','disabled'))}}
 							@else
 								{{Form::submit('Click to Verify',array('class' =>'btn btn-primary'))}}
@@ -84,7 +84,7 @@
       					</select>
 				</div>
 				<div class ="form-group">
-						@if(empty($application_set_set[1]))
+						@if(empty($application_set_set[2]))
 							{{Form::submit('Click to Verify',array('class' =>'btn btn-primary','disabled'))}}
 						@else
 							{{Form::submit('Click to Verify',array('class' =>'btn btn-primary'))}}
@@ -107,7 +107,7 @@
       					</select>
 				</div>
 				<div class ="form-group">
-						@if(empty($application_set_set[1]))
+						@if(empty($application_set_set[3]))
 							{{Form::submit('Click to Verify',array('class' =>'btn btn-primary','disabled'))}}
 						@else
 							{{Form::submit('Click to Verify',array('class' =>'btn btn-primary'))}}
@@ -131,7 +131,7 @@
       					</select>
 				</div>
 				<div class ="form-group">
-						@if(empty($application_set_set[1]))
+						@if(empty($application_set_set[4]))
 							{{Form::submit('Click to Verify',array('class' =>'btn btn-primary','disabled'))}}
 						@else
 							{{Form::submit('Click to Verify',array('class' =>'btn btn-primary'))}}
@@ -155,7 +155,7 @@
       					</select>
 				</div>
 				<div class ="form-group">
-						@if(empty($application_set_set[1]))
+						@if(empty($application_set_set[5]))
 							{{Form::submit('Click to Verify',array('class' =>'btn btn-primary','disabled'))}}
 						@else
 							{{Form::submit('Click to Verify',array('class' =>'btn btn-primary'))}}

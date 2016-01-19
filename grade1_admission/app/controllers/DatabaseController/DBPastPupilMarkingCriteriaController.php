@@ -92,6 +92,7 @@ class DBPastPupilMarkingCriteriaController{
 		$query="select refyear from pastpupilmarkingcriteria where schoolid='$schoolid' order by refyear desc limit 1 ;";
         $result =$mysqli->query($query);
 
+        $year = null;
         if ($result->num_rows > 0) {	
         	if ($row = $result->fetch_assoc()) {
         		$year =$row["refyear"];
