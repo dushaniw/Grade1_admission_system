@@ -48,29 +48,29 @@ class GuardianController extends BaseController
     $validator=Validator::make(Input::all(),$rules);
     if($validator->fails())
             return Redirect::to('/');*/
-    if(strcmp($conform_password,$password)!=0){
+        if(strcmp($conform_password,$password)!=0){
 
-        return Redirect::to('guardian')->withInput()->with('error',"Passwords dont match");
-    }
-    elseif(validationhandler::checkNIC($nic)==false){
+            return Redirect::to('guardian')->withInput()->with('error',"Passwords dont match");
+        }
+        elseif(validationhandler::checkNIC($nic)==false){
 
-      return Redirect::to('guardian')->withInput()->with('error',"NIC is invalid");
-    }  
-    elseif (!preg_match("/^[a-zA-Z'-]+$/",$first_name)){ 
-        return Redirect::to('guardian')->withInput()->with('error',"First Name is invalid");;
-    }
-    elseif (!preg_match("/^[a-zA-Z'-]+$/",$last_name)) { 
-        return Redirect::to('guardian')->withInput()->with('error',"Last Name is invalid");;
-    }
-     elseif (!preg_match("/^[a-zA-Z'-]+$/",$religion)) { 
-        return Redirect::to('guardian')->withInput()->with('error',"Religion is invalid");;
-    }
-     elseif (!preg_match("/^[a-zA-Z'-]+$/",$nationality)) { 
-        return Redirect::to('guardian')->withInput()->with('error',"Nationality is invalid");;
-    }
-    elseif (!preg_match("/^[0]{1}[0-9]{9}$/",$telephone_number)) { 
-        return Redirect::to('guardian')->withInput()->with('error',"Telephone Number is invalid");;
-    }
+          return Redirect::to('guardian')->withInput()->with('error',"NIC is invalid");
+        }  
+        elseif (!preg_match("/^[a-zA-Z'-]+$/",$first_name)){ 
+            return Redirect::to('guardian')->withInput()->with('error',"First Name is invalid");;
+        }
+        elseif (!preg_match("/^[a-zA-Z'-]+$/",$last_name)) { 
+            return Redirect::to('guardian')->withInput()->with('error',"Last Name is invalid");;
+        }
+         elseif (!preg_match("/^[a-zA-Z'-]+$/",$religion)) { 
+            return Redirect::to('guardian')->withInput()->with('error',"Religion is invalid");;
+        }
+         elseif (!preg_match("/^[a-zA-Z'-]+$/",$nationality)) { 
+            return Redirect::to('guardian')->withInput()->with('error',"Nationality is invalid");;
+        }
+        elseif (!preg_match("/^[0]{1}[0-9]{9}$/",$telephone_number)) { 
+            return Redirect::to('guardian')->withInput()->with('error',"Telephone Number is invalid");;
+        }
     
     //return Redirect::to('guardian')->withErrors($validator->messages());
 
@@ -81,6 +81,8 @@ class GuardianController extends BaseController
         $guardian->setLastName($last_name);
         $guardian->setEmail($email);
         $guardian->setPermanent_address($permanent_address);
+
+       // $guardian->setPassword(Hash::make($password));
         $guardian->setPassword($password);
         $guardian->setContact_number($telephone_number);
         $guardian->setRelationship($relation_to_child);

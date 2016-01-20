@@ -15,25 +15,33 @@ class LoginController extends BaseController
 		$user_type = Input::get("userTypeA");
         $user_name = Input::get("userNameText");
         $password = Input::get("password");
+        
 
         if($user_type==2){
             $guardian=DBGuardianController::getGuardian($user_name);
     		if($guardian->getPassword()==$password){
+            //if (Hash::check($password, $guardian->getPassword())){
     			return View :: make ('G1SAS/userpage')->with('guardian',$guardian)->with('username',$user_name)->with('labelText','Your Child-Your School');
     		}else{
-    			return Redirect::to('/');
+    			return View :: make ('G1SAS/login')->with('message','Password you enttered is incorrect');
     		}	
 	   }elseif ($user_type==0) {
             $user=DBAdminController::getAdmin($user_name);
             if($user->getPassword()==$password){
+           // if (Hash::check($password, $user->getPassword())){
                 return View :: make ('G1SAS/adminpage')->with('title',"You are logged in as:".$user_name);
             }else{
-                return Redirect::to('/');
+                return View :: make ('G1SAS/login')->with('message','Password you enttered is incorrect');
             }
                     
        }else{
             $school=DBSchoolController::getSchoolByEmail($user_name);
-            return View :: make ('G1SAS/schoolpage')->with('school',$school)->with('notice','School information here');
+            if($school->getPassword()==$encrypted){
+            //if (Hash::check($password, $school->getPassword())){
+                return View :: make ('G1SAS/schoolpage')->with('school',$school)->with('notice','School information here');
+            }else{
+                return View :: make ('G1SAS/login')->with('message','Password you enttered is incorrect');
+            }
        }
 
 	}

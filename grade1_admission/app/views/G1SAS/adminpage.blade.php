@@ -21,7 +21,7 @@
 	{{ Form:: close()}}
 
 	{{Form:: open(array('url' =>'admin/showmarks','method' => 'POST' ))}}
-        {{Form::submit('View Marks');}}
+        {{Form::submit('View Complete Marks List');}}
 	{{ Form:: close()}}
 
 </body>

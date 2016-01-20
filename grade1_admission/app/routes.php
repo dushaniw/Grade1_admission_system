@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/',function(){
-	return View :: make ('G1SAS/login');
+	return View :: make ('G1SAS/login')->with('message','Welcome to official web site');
 });
 
 

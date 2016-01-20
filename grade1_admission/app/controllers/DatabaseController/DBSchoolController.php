@@ -140,9 +140,9 @@ class DBSchoolController
                 $male_per=$school->getMale_percentage();
                 $sinhala_per=$school->getSinhala_percentage();
                 $email=$school->getEmail();
-                $password=$school->getPassword();
+                $encrypted=Hash::make($school->getPassword());
 
-                $query="insert into school values( '$schoolid','$name','$male_per','$category','$sinhala_per','$contact','$no_of_classes','$email','$password')";
+                $query="insert into school values( '$schoolid','$name','$male_per','$category','$sinhala_per','$contact','$no_of_classes','$email','$encrypted')";
                 $result=$mysqli->query($query);
                 return $result;                      
         }
