@@ -264,10 +264,10 @@ class ApplicationController extends BaseController
                 return  View :: make ('G1SAS/category4')->with('application',$application)->with('username',$username)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;
             case 4:
-                return  View :: make ('G1SAS/category5')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
+                return  View :: make ('G1SAS/category5')->with('application',$application)->with('username',$username)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;
             case 5:
-                return  View :: make ('G1SAS/category6')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
+                return  View :: make ('G1SAS/category6')->with('application',$application)->with('username',$username)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;    
         }   
     }
