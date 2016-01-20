@@ -23,7 +23,7 @@ class LoginController extends BaseController
             //if (Hash::check($password, $guardian->getPassword())){
     			return View :: make ('G1SAS/userpage')->with('guardian',$guardian)->with('username',$user_name)->with('labelText','Your Child-Your School');
     		}else{
-    			return View :: make ('G1SAS/login')->with('message','Password you enttered is incorrect');
+    			return View :: make ('G1SAS/login')->with('greet','Applications for this year is closed.')->with('message','Password you enttered is incorrect');
     		}	
 	   }elseif ($user_type==0) {
             $user=DBAdminController::getAdmin($user_name);
@@ -31,7 +31,7 @@ class LoginController extends BaseController
            // if (Hash::check($password, $user->getPassword())){
                 return View :: make ('G1SAS/adminpage')->with('title',"You are logged in as:".$user_name);
             }else{
-                return View :: make ('G1SAS/login')->with('message','Password you enttered is incorrect');
+                return View :: make ('G1SAS/login')->with('greet','Applications for this year is closed.')->with('message','Password you enttered is incorrect');
             }
                     
        }else{
@@ -40,7 +40,7 @@ class LoginController extends BaseController
             //if (Hash::check($password, $school->getPassword())){
                 return View :: make ('G1SAS/schoolpage')->with('school',$school)->with('notice','School information here');
             }else{
-                return View :: make ('G1SAS/login')->with('message','Password you enttered is incorrect');
+                return View :: make ('G1SAS/login')->with('greet','Applications for this year is closed.')->with('message','Password you enttered is incorrect');
             }
        }
 

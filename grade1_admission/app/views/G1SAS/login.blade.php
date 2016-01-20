@@ -75,7 +75,7 @@
 				<div class="col-md-12">
 				
 						<br/>
-						<p class="lead" style = "color:black"> Admission of student for Grade 1 for the government schools are now available until {{Form::label('deadline',DBDeadlineController::getDeadline())  }}</p>
+						<p class="lead" style = "color:black">  {{Form::label('deadline',$greet." until ".DBDeadlineController::getDeadline())  }}</p>
 					
 				</div>
 			</div> 

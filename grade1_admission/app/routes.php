@@ -1,7 +1,17 @@
 <?php
 
 Route::get('/',function(){
-	return View :: make ('G1SAS/login')->with('message','Welcome to official web site');
+	$result=DBDeadlineController::getIsdatepassed();
+	if(date_diff(date_create(date("Y-m-d")),date_create(DBDeadlineController::getDeadline()))){
+		DBDeadlineController::setIsdatepassed(true);
+	}else{
+		DBDeadlineController::setIsdatepassed(false);
+	}
+	if($result){
+		return View :: make ('G1SAS/login')->with('message','Welcome to official web site')->with('greet','Applications for this year is closed.');
+    }else{
+    	return View :: make ('G1SAS/login')->with('message','Welcome to official web site')->with('greet','Applications are now on!');
+    } 
 });
 
 
