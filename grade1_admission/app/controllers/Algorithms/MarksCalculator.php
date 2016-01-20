@@ -6,11 +6,11 @@ public static function calculate(){
 $db=Connection::getInstance();
 $mysqli=$db->getConnection();
 //get data from application table and store them
-$query = "select * from Application";         
-$result =$mysqli->query($query);
+$query4 = "select * from Application";         
+$result4 =$mysqli->query($query4);
 
 //if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
+    while($row = $result4->fetch_assoc()) {
     	
 		
 	$typeOfApplication=$row["typeOfApplication"];
@@ -19,7 +19,7 @@ $result =$mysqli->query($query);
 	$schoolId=$row["schoolId"];
 	$applicantId=$row["applicantId"];
 	$orderOfPreference=$row["orderOfPreference"];
-	$NIC;	
+	$NIC=0;	
 	$query = "select NIC from studentApplicant where applicantId ='$applicantId'";         
         $result =$mysqli->query($query);
 	if ($result->num_rows > 0) {
@@ -150,14 +150,14 @@ elseif($typeOfApplication=='2'){
 		$districtExtraCurricular=$row["districtExtraCurricular"];
 		$zonalExtraCurricular=$row["zonalExtraCurricular"];
 		$pastPupilOrgMember=$row["pastPupilOrgMember"];
-		$contributionType1=$row["contributionType1"];
-		$contributionType2=$row["contributionType2"];
+		$contributionType1=$row["contribution"];
+		$contributionType2=$row["other_after_school"];
 		
 		}
 	}
 	$achievement_mark=0;
 	$co_curricular_mark=0;
-	$query = "select type from paspupil_Achievement where NIC ='$NIC' and schoolId ='$schoolId'";         
+	$query = "select type from pastpupil_Achievement where NIC ='$NIC' and schoolId ='$schoolId'";         
         $result =$mysqli->query($query);
 	if ($result->num_rows > 0) {
            while($row = $result->fetch_assoc()) {
@@ -245,7 +245,7 @@ if($typeOfApplication=='3'){
 		$residence_proof=$residence_proof+0;	
 	}
 	$contribution=0;
-	$admissionNumber;
+	$admissionNumber=0;
 	$query = "select admissionNumber from sibling where applicantId ='$applicantId' and schoolId='$schoolId'";         
         $result =$mysqli->query($query);
 	if ($result->num_rows > 0) {
@@ -296,11 +296,11 @@ if($typeOfApplication=='3'){
 if($typeOfApplication=='4'){
 		$totalServicePeriod=0;
 		$no_working_years=0;
-	$query = "select totalServicePeriod from educationalServiceOfficer where NIC ='$NIC'";         
+	$query = "select * from educationalserviceofficer where NIC ='$NIC'";         
         $result =$mysqli->query($query);
 	if ($result->num_rows > 0) {
            if($row = $result->fetch_assoc()) {
-                $totalServicePeriod=$row["totalServicePeriod"];
+                $totalServicePeriod=$row["servingPeriodOfSchool"];
 		}
 	}
 	$no_working_years=$totalServicePeriod*1;
@@ -361,7 +361,7 @@ if($typeOfApplication=='4'){
 		}
 	}
 	$if_in_same_school_mark=0;
-	$servingSchoolId;
+	$servingSchoolId=0;
 	$servingPeriodOfSchool=0;
 	$query = "select * from educationalServiceOfficer where NIC ='$NIC'";         
         $result =$mysqli->query($query);
@@ -428,7 +428,7 @@ if($typeOfApplication=='4'){
 		$no_serving_years=10;
 		}
 	$time_by_transfer_mark=0;
-	$dateOfTransferReceived;
+	$dateOfTransferReceived=0;
 	$query = "select dateOfTransferReceived from officerOnTransfer where NIC ='$NIC'";         
         $result =$mysqli->query($query);
 	if ($result->num_rows > 0) {
@@ -536,7 +536,7 @@ if($typeOfApplication=='6'){
 	$closeness_mark=$closeness_mark+10;}
 	else{$closeness_mark=$closeness_mark+0;}
 	
-	$query="insert into 'person_abroad_mark' values('$application_id','$time_in_abroad','$reason_of_transfer','$closeness_mark'); ";
+	$query="insert into person_abroad_mark values('$application_id','$time_in_abroad','$reason_of_transfer','$closeness_mark'); ";
      $mysqli->query($query);
 		
 //f	

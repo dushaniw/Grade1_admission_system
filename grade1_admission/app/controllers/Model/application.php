@@ -11,7 +11,6 @@ class application
 	private $distance;
 	private $mark;
 	private $isverified;
-
 	
 
 	public function getSchool_id()

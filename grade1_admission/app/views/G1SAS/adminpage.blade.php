@@ -13,13 +13,16 @@
 	{{ Form:: close()}}
 
 	{{Form:: open(array('url' =>'admin/addnewschool','method' => 'POST' ))}}
-        
         {{Form::submit('Add New School');}}
 	{{ Form:: close()}}
 
 	{{Form:: open(array('url' =>'admin/deadline','method' => 'POST' ))}}
-        
         {{Form::submit('Change deadline');}}
 	{{ Form:: close()}}
+
+	{{Form:: open(array('url' =>'admin/showmarks','method' => 'POST' ))}}
+        {{Form::submit('View Marks');}}
+	{{ Form:: close()}}
+
 </body>
 </html>

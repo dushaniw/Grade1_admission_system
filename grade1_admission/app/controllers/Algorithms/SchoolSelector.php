@@ -9,54 +9,56 @@ $db=Connection::getInstance();
         $result1 =$mysqli->query($query1);
         $schools= array();
         if ($result1->num_rows > 0) {
-            
-            while($row = $result1->fetch_assoc()) {
-                $school_no;
-                $school = new school();
-                $school->setSchool_id($row["schoolId"]);
-                $school_no=$row["schoolId"];
-                $school->setSchool_name($row["name"]);
-                $school->setMale_percentage($row["malePercentage"]);
-                $school->setCategory($row["category"]);
-                $school->setSinhala_percentage($row["sinhalaPercentage"]);
-                $school->setContact_no($row["contactNumber"]);
-                $school->setNo_of_classes($row["noofClasses"]);
-                $capacity;
-                $capacity=$row["noofClasses"]*40;
-                $school->setEmail($row["email"]);
-                $school->setPassword($row["password"]);
-                $schools[] = $school;
+          
+          while($row = $result1->fetch_assoc()) {
+            $school_no;
+            $school = new school();
+            $school->setSchool_id($row["schoolId"]);
+            $school_no=$row["schoolId"];
+            $school->setSchool_name($row["name"]);
+            $school->setMale_percentage($row["malePercentage"]);
+            $school->setCategory($row["category"]);
+            $school->setSinhala_percentage($row["sinhalaPercentage"]);
+            $school->setContact_no($row["contactNumber"]);
+            $school->setNo_of_classes($row["noofClasses"]);
+            $capacity;
+            $capacity=$row["noofClasses"]*40;
+            $school->setEmail($row["email"]);
+            $school->setPassword($row["password"]);
+            $schools[] = $school;
 
-            //get all application ids
+          //get all application ids
         //$length=sizeof($Applications);
             for($t=1;$t<7;$t++){
               for($m=1;$m<7;$m++){
-        $Applications[] = array();
+    $Applications[] = array();
         $i=0;
-        $query4 = "select * from Application where typeOfApplication='$m' and orderOfPreference='$t' and schoolId='$school_no'";         
-            $result4 =$mysqli->query($query4);
-        if($result4->num_rows > 0) {
-                while($row = $result4->fetch_assoc()) {
-                     $Applications[$i]=$row["application_id"];
+    $query4 = "select * from Application where typeOfApplication='$m' and orderOfPreference='$t' and schoolId='$school_no' and isverified='1'";         
+          $result4 =$mysqli->query($query4);
+    if($result4->num_rows > 0) {
+              while($row = $result4->fetch_assoc()) {
+                
+                   $Applications[$i]=$row["application_id"];
                      $i++;
-
-        }
 
     }
 
-    $length=sizeof($Applications);
-    //save marks in array
-    $Application_Marks[] = array();
-    //final list of schools in descenting order  of marks
-    $schoolselectids[]=array();
+  }
+
+  $length=sizeof($Applications);
+  //save marks in array
+  $Application_Marks[] = array();
+  //final list of scools in descenting order  of marks
+  $schoolselectids[]=array();
+
  /////errrroooooooorrrrrrrrrrrrrrrr
   if ($result4->num_rows  > 0) {
         // do one thing{
     for ($x = 0; $x <sizeof($Applications); $x++) {
         $id=$Applications[$x];
         if($t==1){
-         $query = "select * from close_proximity_mark where application_id='$id'";         
-            $result =$mysqli->query($query);
+       $query = "select * from close_proximity_mark where application_id='$id'";         
+          $result =$mysqli->query($query);
         $capacityquota=$capacity* 0.5;}
         elseif($t==2){
        $query = "select * from pastpupil_mark where application_id='$id'";         
@@ -78,11 +80,11 @@ $db=Connection::getInstance();
        $query = "select * from person_abroad_mark where application_id='$id'";         
           $result =$mysqli->query($query);
           $capacityquota=$capacity* 0.01;}  
-         if ($result->num_rows > 0) {
-            
-            if($row = $result->fetch_assoc()) {
+     if ($result->num_rows > 0) {
+          
+          if($row = $result->fetch_assoc()) {
             if($t==1){
-                $total=$row["no_of_years_live_35"]+$row["residence_proof_10"]+$row["res_proof_other_5"] +$row["closeness_50"] ;}  
+            $total=$row["no_of_years_live_35"]+$row["residence_proof_10"]+$row["res_proof_other_5"] +$row["closeness_50"] ;}  
             if($t==2){
              $total=$row["no_learnt_grades"]+$row["achievement_mark"]+$row["co_curricular_mark"] +$row["contribution_mark"] ;}   
              if($t==3){
@@ -97,9 +99,9 @@ $db=Connection::getInstance();
             }
               
             }
-            else{var_dump('Error');}
-                
-            }
+            else{var_dump('');}
+            
+      }
       
       $length=sizeof($Application_Marks);
 
@@ -142,22 +144,17 @@ else{
   unset($Applications);
   unset($Application_Marks);
   unset($schoolselectids);}
-        }
-  }
     }
-     
+  }
+  }
+   
   
     
 
   
   }
         }   
-    }//
-    
-
-
-
-
-
+  }//
+  
 
 

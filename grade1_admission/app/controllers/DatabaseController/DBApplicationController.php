@@ -96,6 +96,50 @@ class DBApplicationController{
 
     }
 
+    public static function getAllApplications(){
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="select * from application;";
+        $result =$mysqli->query($query);
+        $application_set=array();
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {  
+                $application=new Application();       
+                $application->setSchool_id($row["schoolId"]);
+                $application->setApplication_id($row["application_id"]);
+                $application->setApplicant_id($row["applicantId"]);
+                $application->setType($row["typeOfApplication"]);
+                $application->setMedium($row["medium"]);
+                $application->setOrderOfPreference($row["orderOfPreference"]);
+                $application->setDistance($row["distanceToSchool"]);
+                $application->setIsverified($row["isverified"]);
+                $application_set[]=$application;
+                
+            }
+         }
+
+         return $application_set;        
+
+    }
+
+    public static function getAllApplicationIds(){
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="select application_id from application;";
+        $result =$mysqli->query($query);
+        $application_ids=array();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {         
+                $application_ids[]=$row["application_id"];
+            }
+         }
+
+         return $application_ids;        
+
+    }
+
     public static function getUnverifiedApplicationSetIds($schoolId,$type){
         
         $db=Connection::getInstance();
