@@ -36,6 +36,7 @@
                                {{Form::label('appplicantsCombo','Select Applicant      ')}}
                                <select name="applicant_id"  class="form-control">
                                 @foreach($applicants as $applicant)
+
                               <option value="{{$applicant->getApplicantId()}}">{{$applicant->getFirstName()}}</option>
                                 @endforeach
                               </select>
@@ -207,7 +208,12 @@
                                 {{Form::label('division number', 'Division')}}   
                                     <select class="form-control" name='Year1d'>
                                     @foreach($divisions as $division)
-                                 <option value="{{$division->getGrama_niladari_div_no()}}">{{$division->getName()}}</option>
+                                      
+                                    
+                                        <option value="{{$division->getGrama_niladari_div_no()}}" >{{$division->getName()}}</option>
+                                     
+
+
                                    @endforeach
                                    </select>
                                     {{Form::label('year ', 'Year     ')}}
