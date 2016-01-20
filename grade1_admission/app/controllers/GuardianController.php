@@ -1,5 +1,5 @@
 <?php
-
+include('Common/validationhandler.php');
 /**
  * Created by PhpStorm.
  * User: Gimhani
@@ -9,7 +9,9 @@
 
 class GuardianController extends BaseController
 {
-    
+     
+     
+
     public function getIndex()
     {
         $divisions=DBGNDDivisionController::getAllDivision();
@@ -40,6 +42,39 @@ class GuardianController extends BaseController
         $nationality = Input::get("nationalityText");
         $div_val = Input::get("gramaNiladariDivisionNumberText");
         $grama_niladry_division_number = $divisionIdA[$div_val];
+
+
+ /*$rules=array('$conform_password' => 'same:$password', );
+    $validator=Validator::make(Input::all(),$rules);
+    if($validator->fails())
+            return Redirect::to('/');*/
+    if(strcmp($conform_password,$password)!=0){
+
+        return Redirect::to('guardian')->withInput()->with('error',"Passwords dont match");
+    }
+    elseif(validationhandler::checkNIC($nic)==false){
+
+      return Redirect::to('guardian')->withInput()->with('error',"NIC is invalid");
+    }  
+    elseif (!preg_match("/^[a-zA-Z'-]+$/",$first_name)){ 
+        return Redirect::to('guardian')->withInput()->with('error',"First Name is invalid");;
+    }
+    elseif (!preg_match("/^[a-zA-Z'-]+$/",$last_name)) { 
+        return Redirect::to('guardian')->withInput()->with('error',"Last Name is invalid");;
+    }
+     elseif (!preg_match("/^[a-zA-Z'-]+$/",$religion)) { 
+        return Redirect::to('guardian')->withInput()->with('error',"Religion is invalid");;
+    }
+     elseif (!preg_match("/^[a-zA-Z'-]+$/",$nationality)) { 
+        return Redirect::to('guardian')->withInput()->with('error',"Nationality is invalid");;
+    }
+    elseif (!preg_match("/^[0]{1}[0-9]{9}$/",$telephone_number)) { 
+        return Redirect::to('guardian')->withInput()->with('error',"Telephone Number is invalid");;
+    }
+    
+    //return Redirect::to('guardian')->withErrors($validator->messages());
+
+    else{  
         $guardian=new Guardian();
         $guardian->setNic($nic);
         $guardian->setFirstName($first_name);
@@ -61,6 +96,22 @@ class GuardianController extends BaseController
             return "not added successfully";
         }
     }
+    }
+    
+  
     
 
+   
+
 }
+ //d($errors->all());
+
+
+
+
+
+
+
+
+
+    

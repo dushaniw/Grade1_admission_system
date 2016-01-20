@@ -17,6 +17,11 @@
                                         <h3 class="panel-title"> <p class="text-center"><span class = "glyphicon glyphicon-user"></span> Sign Up </p></h3>
                                 </div>  
                                 <div class = "panel-body"> <div class="col-md-9"> 
+                                    @if(Session::has('error'))
+                                    <div class="alert alert-danger">
+                                        {{Session::get('error')}}
+                                    </div>
+                                    @endif
                                         {{ Form:: open(array('role'=>'form','url' =>'guardian/add','method' => 'POST' ))}}
                                                 <div class = "form-group">
                                                         {{Form::label('firstNameLabel', 'First Name')}}
