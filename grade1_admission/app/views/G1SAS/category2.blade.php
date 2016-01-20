@@ -114,25 +114,6 @@
 
 
 
-<<<<<<< HEAD
-		
-		<br>
-		{{Form::label('Label10','Membership in past pupil associations, educational achievements after period of schooling and various types of assistance provided for the development of the school');}}
-		<br>
-		{{Form::label('Label10','True');}}		 
-		 {{ Form :: radio( 'pastPupilOrganizationMembership','true') ; }}		
-		
-
-		{{Form::label('Label10','False');}}		 
-		 {{ Form :: radio( 'pastPupilOrganizationMembership','false') ; }}		
-		
-		<br>
-		{{ Form :: submit('addApplication')}}
-	</div>
-
-{{Form::close()}}
-=======
->>>>>>> origin/master
 
 
   
