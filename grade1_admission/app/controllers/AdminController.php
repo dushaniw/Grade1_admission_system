@@ -10,6 +10,7 @@ include 'Model/PastPupil_mark.php';
 include 'Model/Educational_staff_mark.php';
 include 'Model/Officer_on_transfer_mark.php';
 include 'Model/Person_abroad_mark.php';
+include 'DatabaseController/DBBackUp.php';
 
 class AdminController extends BaseController
 {
@@ -100,6 +101,10 @@ class AdminController extends BaseController
             return View::make("G1SAS/adminpage")->with('title',"Deadline was not changed successfully");
         }
 
+    }
+
+    public function postBackup(){
+        DBBackUp::backup();
     }
 
 
