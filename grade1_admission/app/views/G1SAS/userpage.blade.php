@@ -17,7 +17,6 @@
          Signed in as <a href = "#" class = "navbar-link"><?php echo $username?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
 </nav>
 
-                                    	
 
 <div class="row">
 	<div class="col-md-3">
@@ -29,7 +28,7 @@
 	</div>
 	<div class ="col-md-9">
 		<div class="page-header" style="border-color:#303030">
-		<h2><?php echo $guardian->getFirstName()." ".$guardian->getLastName()?></h2>
+	<h2><?php echo $guardian->getFirstName()." ".$guardian->getLastName()?></h2>
 		</div>
 
 		<h4><strong>NIC     	    : </strong><?php echo  $guardian->getNIC() ?></h4>

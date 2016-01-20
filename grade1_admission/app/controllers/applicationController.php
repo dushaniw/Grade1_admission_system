@@ -46,7 +46,6 @@ class ApplicationController extends BaseController
         $available=DBGuardianController::hasApplicant($guardianNic);
         if($available==false)
         {
-            
             return "first you have to add your child to system";
         }else{
             $appplicants=DBStudentApplicantController::getApplicantOfGuardian($guardianNic);
@@ -60,7 +59,6 @@ class ApplicationController extends BaseController
 
     public function postNext(){
         
-
         $applicant_id= Input::get("applicant_id");
         $username = Input::get("guardian");
         

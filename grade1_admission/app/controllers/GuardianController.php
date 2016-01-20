@@ -100,14 +100,7 @@ class GuardianController extends BaseController
     }
     }
     
-  
-    
-
-   
-
 }
- //d($errors->all());
-
 
 
 
