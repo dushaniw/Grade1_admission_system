@@ -69,8 +69,37 @@ class AdminController extends BaseController
     public  function postDeadline()
     {
         $deadline=DBDeadlineController::getDeadline();
-        $date=explode('-',$deadline,-1);        
-        return View::make("G1SAS/ChangeDeadline")->with('deadline',$deadline)->with('date',$date);       
+        $date=explode('-',$deadline,3);
+        if($date[1]=='01'){$month=1;}
+        elseif ($date[1]=='02') {$month=2;}
+        elseif ($date[1]=='03') {$month=3;}        
+        elseif ($date[1]=='04') {$month=4;}
+        elseif ($date[1]=='05') {$month=5;}
+        elseif ($date[1]=='06') {$month=6;}
+        elseif ($date[1]=='07') {$month=7;}
+        elseif ($date[1]=='08') {$month=8;}
+        elseif ($date[1]=='09') {$month=9;}
+        elseif ($date[1]=='10') {$month=10;}
+        elseif ($date[1]=='11') {$month=11;}
+        elseif ($date[1]=='12') {$month=12;}
+        
+
+        return View::make("G1SAS/ChangeDeadline")->with('deadline',$deadline)->with('date',$date)->with('month',$month);       
+    }
+
+    public  function postChangedeadline()
+    {
+        $year=Input::get("year");
+        $month=Input::get("month");
+        $date=Input::get("date");
+        $deadline=$year."/".$month."/".$date;  
+        $result=DBDeadlineController::setDeadline($deadline); 
+        if($result){
+            return View::make("G1SAS/adminpage")->with('title',"Deadline changed successfully");
+        }else{
+            return View::make("G1SAS/adminpage")->with('title',"Deadline was not changed successfully");
+        }
+
     }
 
 
