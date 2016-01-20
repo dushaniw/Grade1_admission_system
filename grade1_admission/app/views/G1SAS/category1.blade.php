@@ -3,6 +3,7 @@
 	<title>Category 1</title>
 </head>
 <body>
+	
 	{{ Form :: open(array('url' =>'selectSchool/addcategory','method' => 'POST' ))}}
 		
 		{{Form :: hidden( 'orderOfPreference',$application->getOrderOfPreference()) ; }}
@@ -38,6 +39,7 @@
 		{{Form::hidden('year6', $yArray[5]);}}
 		{{Form::hidden('guardianNic', $guardianNic);}}
 
+		
 		<div id="catogory1" >
 			
 			<h1> Children of residents in close proximity of school </h1>

@@ -43,6 +43,21 @@ class DBApplicationController{
     }
 
 
+
+    public static function isStudentApplySchoolFromThisCategory($applicantId,$schoolId,$type){
+        
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+        $query="select * from application where typeOfApplication ='$type' and schoolId='$schoolId' and applicantId='$applicantId'";
+        $result =$mysqli->query($query);
+        if ($result->num_rows > 0) {
+            return true;
+        }
+        return false;
+
+    }
+
+
 	public static function getNextApplicationId(){
 		$applicantionId='1';
         $db=Connection::getInstance();
@@ -516,17 +531,17 @@ class DBApplicationController{
         $mysqli=$db->getConnection();
         $mysqli->autocommit(FALSE);
         $applicantResult=DBApplicationController::addApplication($application);
-        return $ppo[1]->getDateOfAdmission();
+        
         if($applicantResult){
-         
+                
              $resultSchoolSet=true;
              $isApplicanthasCSS=DBSchoolController::isApplicanthasCSS($application->getApplicant_id());             
              if($isApplicanthasCSS){
                 //do not need add school set
-
+                
              }else{
                // return $schoolIds[1];
-                
+                  
                 $resultSchoolSet=DBSchoolController::addCloseSchoolSet($application->getApplicant_id(),$schoolIds);
              }
              if($resultSchoolSet){
@@ -541,9 +556,9 @@ class DBApplicationController{
                     $resultEL=DBElectrocalListController::addElectrocalListDetail($dArray,$yArray,$guardianNic);
                 }
                 if($resultEL){
-                    
-
+              
                     for($i=0;$i<3;$i++){    
+              
                         $resultC=true;
                         $resultEA=true;
                         $resultD=true;
@@ -551,6 +566,7 @@ class DBApplicationController{
                         $resultCD=DBGuardianController::hasCategory3Detail($ppo[$i]->getAdmissionNumber(),$application->getSchool_id());  
                         if($resultCD==false){
 
+                       
                             $resultC=DBCategory3Controller::addCategory3($ppo[$i]);
                           
                             $resultEA=DBCPAchievementController::addCPAchievement($achievements[$i]);
@@ -560,7 +576,7 @@ class DBApplicationController{
                             $resultS=DBSiblingController::addSibling($siblings[$i]);
 
                         }
-                        if($resultC and $resultEA and $resultC and $resultS){
+                        if($resultD and $resultEA and $resultC and $resultS){
                             
                         
                         }else{

@@ -70,6 +70,12 @@ class ApplicationController extends BaseController
         $school4 = Input::get("school_name4");
         $school5 = Input::get("school_name5");
         $school6 = Input::get("school_name6");
+
+        $ar=array($school1,$school2,$school3,$school4,$school5,$school6);
+        $uni_ar=array_unique($ar);
+        if(sizeof($uni_ar)!=6){
+                return  Redirect::back()->withInput()->with('error','please select diffrent 6 schools');    
+        }    
         $school7 = Input::get("school_name7");
         $school8 = Input::get("school_name8");
         $school9 = Input::get("school_name9");
@@ -81,6 +87,12 @@ class ApplicationController extends BaseController
         $school15 = Input::get("school_name15");
         $school16 = Input::get("school_name16");
         
+        $ar=array($school7,$school8,$school9,$school10,$school11,$school12,$school13,$school14,$school5,$school6);
+        $uni_ar=array_unique($ar);
+        if(sizeof($uni_ar)!=10){
+                return  Redirect::back()->withInput()->with('error','please select diffrent 10 schools for close school set');    
+        } 
+
         $division1=Input::get("Year1d");
         $division2=Input::get("Year2d");
         $division3=Input::get("Year3d");
@@ -95,6 +107,12 @@ class ApplicationController extends BaseController
         $year4=Input::get("year4");
         $year5=Input::get("year5");
         $year6=Input::get("year6");
+        
+        $ar=array($year1,$year2,$year3,$year4,$year5,$year6);
+        $uni_ar=array_unique($ar);
+        if(sizeof($uni_ar)!=6){
+                return  Redirect::back()->withInput()->with('error','please select diffrent 6 years');    
+        } 
                         
 
         $dArray=array($division1,$division2,$division3,$division4,$division5,$division6);
@@ -144,6 +162,13 @@ class ApplicationController extends BaseController
         $application->setMedium($medium);
         $application->setApplicant_id($applicantId);
 
+        $isStudentApplySchoolFromThisCategory= DBApplicationController::isStudentApplySchoolFromThisCategory($applicantId,$schoolId,$type);
+              
+        if($isStudentApplySchoolFromThisCategory){
+                return "you have allready added  this type of application to this school";
+        }
+             
+              
 
 
         switch ($type) {
@@ -202,12 +227,21 @@ class ApplicationController extends BaseController
 
         if($type==0){
              
+              $isStudentApplySchoolFromThisCategory= DBApplicationController::isStudentApplySchoolFromThisCategory($applicantId,$schoolId,0);
+              
+              if($isStudentApplySchoolFromThisCategory){
+                return "you have allready added  this type of application to this school";
+              }
+
               $noOfYearsInElectrocalRegister=Input::get('noOfYearsInElectrocalRegister');
               $noOfYearsSpouseInElectrocalRegister=Input::get('noOfYearsSpouseInElectrocalRegister');
               $typeOfTitleDeed =Input::get('typeOfTitleDeed');
               $noOfAditionalDocumentForResident=Input::get('noOfAditionalDocumentForResident');
               $closeSchoolCount=Input::get('closeSchoolCount');
-              $category=new Resident_in_closeProximity();     
+              
+              $category=new Resident_in_closeProximity();
+
+
               $category->setNoOfAditionalDocumentForResident($noOfAditionalDocumentForResident);
               $category->setCloseSchoolCount($closeSchoolCount);
               $category->setTypeOfTitleDeed($typeOfTitleDeed);
@@ -226,6 +260,15 @@ class ApplicationController extends BaseController
 
         }elseif ($type==1) {
            
+            
+        $isStudentApplySchoolFromThisCategory= DBApplicationController::isStudentApplySchoolFromThisCategory($applicantId,$schoolId,1);
+              
+        if($isStudentApplySchoolFromThisCategory){
+                return "you have allready added  this type of application to this school";
+        }
+             
+ 
+
             $gradeOfAdmission=Input::get("gradeOfAdmission");
             $gradeOfLeaving =Input::get("gradeOfLeaving");
             $pastPupilOrganizationMembership=Input::get("pastPupilOrganizationMembership");
@@ -242,12 +285,11 @@ class ApplicationController extends BaseController
             $category2=new PastPupil();
             $category2->setSchoolId($schoolId);
             $category2->setNIC($guardianNic);
-            $category2->setName($guardian->getFirstName());
             $category2->setGradeOfAdmission($gradeOfAdmission);
             $category2->setGradeOfLeaving($gradeOfLeaving);
             $category2->setPastPupilOrganizationMembership($pastPupilOrganizationMembership);
     
-            $eAchievement=new PastPupil_achivement();
+            $eAchievement=new PastPupil_achievement();
             $eAchievement->setSchoolId($schoolId);
             $eAchievement->setNIC($guardianNic);
             $eAchievement->setAchievementID($eAchievementId);
@@ -257,7 +299,7 @@ class ApplicationController extends BaseController
 
             
 
-            $cAchievement=new PastPupil_achivement();
+            $cAchievement=new PastPupil_achievement();
             $cAchievement->setSchoolId($schoolId);
             $cAchievement->setNIC($guardianNic);
             $cAchievement->setAchievementID($cAchievementId);
@@ -270,13 +312,23 @@ class ApplicationController extends BaseController
              $resultC1=DBApplicationController::addCategory2($application,$category2,$schoolIds,$yArray,$dArray,$guardianNic,$eAchievement,$cAchievement); 
            
              if($resultC1){
+
                 return "type 2 application addded successfully";   
             }else{
               return "type 2 application not addded successfully";   
               }
               
         }elseif ($type==2) {
-            
+           
+        $isStudentApplySchoolFromThisCategory= DBApplicationController::isStudentApplySchoolFromThisCategory($applicantId,$schoolId,2);
+              
+        if($isStudentApplySchoolFromThisCategory){
+                return "you have allready added  this type of application to this school";
+        }
+             
+ 
+
+
             $firstName1=Input::get("firstName1");
             $lastName1 =Input::get("lastName1");
             $admissionNumber1=Input::get("admissionNumber1");
@@ -397,19 +449,27 @@ class ApplicationController extends BaseController
             $donations=array($donationObject1,$donationObject2,$donationObject3);
             $siblings=array($sibling1,$sibling2,$sibling3);
             $resultC1=DBApplicationController::addCategory3($application,$schoolIds,$yArray,$dArray,$guardianNic,$ppo,$achievements,$donations,$siblings);
-
             
-            return $resultC1;
             if($resultC1){
                 return "type 3 application addded successfully";   
             }else{
               return "type 3 application not addded successfully";   
-              }
+            }
             
 
 
             
         }elseif($type==3){
+
+
+        $isStudentApplySchoolFromThisCategory= DBApplicationController::isStudentApplySchoolFromThisCategory($applicantId,$schoolId,3);
+              
+        if($isStudentApplySchoolFromThisCategory){
+                return "you have allready added  this type of application to this school";
+        }
+             
+ 
+
             $permenentEmployeePost=Input::get("permenentEmployeePost"); 
             $totalServicePeriod =Input::get("totalServicePeriod");
             $distanceFromResidentToWork= Input::get("distanceFromResidentToWork");
@@ -447,6 +507,15 @@ class ApplicationController extends BaseController
               
 
         }elseif ($type==4) {
+
+
+        $isStudentApplySchoolFromThisCategory= DBApplicationController::isStudentApplySchoolFromThisCategory($applicantId,$schoolId,4);
+              
+        if($isStudentApplySchoolFromThisCategory){
+                return "you have allready added  this type of application to this school";
+        }
+             
+ 
             
             $dateOfTransferReceived=Input::get("dateOfTransferReceived"); 
             $beforeWorkedPlace =Input::get("beforeWorkedPlace");
@@ -477,6 +546,15 @@ class ApplicationController extends BaseController
               return "type 5 application not addded successfully";   
               }
         }elseif ($type==5) {
+
+        $isStudentApplySchoolFromThisCategory= DBApplicationController::isStudentApplySchoolFromThisCategory($applicantId,$schoolId,5);
+              
+        if($isStudentApplySchoolFromThisCategory){
+                return "you have allready added  this type of application to this school";
+        }
+             
+ 
+
             $dateOfReturned=Input::get("dateOfReturned"); 
             $periodAboardStay =Input::get("PeriodOfStayAbroad");
             $reason= Input::get("reason");
