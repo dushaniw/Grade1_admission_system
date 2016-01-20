@@ -8,7 +8,8 @@
 		<li>{{HTML::link('#', 'About')}}	</li>
 		
 		<li> <a href="/child/childrenoverview?username=<?php echo $username ?>">My Children</a></li>
-		<li>{{HTML::link('#','My Applications')}} </li>
+		<li><a href ="/selectSchool?username=<?php echo $username ?>">My Applications</a></li>
+		<li><a href-"#">Search</a></li>
 	</ul>
 		<p class = "navbar-text pull-right">
          Signed in as <a href = "#" class = "navbar-link"><?php echo $username?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
@@ -37,10 +38,6 @@
 </div>
 
 
-{{Form:: open(array('url' =>'selectSchool','method' => 'GET' ))}}
-		{{Form::hidden('username',$username)}}
-        {{Form::submit('Add Application')}}
-{{ Form:: close()}}
 
 {{Form:: open(array('url' =>'userpage/searchUserSchool','method' => 'POST' ))}}
         {{Form::submit('Search selected school')}}

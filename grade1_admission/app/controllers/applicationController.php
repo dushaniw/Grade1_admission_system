@@ -39,7 +39,7 @@ class ApplicationController extends BaseController
 	
 	public function getIndex()
 	{	
-        $username=Input::get("username");
+        $username=$_GET['username'];
 
         $guardian= DBGuardianController::getGuardian($username);
         $guardianNic=$guardian->getNic();
@@ -51,7 +51,7 @@ class ApplicationController extends BaseController
             $appplicants=DBStudentApplicantController::getApplicantOfGuardian($guardianNic);
             $schools=DBSchoolController::getAllSchool();
             $divisions=DBGNDDivisionController::getAllDivision();
-            return  View :: make ('G1SAS/selection')->with('divisions',$divisions)->with ('schools',$schools)->with('applicants',$appplicants)->with('guardian',$guardian);
+            return  View :: make ('G1SAS/selection')->with('username',$username)->with('divisions',$divisions)->with ('schools',$schools)->with('applicants',$appplicants)->with('guardian',$guardian);
             	
 		}
         
@@ -59,6 +59,7 @@ class ApplicationController extends BaseController
 
     public function postNext(){
         
+
         $applicant_id= Input::get("applicant_id");
         $username = Input::get("guardian");
         
@@ -112,7 +113,7 @@ class ApplicationController extends BaseController
 
         } 
 
-        return View :: make ('G1SAS/SelectionType')->with ('schools',$schools)->with('dArray',$dArray)->with('yArray',$yArray)->with('guardian',$guardian)->with('applicant',$applicant);
+        return View :: make ('G1SAS/SelectionType')->with ('username',$username)->with ('schools',$schools)->with('dArray',$dArray)->with('yArray',$yArray)->with('guardian',$guardian)->with('applicant',$applicant);
     }
 
     public function postApplication()
