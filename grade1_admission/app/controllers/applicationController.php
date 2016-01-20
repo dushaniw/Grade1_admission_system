@@ -46,7 +46,8 @@ class ApplicationController extends BaseController
         $available=DBGuardianController::hasApplicant($guardianNic);
         if($available==false)
         {
-            return "first you have to add your child to system";
+            return  Redirect::back()->withInput()->with('error','first you have to add your child to system');
+        
         }else{
             $appplicants=DBStudentApplicantController::getApplicantOfGuardian($guardianNic);
             $schools=DBSchoolController::getAllSchool();
