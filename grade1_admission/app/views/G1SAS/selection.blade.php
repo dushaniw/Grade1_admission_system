@@ -8,7 +8,7 @@
     <li>{{HTML::link('#', 'About')}}  </li>
     
     <li> <a href="/child/childrenoverview?username=<?php echo $username ?>">My Children</a></li>
-    <li classs="active"><a href = "/selectSchool?username=<?php echo $username ?>">My Applications </a></li>
+    <li class="active"><a href = "/selectSchool?username=<?php echo $username ?>">My Applications </a></li>
     <li><a href-"#">Search</a></li>
   </ul>
     <p class = "navbar-text pull-right">
@@ -29,7 +29,7 @@
                                 <h3 class="panel-title"> <p class="text-center"><span class = "glyphicon glyphicon-edit"></span> Add New Application </p></h3>
                         </div>
                         <div class = "panel-body"> <div class = "col-md-10">
-                          {{ Form:: open(array('url' =>'selectSchool/next','method' => 'POST','role'=>'form'))}}
+                          {{ Form:: open(array('url' =>'selectSchool/next','method' => 'GET','role'=>'form'))}}
                              {{Form::hidden('guardian', $guardian->getEmail())}}
                              {{Form::hidden('username',$username)}}
                           <div class = "form-group">

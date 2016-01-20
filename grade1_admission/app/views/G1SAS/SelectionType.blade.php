@@ -8,7 +8,7 @@
     <li>{{HTML::link('#', 'About')}}  </li>
     
     <li> <a href="/child/childrenoverview?username=<?php echo $username ?>">My Children</a></li>
-    <li classs="active"><a href = "/selectSchool?username=<?php echo $username ?>">My Applications </a></li>
+    <li class="active"><a href = "" class="disabled" style="color: #3366FF" >My Applications </a></li>
     <li><a href-"#">Search</a></li>
   </ul>
     <p class = "navbar-text pull-right">
@@ -20,7 +20,7 @@
     <br/>
     <ul class = "nav nav-pills nav-stacked" role = "navigation">
       <li><a href = "#">Overview</a></li>
-      <li class = "active"><a href = "/selectSchool?username=<?php echo $username ?>">Add New Application</a></li>
+      <li class = "active"><a href = "" class="disabled" style="color: #3366FF" >Add New Application</a></li>
     </ul>
   </div>
   <div class = "col-md-9">
@@ -32,6 +32,9 @@
                         	@for($i=0;$i<6;$i++)
 								{{ Form:: open(array('url' =>'selectSchool/application','method' => 'POST'))}}
 			
+								{{Form::hidden('username',$username)}}
+
+
 								{{Form::hidden('schoolId1', $schools[6]->getSchool_id())}}
 								{{Form::hidden('schoolId2', $schools[7]->getSchool_id())}}
 								{{Form::hidden('schoolId3', $schools[8]->getSchool_id())}}
