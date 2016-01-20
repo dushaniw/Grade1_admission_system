@@ -90,7 +90,7 @@ class DBStudentApplicantController
         {
             while ($row = $result->fetch_assoc())
             {
-                $applicant = new studentApplicant();
+                $applicant = new StudentApplicant();
                 $applicant->setApplicantId($row["applicantId"]);
                 $applicant->setFirstname($row["firstname"]);
                 $applicant->setLastName($row["lastname"]);
@@ -125,6 +125,28 @@ class DBStudentApplicantController
         } 
         return 0;
     }
+
+    public static function addChild($child){
+        $db=Connection::getInstance();
+        $conn=$db->getConnection();
+        // prepare and bind
+        $stmt = $conn->prepare("INSERT INTO studentApplicant  VALUES (?, ?, ?,?,?,?,?,?)");
+        $stmt->bind_param("ssssssss", $nic,$applicantId,$first_name,$last_name,$gender,$religion,$dob,$selectedSchool);
+
+        $nic=$child->getGuardianNIC();
+        $applicantId=$child->getApplicantId();
+        //$g_email=$child->getEmail();
+          
+        $first_name = $child->getFirstName();
+        $last_name = $child->getLastName();
+        $gender=$child->getGender();
+        $religion=$child->getReligion();
+        $dob=$child->getDateOfBirth(); 
+        $selectSchool=null;
+
+        $result=$stmt->execute();
+        return $result;
+    } 
 
     
 }
