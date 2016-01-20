@@ -53,10 +53,24 @@ class ChildController extends BaseController{
         $nic=$guardian->getNic();
         $applicantId=intval(DBStudentApplicantController::getLastApplicantId()) +1;
         $isverified=null;
-
+        $pagename='userpage/studentadd?username='+$g_email;
+         if (!preg_match("/^[a-zA-Z'-]+$/",$first_name)){ 
+        return Redirect::back()->withInput()->with('error',"First Name is invalid");
+    }
+    elseif (!preg_match("/^[a-zA-Z'-]+$/",$last_name)){ 
+        return Redirect::back()->withInput()->with('error',"Last Name is invalid");
+    }
+    elseif((date("Y")-(int)$year)<6){
+         return Redirect::back()->withInput()->with('error',"Child should be at least 6 years old");
+    }
+     elseif (!preg_match("/^[a-zA-Z'-]+$/",$religion)){ 
+        return Redirect::back()->withInput()->with('error',"Religion is invalid");
+    }
+    else{
         $stmt->execute();
 
         return View :: make ('G1SAS/userpage')->with('username',$g_email)->with('labelText','New Child Added Successfully');
+    }
     }
 
 }

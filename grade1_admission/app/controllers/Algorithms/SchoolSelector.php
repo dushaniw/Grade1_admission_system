@@ -8,6 +8,7 @@ $db=Connection::getInstance();
         $query1="select * from school;";
         $result1 =$mysqli->query($query1);
         $schools= array();
+        $calculatedschools=array();
         if ($result1->num_rows > 0) {
           
           while($row = $result1->fetch_assoc()) {
@@ -37,9 +38,9 @@ $db=Connection::getInstance();
           $result4 =$mysqli->query($query4);
     if($result4->num_rows > 0) {
               while($row = $result4->fetch_assoc()) {
-                
+                  if(!in_array($row["application_id"],$calculatedschools)){
                    $Applications[$i]=$row["application_id"];
-                     $i++;
+                     $i++;}
 
     }
 
@@ -124,6 +125,7 @@ $db=Connection::getInstance();
 }
 for ($x = 0; $x <$capacityquota; $x++) {
     $id=$schoolselectids[$x];
+    $calculatedschools[]=$id;
     $query = "select applicantId from  Application where application_id='$id'";         
           $result =$mysqli->query($query);
           $applicant_no;

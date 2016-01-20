@@ -7,19 +7,15 @@ public static function checkNIC($NIC){
     if(strlen($idnum)!=9){
         return false;
     }
-   // elseif( $idnum != (integer)$idnum ){
-     //       return false;
-   // }
+   elseif (!preg_match("/^[0-9]{9}$/",$idnum)) { 
+             return false;
+   }
      elseif( $last_character=='V' or $last_character=='v'){
             return true;
     }
     else{
         return false;
     }
-    }
-
-     public static function checkTP($tpnum){
-        $justNums=preg_replace("/[^0-9]/",'',$tpnum);
     }
 
 }
