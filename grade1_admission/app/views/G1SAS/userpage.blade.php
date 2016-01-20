@@ -53,4 +53,9 @@
 {{ Form:: close()}}
 
 
+{{Form:: open(array('url' =>'edit/changep','method' => 'POST' ))}}
+		{{Form::hidden('username',$username)}}
+        {{Form::submit('Change school Piority level ')}}
+{{ Form:: close()}}
+
 @stop

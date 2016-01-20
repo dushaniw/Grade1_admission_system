@@ -44,7 +44,7 @@ class ApplicationController extends BaseController
         $guardian= DBGuardianController::getGuardian($username);
         $guardianNic=$guardian->getNic();
         $available=DBGuardianController::hasApplicant($guardianNic);
-         if($available==false)
+        if($available==false)
         {
             return "first you have to add your child to system";
         }else{
