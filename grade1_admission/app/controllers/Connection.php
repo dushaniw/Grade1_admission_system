@@ -12,7 +12,7 @@ class Connection
     private static $_instance;
     private $_host = "localhost";
     private $_username = "root";
-    private $_password = "";
+    private $_password = "gimhani";
     private $_database = "g1ams";
 
     public static function getInstance() {

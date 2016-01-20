@@ -68,26 +68,39 @@
 			<br/>
 
 		<div class="form-group">
-					{{Form:: label( 'medium','a) Post held as permanent employee in the relevant institutions')  }}
+					{{Form:: label( 'medium',' Post Held As Permanent Employee in the Relevant Institutions')  }}
 					{{ Form:: text( 'permenentEmployeePost','',array('class' =>'form-control','style'=>'width: 300px; background-color:white') )  }}	
 		</div>
 
 		<div class="form-group">
-			{{Form::label('Label31', 'b) Distance from place of residence to place of work')}}
+			{{Form::label('Label31', ' Distance From Place Of Residence To Place Of Work')}}
 			{{Form:: text( 'distanceFromResidentToWork','', array('class' =>'form-control','style'=>'width: 100px; background-color:white'))  }}	
 		</div>
 		<div class="form-group">
-			{{Form::label('Label32','c) Period of difficult school service')}}
-			{{Form:: text( 'nowInDifficultSchoolService','',array('class' =>'form-control','style'=>'width: 100px; background-color:white'))}}		
+			{{Form::label('Label32',' Now In Difficult School Service')}}
+
+			<div class = "radio">
+                <label>
+                        {{ Form::radio('nowInDifficultSchoolService','1',true)}}
+                        Yes
+                </label>
+                <label>
+                        {{Form::radio('nowInDifficultSchoolService', '0')}}
+                        No
+                </label>
+              
+        	</div>
+
+
 		</div>
 		<div class="form-group">
-			{{Form::label('Label33','Difficult school service')}}		
-			{{Form:: text( 'nowInDifficultSchoolService','',  array('class' =>'form-control','style'=>'width: 100px; background-color:white','readonly'))  }}
+			{{Form::label('Label33','Period Of Difficult School Service')}}		
+			{{Form:: text( 'periodOfDifficultSchoolService','',  array('class' =>'form-control','style'=>'width: 100px; background-color:white'))  }}
 							
 		</div>
 		
 		<div class="form-group">
-			{{Form::label('Label40','Serving Period of schools')}}		
+			{{Form::label('Label40','Serving Period Of Schools')}}		
 			{{Form:: text( 'servingPeriodOfSchool','', array('class' =>'form-control','style'=>'width: 100px; background-color:white'))  }}
 		</div>
 		<div class="form-group">
