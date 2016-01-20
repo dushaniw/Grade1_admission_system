@@ -7,14 +7,14 @@ class DBDeadlineController{
         $result =$mysqli->query($query);
 
         if ($result!=null){
-                    
-        if ($result->num_rows > 0) {    
+                   
+            if ($result->num_rows > 0) {    
                 if($row = $result->fetch_assoc()) {  
                     return ($row["deadline"]);
                 }
+            }
         }
-    }
-        return null;
+        
         
 	}
 	public static function setDeadline($deadline){
@@ -22,7 +22,7 @@ class DBDeadlineController{
         $mysqli=$db->getConnection();
         $query="update deadline set deadline='$deadline';";
         $result =$mysqli->query($query);
-        return result;    
+        return $result;    
 	}
 }
 

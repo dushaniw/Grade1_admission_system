@@ -25,6 +25,13 @@
 		<style>
 
 
+		.disabled {
+  			 pointer-events: none;
+   			cursor: default;
+   			
+   			
+		}
+
 		table{
 		border-collapse: collapse;
 		border-spacing: 10px;

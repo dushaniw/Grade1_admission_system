@@ -36,7 +36,7 @@ class LoginController extends BaseController
                     
        }else{
             $school=DBSchoolController::getSchoolByEmail($user_name);
-            if($school->getPassword()==$encrypted){
+            if($school->getPassword()==$password){
             //if (Hash::check($password, $school->getPassword())){
                 return View :: make ('G1SAS/schoolpage')->with('school',$school)->with('notice','School information here');
             }else{

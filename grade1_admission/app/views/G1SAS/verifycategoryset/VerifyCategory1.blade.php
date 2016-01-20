@@ -107,7 +107,7 @@
 								<h4><strong><u>Ownership of place of residence</u></strong></h4>
 							</div>
 							<div class="form-group">
-								{{Form::label('Label3', 'Type of Title deed:');}}
+								{{Form::label('Label3', 'Type of Title deed');}}
 								@if($category->getTypeOfTitleDeed()==1)
 									{{ Form:: text( 'typeOfTitleDeed','In the name of applicant/spouse or applicants parents', array('class' =>'form-control','style'=>'background-color:white','readonly'))}}		
 								@elseif($category->getTypeOfTitleDeed()==2)

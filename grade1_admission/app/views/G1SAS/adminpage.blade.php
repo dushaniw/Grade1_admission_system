@@ -24,5 +24,9 @@
         {{Form::submit('View Complete Marks List');}}
 	{{ Form:: close()}}
 
+	{{Form:: open(array('url' =>'admin/backup','method' => 'POST' ))}}
+        {{Form::submit('Create DB backup');}}
+	{{ Form:: close()}}
+
 </body>
 </html>

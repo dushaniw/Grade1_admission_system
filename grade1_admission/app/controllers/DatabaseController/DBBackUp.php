@@ -1,56 +1,27 @@
 <?php
+class DBBackUp{
+   public static function backup()
+   {
+      define("BACKUP_PATH", "C:\Users\DinsuG\Documents\ ");
+      $server_name   = "localhost";
+      $username      = "root";
+      $password      = "";
+      $database_name = "g1ams";
+      $date_string   = date("Ymd");
 
-function backup_tables($host,$user,$pass,$name,$tables = '*')
-{
-   
-   $link = mysql_connect($host,$user,$pass);
-   mysql_select_db($name,$link);
-   
-   //get all of the tables
-   if($tables == '*')
-   {
-      $tables = array();
-      $result = mysql_query('SHOW TABLES');
-      while($row = mysql_fetch_row($result))
-      {
-         $tables[] = $row[0];
-      }
+      //$cmd = "mysqldump --routines -h {$server_name} -u {$username} -p{$password} {$database_name} > " . BACKUP_PATH . "{$date_string}_{$database_name}.sql";
+      $cmd='C:\wamp\bin\mysql\mysql5.6.17\bin\mysqldump -uroot -p g1ams > C:\Users\DinsuG\Documents\tut_backup.sql';
+      exec($cmd);
    }
-   else
-   {
-      $tables = is_array($tables) ? $tables : explode(',',$tables);
+
+   public static function restore(){
+      $restore_file  = "/home/abdul/20140306_world_copy.sql";
+      $server_name   = "localhost";
+      $username      = "root";
+      $password      = "root";
+      $database_name = "test_world_copy";
+
+      $cmd = "mysql -h {$server_name} -u {$username} -p{$password} {$database_name} < $restore_file";
+      exec($cmd);
    }
-   
-   //cycle through
-   foreach($tables as $table)
-   {
-      $result = mysql_query('SELECT * FROM '.$table);
-      $num_fields = mysql_num_fields($result);
-      
-      $return.= 'DROP TABLE '.$table.';';
-      $row2 = mysql_fetch_row(mysql_query('SHOW CREATE TABLE '.$table));
-      $return.= "\n\n".$row2[1].";\n\n";
-      
-      for ($i = 0; $i < $num_fields; $i++) 
-      {
-         while($row = mysql_fetch_row($result))
-         {
-            $return.= 'INSERT INTO '.$table.' VALUES(';
-            for($j=0; $j < $num_fields; $j++) 
-            {
-               $row[$j] = addslashes($row[$j]);
-               $row[$j] = ereg_replace("\n","\\n",$row[$j]);
-               if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; } else { $return.= '""'; }
-               if ($j < ($num_fields-1)) { $return.= ','; }
-            }
-            $return.= ");\n";
-         }
-      }
-      $return.="\n\n\n";
-   }
-   
-   //save file
-   $handle = fopen('db-backup-'.time().'-'.(md5(implode(',',$tables))).'.sql','w+');
-   fwrite($handle,$return);
-   fclose($handle);
 }

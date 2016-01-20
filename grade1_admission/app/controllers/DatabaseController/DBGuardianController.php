@@ -174,7 +174,10 @@ class DBGuardianController
         
         $db=Connection::getInstance();
         $mysqli=$db->getConnection();
-        
+
+        $stmt = $mysqli->prepare("INSERT INTO guardian  VALUES (?, ?, ?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("sssssssssss", $nic,$first_name,$last_name,$relation_to_child,$nationality,$religion,$permanent_address,$email,$telephone_number,$grama_niladry_division_number,$password);
+
         $nic=$guardian->getNic();
         $first_name =  $guardian->getFirstName();
         $last_name =  $guardian->getLastName();
@@ -187,8 +190,7 @@ class DBGuardianController
         $nationality =  $guardian->getNationality();
         $grama_niladry_division_number =  $guardian->getGrama_nil_div_no();
 
-        $query="insert into guardian values('$nic','$first_name','$last_name','$relation_to_child','$nationality','$religion','$permanent_address','$email','$telephone_number','$grama_niladry_division_number','$password' );";
-        $result=$mysqli->query($query);
+         $result=$stmt->execute();
         return $result;
     }    
     

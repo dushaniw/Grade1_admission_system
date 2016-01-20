@@ -58,10 +58,87 @@ class ApplicationController extends BaseController
         
 	}
 
-    public function postNext(){
+
+
+    public function postBack(){
+
+              $applicant_id= Input::get("applicant_id");
+        $username = Input::get("username");
+        
+
+        $school1 = Input::get("school_name1");
+        $school2 = Input::get("school_name2");
+        $school3 = Input::get("school_name3");
+        $school4 = Input::get("school_name4");
+        $school5 = Input::get("school_name5");
+        $school6 = Input::get("school_name6");
+        $school7 = Input::get("school_name7");
+        $school8 = Input::get("school_name8");
+        $school9 = Input::get("school_name9");
+        $school10 = Input::get("school_name10");
+        $school11 = Input::get("school_name11");
+        $school12 = Input::get("school_name12");        
+        $school13 = Input::get("school_name13");
+        $school14 = Input::get("school_name14");
+        $school15 = Input::get("school_name15");
+        $school16 = Input::get("school_name16");
+        
+        $division1=Input::get("Year1d");
+        $division2=Input::get("Year2d");
+        $division3=Input::get("Year3d");
+        $division4=Input::get("Year4d");
+        $division5=Input::get("Year5d");
+        $division6=Input::get("Year6d");        
+        
+
+        $year1=Input::get("year1");
+        $year2=Input::get("year2");
+        $year3=Input::get("year3");
+        $year4=Input::get("year4");
+        $year5=Input::get("year5");
+        $year6=Input::get("year6");
+                        
+
+        $dArray=array($division1,$division2,$division3,$division4,$division5,$division6);
+
+        $yArray=array($year1,$year2,$year3,$year4,$year5,$year6);
+
+        $schoolid_array=array($school1,$school2,$school3,$school4,$school5,$school6,$school7,$school8,$school9,$school10,$school11,$school12,$school13,$school14,$school15,$school16);
+
+        $schools= array();
+
+        $guardian=DBGuardianController::getGuardian($username);
+        $applicant=DBStudentApplicantController::getApplicantById($applicant_id);
+        
+        foreach ($schoolid_array as $schoolid) {              
+                $schools[] = DBSchoolController::getSchool($schoolid);               
+
+        } 
+
+
+        $guardian= DBGuardianController::getGuardian($username);
+        $guardianNic=$guardian->getNic();
+        $available=DBGuardianController::hasApplicant($guardianNic);
+        if($available==false)
+        {
+            return  Redirect::back()->withInput()->with('error','first you have to add your child to system');
+        
+        }else{
+            $appplicants=DBStudentApplicantController::getApplicantOfGuardian($guardianNic);
+            $schools=DBSchoolController::getAllSchool();
+            $divisions=DBGNDDivisionController::getAllDivision();
+            return  View :: make ('G1SAS/selection')->with('username',$username)->with('divisions',$divisions)->with ('schools',$schools)->with('applicants',$appplicants)->with('guardian',$guardian)->with ('schools',$schools)->with('dArray',$dArray)->with('yArray',$yArray)->with('guardian',$guardian)->with('applicant',$applicant);
+                
+        }
+
+
+
+    }
+
+    public function getNext(){
         
         $applicant_id= Input::get("applicant_id");
-        $username = Input::get("guardian");
+        $username = Input::get("username");
         
 
         $school1 = Input::get("school_name1");
@@ -137,6 +214,8 @@ class ApplicationController extends BaseController
     public function postApplication()
     {
         
+        $username=Input::get("username");
+
         $applicantId=Input::get("applicant_id");
         $orderOfPreference=Input::get("schoolPiority");
         $schoolId=Input::get("schoolId");
@@ -173,16 +252,16 @@ class ApplicationController extends BaseController
 
         switch ($type) {
             case 0:
-                return  View :: make ('G1SAS/category1')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
+                return  View :: make ('G1SAS/category1')->with('application',$application)->with('username',$username)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;
             case 1: // never reached because "a" is already matched with 0
-               return  View :: make ('G1SAS/category2')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
+               return  View :: make ('G1SAS/category2')->with('application',$application)->with('username',$username)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;
             case 2:
-                return  View :: make ('G1SAS/category3')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
+                return  View :: make ('G1SAS/category3')->with('application',$application)->with('username',$username)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;
             case 3: // never reached because "a" is already matched with 0
-                return  View :: make ('G1SAS/category4')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
+                return  View :: make ('G1SAS/category4')->with('application',$application)->with('username',$username)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
                 break;
             case 4:
                 return  View :: make ('G1SAS/category5')->with('application',$application)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
