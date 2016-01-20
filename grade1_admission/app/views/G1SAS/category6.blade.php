@@ -1,18 +1,42 @@
-<html>
-<head>
-	<title>category 6</title>
-</head>
-<body>
-	{{ Form :: open(array('url' =>'selectSchool/addcategory','method' => 'POST' ))}}
+@extends('G1SAS/layouts/normal_user_layout')
 
+@section('content')
 
-		{{ Form :: hidden( 'orderOfPreference',$application->getOrderOfPreference()) ; }}
-		{{ Form :: hidden( 'typeOfApplication',$application->getType()) ; }}
-		{{ Form :: hidden( 'schoolId',$application->getSchool_id()) ; }}
-		{{ Form :: hidden( 'distance',$application->getDistance()) ; }} 
-		{{ Form :: hidden( 'medium',$application->getMedium()) ; }}
-	{{	Form :: hidden( 'applicantId',$application->getApplicant_id()) ; }}		
-			{{Form::hidden('schoolId1', $schools[0]);}}
+<nav class = "navbar navbar-inverse" role = "navigation">
+  <ul class="nav navbar-nav" >
+    <li class> <a href="/userpage/home?username=<?php echo $username ?>">Home</a></li>
+    <li>{{HTML::link('#', 'About')}}  </li>
+    
+    <li> <a href="/child/childrenoverview?username=<?php echo $username ?>">My Children</a></li>
+    <li class="active"><a href = "" class="disabled" style="color: #3366FF" >My Applications </a></li>
+    <li><a href-"#">Search</a></li>
+  </ul>
+    <p class = "navbar-text pull-right">
+         Signed in as <a href = "#" class = "navbar-link"><?php echo $username?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
+</nav>
+
+<div class="row">
+  <div class="col-md-3">
+    <br/>
+    <ul class = "nav nav-pills nav-stacked" role = "navigation">
+      <li><a href = "#">Overview</a></li>
+      <li class = "active"><a href = "" class="disabled" style="color: #3366FF" >Add New Application</a></li>
+    </ul>
+  </div>
+  <div class = "col-md-9">
+                <div class = "panel panel-primary panel-transparent">
+                        <div class ="panel-heading">
+                                <h3 class="panel-title"> <p class="text-center"><span class = "glyphicon glyphicon-edit"></span> Add New Application </p></h3>
+                        </div>
+                        <div class = "panel-body"> <div class = "col-md-10">
+							{{Form:: open(array('url' =>'selectSchool/addcategory','method' => 'POST' ))}}
+								{{ Form:: hidden( 'orderOfPreference',$application->getOrderOfPreference()) ; }}
+								{{ Form:: hidden( 'typeOfApplication',$application->getType()) ; }}
+								{{ Form:: hidden( 'schoolId',$application->getSchool_id()) ; }}
+								{{ Form:: hidden( 'distance',$application->getDistance()) ; }} 
+								{{ Form:: hidden( 'medium',$application->getMedium()) ; }}
+							{{	Form:: hidden( 'applicantId',$application->getApplicant_id()) ; }}		
+		{{Form::hidden('schoolId1', $schools[0]);}}
 		{{Form::hidden('schoolId2', $schools[1]);}}
 		{{Form::hidden('schoolId3', $schools[2]);}}
 		{{Form::hidden('schoolId4', $schools[3]);}}
@@ -38,43 +62,52 @@
 		{{Form::hidden('year6', $yArray[5]);}}
 
 		{{Form::hidden('guardianNic', $guardianNic)}}
+
+			<h3><span class = "label label-default"> >Children of persons arriving after living abroad with child </span></h3>
+		</br>
+
+			<div class="form-group">
+					{{Form::label('Label6', 'a) Date returned to country ')}}
+					{{Form:: text( 'dateOfReturned','',array('class' =>'form-control','style'=>'width: 150px; background-color:white'))  }}		
+			</div>
+			<div class="form-group">
+					{{Form::label('Label7','b) Period of stay abroad')}}
+					{{Form::text( 'PeriodOfStayAbroad',$category->getPerioadAbroadStay()." years",array('class' =>'form-control','style'=>'width: 150px; background-color:white')) }}	
+			</div>
+			<div class="form-group">
+							{{Form::label('Label8', 'c) Reason for stay')}}
+							<div class = "radio">
+                                <label>
+                                     {{ Form::radio('reason','Sri lankan dutha mandala duty',true)}}
+                                                    Sri lankan dutha mandala duty
+                                </label>
+                                <label>
+                                    {{Form::radio('reason', 'Sri lankan goverment duty purpose')}}
+                                		           Sri lankan goverment duty purpose
+                                </label>
+                                <label>
+                                    {{Form::radio('reason', 'Scholarship')}}
+                                		           Scholarship
+                                </label>
+                                <label>
+                                    {{Form::radio('reason', 'Personal Reason')}}
+                                		           Personal Reason
+                                </label>
+
+                            </div>
+								
+			</div>
+			<div class="form-group">
+			 					{{Form::submit('Verify Application',array('class' => 'btn btn-primary'))}}		
+			</div>
 	
-		<h1>Childern of persons arriving after living abroad with child</h1>
+      	{{Form::close()}}
 
-		{{Form::label('Label6', 'a) Date returned to country ');}}
+</div></div>
+                
+       </div>
+  </div>
+</div>
+	@stop
+ 
 
-		 {{ Form :: text( 'dateOfReturned','') ; }}		
-
-
-		<br>		
-		{{Form::label('Label7','b) Period of stay abroad');}}
-		{{ Form :: text( 'PeriodOfStayAbroad','') ; }}		
-			
-
-		<br>	
-
-		{{Form::label('Label8', 'Reason for stay ');}}
-		<br>
-
-
-        {{Form::label('labler1', 'Sri lankan dutha mandala duty:      ');}}
-
-        {{ Form::radio('reason', 'Sri lankan dutha mandala duty'); }}
-
-        {{Form::label('labelr2', 'Sri lankan goverment duty purpose:      ');}}
-
-        {{ Form::radio('reason', 'Sri lankan goverment duty purpose'); }}
-
-        {{Form::label('labelr3', 'Scholarship :      ');}}
-
-        {{ Form::radio('reason', 'Scholarship');}}
-
-          {{Form::label('labelr4', 'Personal Reason :      ');}}
-
-        {{ Form::radio('reason', 'Personal Reason');}}
-        <br>
-
-        {{Form::submit('addApplication')}}
-	{{Form::close()}}
-</body>
-</html>
