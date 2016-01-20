@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
 <nav class = "navbar navbar-inverse" role = "navigation">
 	<ul class="nav navbar-nav" >
 		<li class="active"> <a href="/userpage/home?username=<?php echo $username ?>">Home</a></li>
@@ -14,6 +16,8 @@
 		<p class = "navbar-text pull-right">
          Signed in as <a href = "#" class = "navbar-link"><?php echo $username?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
 </nav>
+
+                                    	
 
 <div class="row">
 	<div class="col-md-3">
@@ -36,7 +40,6 @@
 		
 	</div>
 </div>
-
 
 
 {{Form:: open(array('url' =>'userpage/searchUserSchool','method' => 'POST' ))}}
