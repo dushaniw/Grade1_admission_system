@@ -44,9 +44,10 @@ class ApplicationController extends BaseController
         $guardian= DBGuardianController::getGuardian($username);
         $guardianNic=$guardian->getNic();
         $available=DBGuardianController::hasApplicant($guardianNic);
-         if($available==false)
+        if($available==false)
         {
-            return "first you have to add your child to system";
+            return  Redirect::back()->withInput()->with('error','first you have to add your child to system');
+        
         }else{
             $appplicants=DBStudentApplicantController::getApplicantOfGuardian($guardianNic);
             $schools=DBSchoolController::getAllSchool();
@@ -59,7 +60,6 @@ class ApplicationController extends BaseController
 
     public function postNext(){
         
-
         $applicant_id= Input::get("applicant_id");
         $username = Input::get("guardian");
         

@@ -140,12 +140,31 @@ class DBSchoolController
                 $male_per=$school->getMale_percentage();
                 $sinhala_per=$school->getSinhala_percentage();
                 $email=$school->getEmail();
-                $password=$school->getPassword();
+                $encrypted=Hash::make($school->getPassword());
 
-                $query="insert into school values( '$schoolid','$name','$male_per','$category','$sinhala_per','$contact','$no_of_classes','$email','$password')";
+                $query="insert into school values( '$schoolid','$name','$male_per','$category','$sinhala_per','$contact','$no_of_classes','$email','$encrypted')";
                 $result=$mysqli->query($query);
                 return $result;                      
         }
+
+        public static function getApplySchoolSet($applicantId)
+        {
+                $db=Connection::getInstance();
+                $mysqli=$db->getConnection();
+                $query="select distinct schoolId from application where applicantId='$applicantId' order by orderOfPreference";
+                $result =$mysqli->query($query);
+                $schools= array();
+                if ($result->num_rows > 0) {    
+                        while ($row = $result->fetch_assoc()) {
+                                $schoolId=$row["schoolId"];
+                                $school=DBSchoolController::getSchool($schoolId);  
+                                $schools[] = $school;
+                        }
+                }
+                return $schools;
+
+        }
+
 
 
 }

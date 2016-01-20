@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
 <nav class = "navbar navbar-inverse" role = "navigation">
 	<ul class="nav navbar-nav" >
 		<li class="active"> <a href="/userpage/home?username=<?php echo $username ?>">Home</a></li>
@@ -15,6 +17,13 @@
          Signed in as <a href = "#" class = "navbar-link"><?php echo $username?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
 </nav>
 
+
+   @if(Session::has('error'))
+                                    <div class="alert alert-danger">
+                                        {{Session::get('error')}}
+                                    </div>
+                                    @endif
+
 <div class="row">
 	<div class="col-md-3">
 		<br/>
@@ -25,7 +34,7 @@
 	</div>
 	<div class ="col-md-9">
 		<div class="page-header" style="border-color:#303030">
-		<h2><?php echo $guardian->getFirstName()." ".$guardian->getLastName()?></h2>
+	<h2><?php echo $guardian->getFirstName()." ".$guardian->getLastName()?></h2>
 		</div>
 
 		<h4><strong>NIC     	    : </strong><?php echo  $guardian->getNIC() ?></h4>
@@ -36,7 +45,6 @@
 		
 	</div>
 </div>
-
 
 
 {{Form:: open(array('url' =>'userpage/searchUserSchool','method' => 'POST' ))}}
@@ -52,5 +60,10 @@
         {{Form::submit('Change Category Detial ')}}
 {{ Form:: close()}}
 
+
+{{Form:: open(array('url' =>'edit/changep','method' => 'POST' ))}}
+		{{Form::hidden('username',$username)}}
+        {{Form::submit('Change school Piority level ')}}
+{{ Form:: close()}}
 
 @stop

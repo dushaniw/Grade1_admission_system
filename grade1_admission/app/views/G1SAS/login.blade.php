@@ -16,6 +16,7 @@
 					<h3 class="panel-title"> <p class="text-center"><span class = "glyphicon glyphicon-user"></span> Sign in to your account </p></h3>
 				</div>	
 				<div class = "panel-body">
+					{{Form::label('message', $message);}}
 					{{Form::open(array('role'=>'form','url' => 'login', 'method'=>'POST'))}}
 						<div class="form-group"> 
 							{{Form::label('userTypeL', 'User Type');}}

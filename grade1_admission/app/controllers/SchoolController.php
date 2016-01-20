@@ -277,6 +277,7 @@ class SchoolController extends BaseController
             $school->setMale_percentage($male_per);
             $school->setSinhala_percentage($sinhala_per);
             $school->setEmail($email);
+            //$school->setPassword(Hash::make($password));
             $school->setPassword($password);
             
             $result=DBSchoolController::addSchool($school);

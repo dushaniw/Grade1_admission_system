@@ -19,6 +19,30 @@ class DBApplicationController{
 
 	}
 
+
+    public static function changeSchoolPiority($applicantId,$schools)
+    {
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
+         $mysqli->autocommit(FALSE);
+        foreach ($schools as $school) {
+            $schoolId=$school->getSchool_id();
+            $orderOfPreference=$school->getOrderOfPreference();
+            $query="update application set orderOfPreference='$orderOfPreference' where schoolId='$schoolId' and applicantId='$applicantId'; ";
+            $result=$mysqli->query($query);
+            if($result==false){
+                $mysqli->rollback();
+                $mysqli->commit();
+                return  false;
+            }
+        }
+
+        $mysqli->commit();
+        return  true;
+
+    }
+
+
 	public static function getNextApplicationId(){
 		$applicantionId='1';
         $db=Connection::getInstance();

@@ -1,5 +1,6 @@
 <?php
 
+include('Model/parser.php');
 class EditController extends BaseController{
 
 	public function postIndex()
@@ -240,5 +241,94 @@ class EditController extends BaseController{
             }  
     }
 
+    public function postChangep(){
+        $username=Input::get("username");
 
+        $guardian= DBGuardianController::getGuardian($username);
+        $guardianNic=$guardian->getNic();
+        $available=DBGuardianController::hasApplicant($guardianNic);
+        if($available==false)
+        {
+            return "first you have to add your child to system";
+        }else{
+            $applicants=DBStudentApplicantController::getApplicantOfGuardian($guardianNic);
+            return  View :: make ('G1SAS/changeSchoolPiorityB')->with('applicants',$applicants);
+            
+        }
+    }
+
+     public function postChangep1(){
+        $applicantId=Input::get("applicant_id");
+        $schools=DBSchoolController::getApplySchoolSet($applicantId);
+        
+        return  View :: make ('G1SAS/changeSchoolPiority')->with('schools',$schools)->with('applicantId',$applicantId);                    
+    }
+
+    public function postChangepf(){
+        $schools=array();
+        $applicantId=Input::get("applicantId");
+        $size=Input::get("size");
+        
+        if($size>=1){
+          $school1=new parser();
+          $schoolId1=Input::get("schoolId1");
+          $piority1=Input::get("piority1");
+          $school1->setSchool_id($schoolId1);
+          $school1->setOrderOfPreference($piority1);
+          $schools[]=$school1;
+          }
+        
+        if($size>=2){
+          $school2=new parser();
+          $schoolId2=Input::get("schoolId2");
+          $piority2=Input::get("piority2");
+          $school2->setSchool_id($schoolId2);
+          $school2->setOrderOfPreference($piority2);
+          $schools[]=$school2;
+        }
+
+        if($size>=3){
+          $school3=new parser();
+          $schoolId3=Input::get("schoolId3");
+          $piority3=Input::get("piority3");
+          $school3->setSchool_id($schoolId3);
+          $school3->setOrderOfPreference($piority3);
+          $schools[]=$school3;
+        }
+        
+        if($size>=4){
+          $school4=new parser();
+          $schoolId4=Input::get("schoolId4");
+          $piority4=Input::get("piority4");
+          $school4->setSchool_id($schoolId4);
+          $school4->setOrderOfPreference($piority4);
+          $schools[]=$school4;
+        }
+        
+        if($size>=5){
+          $school5=new parser();
+          $schoolId5=Input::get("schoolId5");
+          $piority5=Input::get("piority5");
+          $school5->setSchool_id($schoolId5);
+          $school5->setOrderOfPreference($piority5);
+          $schools[]=$school5; 
+        }
+
+        if($size>=6){  
+          $school6=new parser();
+          $schoolId6=Input::get("schoolId6");
+          $piority6=Input::get("piority6");
+          $school6->setSchool_id($schoolId6);
+          $school6->setOrderOfPreference($piority6);
+          
+          $schools[]=$school6; 
+          }        
+
+        $result=DBApplicationController::changeSchoolPiority($applicantId,$schools); 
+        if($result){
+               return "piority level of schools changed "; 
+        }else{
+            return "piority level of schools not change well ";
+        }               
+    }
 }
