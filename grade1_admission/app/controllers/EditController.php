@@ -3,12 +3,12 @@
 include('Model/parser.php');
 class EditController extends BaseController{
 
-	public function postIndex()
+	public function getIndex()
     {
-        $username=Input::get("username");
+        $username=$_GET['username'];
        	$guardian=DBGuardianController::getGuardian($username);
         $schools=DBCategory2Controller::getGuardianApplySchools($guardian->getNic());
-        return View :: make ('G1SAS/EditCategoryDetail')->with('nic',$guardian->getNic())->with('schools',$schools);
+        return View :: make ('G1SAS/EditCategoryDetail')->with('username',$username)->with('nic',$guardian->getNic())->with('schools',$schools);
     }
     
     public function postEditcategory()

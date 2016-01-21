@@ -11,7 +11,7 @@
 		
 		<li> <a href="/child/childrenoverview?username=<?php echo $username ?>">My Children</a></li>
 		<li><a href ="/selectSchool?username=<?php echo $username ?>">My Applications</a></li>
-		<li><a href-"#">Search</a></li>
+		<li><a href="/search/schoolselecteduser?username=<?php echo $username ?>">Search</a></li>
 	</ul>
 		<p class = "navbar-text pull-right">
          Signed in as <a href = "#" class = "navbar-link"><?php echo $username?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
@@ -19,7 +19,7 @@
 
 
    @if(Session::has('error'))
-                                    <div class="alert alert-danger">
+      <div class="alert alert-danger">
                                         {{Session::get('error')}}
                                     </div>
                                     @endif
@@ -47,13 +47,9 @@
 </div>
 
 
-{{Form:: open(array('url' =>'userpage/searchUserSchool','method' => 'POST' ))}}
-        {{Form::submit('Search selected school')}}
-{{ Form:: close()}}
 
-{{Form:: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
-        {{Form::submit('Search school selected applicants')}}
-{{ Form:: close()}}
+
+       
 
 {{Form:: open(array('url' =>'edit','method' => 'POST' ))}}
 		{{Form::hidden('username',$username)}}
