@@ -9,7 +9,7 @@
     
     <li> <a href="/child/childrenoverview?username=<?php echo $username ?>">My Children</a></li>
     <li class="active"><a href = "/selectSchool?username=<?php echo $username ?>">My Applications </a></li>
-    <li><a href-"#">Search</a></li>
+    <li><a href="/search/schoolselecteduser?username=<?php echo $username ?>">Search</a></li>
   </ul>
     <p class = "navbar-text pull-right">
          Signed in as <a href = "#" class = "navbar-link"><?php echo $username?></a> | <a href = "#" class = "navbar-link">Sign Out</a> </p>
@@ -28,6 +28,7 @@
     <ul class = "nav nav-pills nav-stacked" role = "navigation">
       <li><a href = "#">Overview</a></li>
       <li class = "active"><a href = "/selectSchool?username=<?php echo $username ?>">Add New Application</a></li>
+      <li> <a href="edit?username=<?php echo $username ?>">Edit Category Details</a></li>
     </ul>
   </div>
   <div class = "col-md-9">

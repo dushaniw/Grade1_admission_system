@@ -22,7 +22,8 @@
         	</div>
 	 		<div class = "col-md-9">
 	 			<br/>
-	 			{{Form:: open(array('url' =>'search/schoolapplicantsfind','method' => 'GET','role'=>'form' ))}}  
+	 			{{Form:: open(array('url' =>'search/schoolapplicantsfinduser','method' => 'GET','role'=>'form' ))}} 
+	 				{{Form::hidden('username',$username)}} 
 	 				{{Form::hidden('schoolid',$school->getSchool_id())}}
 	 				
 	 				<div class="form-group">

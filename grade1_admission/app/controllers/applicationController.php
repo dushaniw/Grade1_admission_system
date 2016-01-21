@@ -252,7 +252,18 @@ class ApplicationController extends BaseController
 
         switch ($type) {
             case 0:
+                $resultCD=DBGuardianController::hasCategory1Detail($guardianNic);  
+                if($resultCD){ 
+                    $applicantResult=DBApplicationController::addApplication($application);
+                    if($applicantResult){
+                        return "added successfully";
+                    }else{
+                        return "not aded successfully";
+                    }
+                }else{
+
                 return  View :: make ('G1SAS/category1')->with('application',$application)->with('username',$username)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
+                }
                 break;
             case 1: // never reached because "a" is already matched with 0
                return  View :: make ('G1SAS/category2')->with('application',$application)->with('username',$username)->with('schools',$schoolIds)->with('yArray',$yearset)->with('guardianNic',$guardianNic)->with('dArray',$divisionSet);
@@ -300,8 +311,8 @@ class ApplicationController extends BaseController
         $yArray=array(Input::get("year1"),Input::get("year2"),Input::get("year3"),Input::get("year4"),Input::get("year5"),Input::get("year6"));
         $dArray=array(Input::get("division1"),Input::get("division2"),Input::get("division3"),Input::get("division4"),Input::get("division5"),Input::get("division6"));
 
-          $db=Connection::getInstance();
-          $mysqli=$db->getConnection();
+        $db=Connection::getInstance();
+        $mysqli=$db->getConnection();
         
 
         if($type==0){
@@ -550,10 +561,9 @@ class ApplicationController extends BaseController
  
 
             $permenentEmployeePost=Input::get("permenentEmployeePost"); 
-            $totalServicePeriod =Input::get("totalServicePeriod");
             $distanceFromResidentToWork= Input::get("distanceFromResidentToWork");
             $nowInDifficultSchoolService=Input::get("nowInDifficultSchoolService"); 
-            $periodOfDifficultSchoolService =Input::get("nowInDifficultSchoolService");
+            $periodOfDifficultSchoolService =Input::get("periodOfDifficultSchoolService");
             $servingPeriodOfSchool=Input::get("servingPeriodOfSchool");
             $closeSchoolCount=Input::get("closeSchoolCount");
             $year1RemLeave =  Input::get("year1RemLeave");    
@@ -594,9 +604,11 @@ class ApplicationController extends BaseController
                 return "you have allready added  this type of application to this school";
         }
              
- 
+            $year=Input::get("year");
+            $month=Input::get("month");
+            $date=Input::get("date");
             
-            $dateOfTransferReceived=Input::get("dateOfTransferReceived"); 
+            $dateOfTransferReceived=$year."/".$month."/".$date; 
             $beforeWorkedPlace =Input::get("beforeWorkedPlace");
             $afterWorkedPlace= Input::get("afterWorkedPlace");
             $distanceOfTransfer=Input::get("distanceOfTransfer"); 

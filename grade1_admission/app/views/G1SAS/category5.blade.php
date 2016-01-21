@@ -72,9 +72,9 @@
 							{{Form::label('Label41', 'a) Date of transfer received lastly')}}
 
 							<br/>
-                            {{ Form::selectRange('dateOfTransferReceived_year', 2009, 2015,2015,['class'=>'div-inline','style'=>'width: 100px' ]) }}
-                            {{ Form::selectMonth('dateOfTransferReceived_month',1,['class'=>'div-inline','style'=>'width: 100px']) }}
-                            {{ Form::selectRange('dateOfTransferReceived_date', 1, 31,1,['class'=>'div-inline','style'=>'width: 100px']) }}
+                            {{ Form::selectRange('year', 2009, 2015,2015,['class'=>'div-inline','style'=>'width: 100px' ]) }}
+                            {{ Form::selectMonth('month',1,['class'=>'div-inline','style'=>'width: 100px']) }}
+                            {{ Form::selectRange('date', 1, 31,1,['class'=>'div-inline','style'=>'width: 100px']) }}
 
 								
 						</div>
