@@ -19,5 +19,25 @@
                         <li><a href = "/userpage/studentadd?username=<?php echo $username ?>">Add New Child</a></li>
                 </ul>
         </div>
+        
+        <table >
 
+                        <tr>
+                <th>Applicant ID</th>
+                <th>Frist Name</th> 
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>DateOfBirth</th>
+               
+            </tr>
+            @foreach($children as $child)
+            <tr>
+                <td>{{$child->getApplicantId()}}</td>
+                <td>{{$child->getFirstname()}}</td>
+                <td>{{$child->getLastname()}}</td>
+                <td>{{$child->getGender()}}</td>
+                <td>{{$child->getDateOfBirth()}}</td>
+             </tr>
+            @endforeach
+        </table>
 @stop

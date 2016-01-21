@@ -46,13 +46,32 @@
 	</div>
 </div>
 
-
+@if(DBDeadlineController::getIsdatepassed())
 {{Form:: open(array('url' =>'userpage/searchUserSchool','method' => 'POST' ))}}
         {{Form::submit('Search selected school')}}
 {{ Form:: close()}}
 
 {{Form:: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
         {{Form::submit('Search school selected applicants')}}
+{{ Form:: close()}}
+
+{{Form:: open(array('url' =>'edit','method' => 'POST' ))}}
+		{{Form::hidden('username',$username)}}
+        {{Form::submit('Change Category Detial ',array('disabled'))}}
+{{ Form:: close()}}
+
+
+{{Form:: open(array('url' =>'edit/changep','method' => 'POST' ))}}
+		{{Form::hidden('username',$username)}}
+        {{Form::submit('Change school Piority level ',array('disabled'))}}
+{{ Form:: close()}}
+@else
+{{Form:: open(array('url' =>'userpage/searchUserSchool','method' => 'POST' ))}}
+        {{Form::submit('Search selected school',array('disabled'))}}
+{{ Form:: close()}}
+
+{{Form:: open(array('url' =>'search/schoolselected','method' => 'POST' ))}}
+        {{Form::submit('Search school selected applicants',array('disabled'))}}
 {{ Form:: close()}}
 
 {{Form:: open(array('url' =>'edit','method' => 'POST' ))}}
@@ -65,5 +84,5 @@
 		{{Form::hidden('username',$username)}}
         {{Form::submit('Change school Piority level ')}}
 {{ Form:: close()}}
-
+@endif
 @stop

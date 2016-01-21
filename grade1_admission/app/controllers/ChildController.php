@@ -10,7 +10,9 @@ class ChildController extends BaseController{
 
     public function getChildrenoverview(){
         $username=$_GET['username'];
-        return View::make('G1SAS/children_overview')->with('username',$username);
+        $guardianNic=DBGuardianController::getGuardian($username)->getNic();
+        $children=DBStudentApplicantController::getApplicantOfGuardian($guardianNic);
+        return View::make('G1SAS/children_overview')->with('username',$username)->with('children',$children);
     }
 
 

@@ -51,6 +51,7 @@
 									{{Form::text('childIDText',Session::get('childId'),array('class' =>'form-control','placeholder'=>'Application ID','required' ))}}
 								@else
                 					{{ Form:: text('childIDText',null,array('class' =>'form-control','placeholder'=>'Application ID','required'))}}
+                					
         						@endif
         					</div>
 							<div class="form-group">

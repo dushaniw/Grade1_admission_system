@@ -15,7 +15,7 @@ class LoginController extends BaseController
 		$user_type = Input::get("userTypeA");
         $user_name = Input::get("userNameText");
         $password = Input::get("password");
-        
+        //$deadline = Input::get("deadline");
 
         if($user_type==2){
             $guardian=DBGuardianController::getGuardian($user_name);
