@@ -27,7 +27,11 @@
     <br/>
     <ul class = "nav nav-pills nav-stacked" role = "navigation">
       <li><a href = "#">Overview</a></li>
+      @if(DBDeadlineController::getIsdatepassed())
+      <li class = "disabled"><a href = "/selectSchool?username=<?php echo $username ?>">Add New Application</a></li>
+      @else
       <li class = "active"><a href = "/selectSchool?username=<?php echo $username ?>">Add New Application</a></li>
+      @endif
       <li> <a href="edit?username=<?php echo $username ?>">Edit Category Details</a></li>
     </ul>
   </div>
@@ -279,7 +283,12 @@
                                    <br/>
                     
                         <div class ="form-group">
+                          @if(DBDeadlineController::getIsdatepassed())
+                            {{Form::submit('Next',array('class' => 'btn btn-primary','disabled' ))}}
+                          @else
                             {{Form::submit('Next',array('class' => 'btn btn-primary' ))}}
+                          @endif
+
                           </div>
 
       {{ Form:: close()}}

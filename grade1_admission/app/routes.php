@@ -2,12 +2,13 @@
 
 Route::get('/',function(){
 	$result=DBDeadlineController::getIsdatepassed();
-	if(date_diff(date_create(date("Y-m-d")),date_create(DBDeadlineController::getDeadline()))){
+	//if((date_diff(date_create(date("Y-m-d")),date_create(DBDeadlineController::getDeadline()))->format('%a'))>0){
+	if(strtotime(date("Y-m-d"))-strtotime(DBDeadlineController::getDeadline())>0){
 		DBDeadlineController::setIsdatepassed(true);
 	}else{
 		DBDeadlineController::setIsdatepassed(false);
 	}
-	if($result){
+	if(DBDeadlineController::getIsdatepassed()){
 		return View :: make ('G1SAS/login')->with('message','Welcome to official web site')->with('greet','Applications for this year is closed.');
     }else{
     	return View :: make ('G1SAS/login')->with('message','Welcome to official web site')->with('greet','Applications are now on!');
